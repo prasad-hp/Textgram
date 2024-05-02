@@ -1,5 +1,5 @@
 import React from "react";
-import profileIcon from "../assets/images/profileIcon.jpeg"
+import profileIcon from "../assets/images/profileIcon.svg"
 
 function PostHeader(props){
 

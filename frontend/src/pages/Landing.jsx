@@ -23,8 +23,8 @@ function LandingPage() {
         Event.preventDefault();
         const newPost = {
             id: posts.length + 1,
-            firstName:"Prasad",
-            lastName: "H P",
+            firstName:"Unknown",
+            lastName: "User",
             postText: textInput,
             likes: Math.floor(Math.random()*100),
             comments: []
