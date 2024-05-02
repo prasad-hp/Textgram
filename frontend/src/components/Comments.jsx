@@ -13,8 +13,6 @@ function Comments(props){
             </div>
         )
     })
-    
-
     return(
         <div>
             <div className="flex flex-col">
