@@ -1,10 +1,14 @@
 import React from "react";
-import CardHeader from "./CardHeader";
+import Post from "./Post";
+import PostHeader from "./PostHeader";
+import PostFooter from "./PostFooter";
 
 function PostCard(){
     return(
         <div>
-            <CardHeader />
+            <PostHeader />
+            <Post />
+            <PostFooter />
         </div>
     )
 }
