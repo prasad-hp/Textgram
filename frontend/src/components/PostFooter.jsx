@@ -6,7 +6,7 @@ function PostFooter(props){
     return(
         <div>
             <div className="flex justify-start pl-16">
-                <Likes likesCount = {props.post.likes} />
+                <Likes posts = {props.posts} />
                 <Comments />
             </div>
         </div>
