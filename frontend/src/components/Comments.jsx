@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import commentIcon from "../assets/images/commentIcon.svg"
 
-
-
 function Comments(){
     const [comments, setComments] = useState(false)
 

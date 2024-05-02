@@ -1,4 +1,5 @@
-const posts = [{
+const userPosts = [{
+    id:1,
     firstName:"Prasad",
     lastName: "Hp",
     postText:"Hello, Good Morning Everyone",
@@ -8,6 +9,7 @@ const posts = [{
 },
 {
     firstName:"Spoorthy",
+    id:2,
     lastName: "U",
     postText:"Hello, How are you guys doing",
     likes: 10,
@@ -16,6 +18,7 @@ const posts = [{
 },
 {
     firstName:"Chandu",
+    id:3,
     lastName: "M",
     postText:"Hello All",
     likes: 10,
@@ -23,4 +26,4 @@ const posts = [{
             "hello everyone"]
 }]
 
-export default posts;
+export default userPosts;

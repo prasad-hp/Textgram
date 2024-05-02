@@ -2,11 +2,11 @@ import React from "react";
 import Likes from "./Likes";
 import Comments from "./Comments";
 
-function PostFooter(){
+function PostFooter(props){
     return(
         <div>
             <div className="flex justify-start pl-16">
-                <Likes />
+                <Likes likesCount = {props.post.likes} />
                 <Comments />
             </div>
         </div>

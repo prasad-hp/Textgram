@@ -3,9 +3,9 @@ import notLikedIcon from "../assets/images/likeWithoutBg.svg"
 import LikedIcon from "../assets/images/likeWithBg.svg"
 
 
-function Likes(){
+function Likes(props){
     const [likeIcon, setLikeIcon] = useState(notLikedIcon)
-    const [likeCount, setLikeCount] = useState(35)
+    const [likeCount, setLikeCount] = useState(props.post.likes)
     return(
         <div>
             <div className="flex">

@@ -1,9 +1,9 @@
 import { useState, React } from "react";
 
-function PostText(){
+function PostText(props){
     return(
         <div className="w-full pl-16 pb-5">
-            <p>Hello Everyone Good Morning</p>
+            <p>{props.post.PostText}</p>
         </div>
     )
 }
