@@ -1,5 +1,5 @@
 const userPosts = [{
-    id:"1",
+    id:1,
     firstName:"Prasad",
     lastName: "Hp",
     postText:"Hello, Good Morning Everyone",
@@ -9,7 +9,7 @@ const userPosts = [{
 },
 {
     firstName:"Spoorthy",
-    id:"2",
+    id:2,
     lastName: "U",
     postText:"Hello, How are you guys doing",
     likes: 120,
@@ -18,7 +18,7 @@ const userPosts = [{
 },
 {
     firstName:"Chandu",
-    id:"3",
+    id:3,
     lastName: "M",
     postText:"Hello All",
     likes: 170,
@@ -27,7 +27,7 @@ const userPosts = [{
 },
 {
     firstName:"Chdasdasdandu",
-    id:"3",
+    id:4,
     lastName: "M",
     postText:"Hellodasdas All",
     likes: 1470,

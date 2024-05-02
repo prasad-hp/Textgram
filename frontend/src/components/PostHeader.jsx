@@ -2,7 +2,7 @@ import React from "react";
 import profileIcon from "../assets/images/profileIcon.jpeg"
 
 function PostHeader(props){
-    
+
     return(
         <div className="flex justify-start items-center">
             <img src={profileIcon} className="rounded-full w-10 m-4 mr-2"/>
