@@ -36,8 +36,8 @@ function LandingPage() {
     return(
         <div className="h-screen flex justify-center w-screen">
             <div className="flex flex-col align-start w-screen lg:w-1/3 md:w-1/2 max-w-xl">
-                <div className="w-full border rounded-lg my-2 p-3 flex">
-                    <form onSubmit={handleSubmit}>
+                <div className="w-full border rounded-lg my-2 p-3">
+                    <form onSubmit={handleSubmit} className="flex">
                         <textarea placeholder="Click here to create new Post" className="justify-start w-10/12" value={textInput} onChange={handleInputChange}></textarea>
                         <button className="justify-end align-bottom w-2/12 bg-blue-600 mx-3 my-1.5 rounded-xl" type="submit">Post</button>
                     </form>
