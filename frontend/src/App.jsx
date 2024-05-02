@@ -1,8 +1,16 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/Landing";
+
 
 function App(){
   return(
-    <h1 className="text-5xl">Hello World</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
+    
   )
 }
 
