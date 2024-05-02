@@ -1,13 +1,13 @@
 import React from "react";
-import Post from "./Post";
 import PostHeader from "./PostHeader";
 import PostFooter from "./PostFooter";
+import PostText from "./PostText";
 
 function PostCard(){
     return(
-        <div>
+        <div className="w-full border rounded-lg mb-2">
             <PostHeader />
-            <Post />
+            <PostText />
             <PostFooter />
         </div>
     )

@@ -5,7 +5,7 @@ import Comments from "./Comments";
 function PostFooter(){
     return(
         <div>
-            <div className="flex justify-start">
+            <div className="flex justify-start pl-16">
                 <Likes />
                 <Comments />
             </div>

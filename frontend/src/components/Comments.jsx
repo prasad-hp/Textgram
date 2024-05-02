@@ -17,9 +17,9 @@ function Comments(){
                         setComments(false)
                     }
                 }}>
-                    <img src={commentIcon} />
+                    <img src={commentIcon} className="ml-5"/>
                 </button>
-                {comments == false ? null : <h1>Hello from Comment</h1>}
+                {comments == false ? null : <h1 className="">Hello from Comment</h1>}
                 
             </div>
 

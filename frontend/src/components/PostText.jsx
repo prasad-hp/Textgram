@@ -1,11 +1,11 @@
 import { useState, React } from "react";
 
-function Post(){
+function PostText(){
     return(
-        <div>
+        <div className="w-full pl-16 pb-5">
             <p>Hello Everyone Good Morning</p>
         </div>
     )
 }
 
-export default Post;
+export default PostText;

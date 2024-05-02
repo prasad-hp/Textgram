@@ -21,7 +21,7 @@ function Likes(){
                 }}>
                     <img src={likeIcon} />
                 </button>
-                <h2>{likeCount}</h2>
+                <h2 className="ml-1">{likeCount}</h2>
                 
                 
             </div>
