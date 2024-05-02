@@ -29,10 +29,10 @@ const userPosts = [{
     firstName:"Chdasdasdandu",
     id:4,
     lastName: "M",
-    postText:"Hellodasdas All",
+    postText:"Hello Have a great day You all",
     likes: 1470,
-    comments:["have a dasdasd day ahead everyone",
-            "hello everydasdsaone"]
+    comments:["have a day ahead everyone",
+            "hello everyone"]
 }]
 
 export default userPosts;

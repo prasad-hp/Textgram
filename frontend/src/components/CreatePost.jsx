@@ -20,7 +20,7 @@ function CreatePost(){
         };
         setPosts([...posts, newPost]);
         setTextInput("")
-        console.log("Added to DB");
+        console.log(posts);
     }
     return(
         <div className="w-full border rounded-lg my-2 p-3 flex">
