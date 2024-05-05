@@ -1,17 +1,12 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/Landing";
+import React from 'react'
 
+function App() {
 
-function App(){
-  return(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-      </Routes>
-    </BrowserRouter>
-    
+  return (
+    <>
+      <h1 className='text-green-600 bg-red-300'>Hello</h1>
+    </>
   )
 }
 
-export default App;
+export default App

@@ -20,8 +20,7 @@ function CreatePost(){
         }
     }
 
-
-    const handleInputChange = (Event) =>{
+    function handleInputChange(Event){
         setTextInput(Event.target.value);
     }
     return(
