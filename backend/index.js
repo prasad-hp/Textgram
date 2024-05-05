@@ -1,12 +1,16 @@
 import express, { urlencoded } from "express"
 import mongoose from "mongoose";
 import Post from "./schema.js";
+import cors from "cors"
 
 const port = 3001;
 const app = express();
 
 app.use(express.json())
 app.use(urlencoded({extended:false}))
+app.use(cors({
+    origin:"http://localhost:5173"
+}))
 
 mongoose.connect("mongodb://localhost:27017/Textgram")
     .then(()=>{
@@ -18,7 +22,6 @@ app.get("/posts", async(req, res) => {
     try {
         const posts = await Post.find({})
         res.status(200).json(posts)
-        res.send("hello")
     } catch (error) {
         res.status(500).json({message:error.message})
     }

@@ -1,15 +1,45 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PostCard from "../components/PostCard";
 import userPosts from "../../dbTest"; 
+import axios from "axios";
 
 function LandingPage() {
     const [textInput, setTextInput] = useState("")
-    const [posts, setPosts] = useState(userPosts)
+    const [posts, setPosts] = useState([])
 
+
+    useEffect(()=>{
+        async function fetchData(){
+            try {
+                const response = await axios.get("http://localhost:3001/posts")
+                setPosts(response.data)
+                console.log(response.data)
+            } catch (error) {
+                console.error({message:error.message})
+            }
+        }
+        fetchData()
+    },[])
+
+    async function handleSubmit(){
+        try {
+            await axios.post({
+                method: "post",
+                url:"http://localhost:3001/post",
+                data:{
+                    postText: textInput
+                },
+                headers:{"Content-Type": "application/json"}
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     const postList = posts.map((post)=> {
         return(
-            <div key={post.id}>
+            <div key={post._id}>
                 <PostCard 
                 posts = {post}/>
             </div>
@@ -19,20 +49,7 @@ function LandingPage() {
     const handleInputChange = (Event) =>{
         setTextInput(Event.target.value);
     }
-    const handleSubmit = (Event) => {
-        Event.preventDefault();
-        const newPost = {
-            id: posts.length + 1,
-            firstName:"Unknown",
-            lastName: "User",
-            postText: textInput,
-            likes: Math.floor(Math.random()*100),
-            comments: []
-        }
-        setPosts([...posts, newPost]);
-        setTextInput("")
-        console.log(posts);
-    }
+
     return(
         <div className="h-screen flex justify-center w-screen">
             <div className="flex flex-col align-start w-screen lg:w-1/3 md:w-1/2 max-w-xl">
