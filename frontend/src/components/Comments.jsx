@@ -8,7 +8,7 @@ function Comments(props){
         return(
             <div className="w-full">
                 <ul key={index}>
-                    <li>{comment}</li>
+                    <li><h2 className="font-semibold">{comment.userName}</h2><h2>{comment.comment}</h2></li>
                 </ul>
             </div>
         )

@@ -1,11 +1,15 @@
+import { comment } from "postcss";
+
 const userPosts = [{
     id:1,
     firstName:"Prasad",
     lastName: "Hp",
     postText:"Hello, Good Morning Everyone",
     likes: 130,
-    comments:["have a Grate day ahead",
-            "hello everyone"]
+    comments:[{userName:"Chandu",
+                comment: "have a Grate day ahead"},
+            {userName:"Spoorthy",
+            comment:"hello everyone"}]
 },
 {
     firstName:"Spoorthy",
@@ -13,8 +17,10 @@ const userPosts = [{
     lastName: "U",
     postText:"Hello, How are you guys doing",
     likes: 120,
-    comments:["Doing Fine",
-            "hello everyone"]
+    comments:[{userName: "Prasad",
+                comment:"Doing Fine"},
+            {userName:"Prasad",
+            comment:"hello everyone"}]
 },
 {
     firstName:"Chandu",
@@ -22,8 +28,10 @@ const userPosts = [{
     lastName: "M",
     postText:"Hello All",
     likes: 170,
-    comments:["have a Grate day ahead everyone",
-            "hello everyone"]
+    comments:[{userName:"Prasad",
+    comment:"have a Grate day ahead everyone"},
+            {userName:"Prasad",
+            comment:"hello everyone"}]
 },
 {
     firstName:"Chdasdasdandu",
@@ -31,8 +39,10 @@ const userPosts = [{
     lastName: "M",
     postText:"Hello Have a great day You all",
     likes: 1470,
-    comments:["have a day ahead everyone",
-            "hello everyone"]
+    comments:[{userName:"Prasad",
+    comment:"have a day ahead everyone"},
+            {userName:"Prasad",
+            comment:"hello everyone"}]
 }]
 
 export default userPosts;
