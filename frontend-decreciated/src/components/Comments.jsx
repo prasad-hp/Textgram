@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import commentIcon from "../assets/images/commentIcon.svg"
 
-function Comments(props){
+function Comments(){
     const [comments, setComments] = useState(false)
 
     const commentsList = (props.posts.comments).map((comment, index)=>{
