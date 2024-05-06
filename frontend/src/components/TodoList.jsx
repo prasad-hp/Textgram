@@ -20,9 +20,19 @@ function TodoList(){
         }
     }, [])
 
-    function handleDeleteClick(id){
+    async function handleDeleteClick(id){
+        try {
+            await axios({
+                method:"delete",
+                url:`http://localhost:3000/post/${id}`
+            })
+        } catch (error) {
+            console.error(error.message)
+        }
         console.log(id)
     }
+
+
     const listedTodos = todos.map((todo)=>{
         return(
             <ol key={todo._id}>
