@@ -10,7 +10,7 @@ const postSchema = mongoose.Schema({
         required:false},
     likes: {
         type:Number,
-        required: false}
+        default:0}
 })
 
 const Post = mongoose.model("Post", postSchema)

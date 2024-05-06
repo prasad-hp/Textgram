@@ -32,6 +32,7 @@ app.post("/post", async(req, res)=>{
     try {
         const post = await Post.create(req.body)
         const parsedPost = zodSchema.safeParse(post)
+        console.log(parsedPost)
         res.status(200).json(parsedPost)
     } catch (error) {
         res.status(500).json({message:error.message})
@@ -48,6 +49,18 @@ app.delete("/post/:id", async(req, res)=>{
         res.status(200).json({message:"Post deleted Successfully"})
     } catch (error) {
         res.status(500).json({message:error.message})
+    }
+})
+app.patch("/post/:id/like", async(req, res)=>{
+    try {
+        const id = req.params.id;
+        const post = await Post.findByIdAndUpdate(id, {$inc:{likes: +1 }})
+        if(!post){
+            return res.status(404).json({message:"Wrong Post ID"})
+        }
+        return res.status(200).json({message:"Post Liked Successfully"})
+    } catch (error) {
+        res.status(200).json({message:error.message})
     }
 })
 

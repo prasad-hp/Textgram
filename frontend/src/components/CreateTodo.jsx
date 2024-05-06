@@ -27,10 +27,10 @@ function CreateTodo(){
 
     }
     return(
-        <div className="flex justify-center lg:w-1/3 md:w-1/2 w-screen">
-            <form onSubmit={handleSubmit} className="flex flex-col justify-around lg:w-1/3 md:w-1/2 w-screen">
-                <input type="text" className="border-2 border-black rounded-md" value={inputText} onChange={handleChange}/> 
-                <input type="submit" className="border-2 hover:cursor-pointer rounded-md"/> 
+        <div className="flex justify-center w-screen">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center lg:w-1/3 md:w-1/2 w-screen">
+                <input type="text" className="border-2 border-black rounded-md w-10/12 h-10" value={inputText} onChange={handleChange}/> 
+                <input type="submit" className="border-2 hover:cursor-pointer rounded-md w-1/2"/> 
             </form>
         </div>
     )
