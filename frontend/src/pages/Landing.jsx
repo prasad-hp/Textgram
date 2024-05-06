@@ -4,7 +4,7 @@ import PostList from "../components/PostList";
 
 function LandingPage(){
     return(
-        <div className="w-screen h-screen">
+        <div className="">
             <div className="">
                 <CreatePost />
                 <PostList />

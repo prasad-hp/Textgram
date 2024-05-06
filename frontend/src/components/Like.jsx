@@ -46,7 +46,7 @@ function Like(props){
 
     return(
         <div>
-            <div className="flex"> <img src={liked ? likedIcon : unikedIcon} className="hover:cursor-pointer" onClick={()=>handleLikeClick(props.todo._id)}/><p className="text-xl">{likeCount}</p></div>
+            <div className="flex"> <img src={liked ? likedIcon : unikedIcon} className="hover:cursor-pointer" onClick={()=>handleLikeClick(props.todo._id)}/><p className="text-xl ml-1">{likeCount}</p></div>
         </div>
     )
 }

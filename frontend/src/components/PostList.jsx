@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import deleteIcon from "../assets/delete_icon.svg"
 import Like from "./Like";
+import PostHeader from "./PostHeader";
 
 
 
@@ -37,15 +38,18 @@ function TodoList(){
 
     const listedTodos = todos.map((todo)=>{
         return(
-            <ol key={todo._id} className="p-2 border-2 lg:w-1/3 md:w-1/2 w-10/12 m-2 rounded-md flex flex-col items-center">
-                <li className="">{todo.postText}</li>
-                <Like todo = {todo}/>
-                <li><img src={deleteIcon} className="hover:cursor-pointer" onClick={()=>handleDeleteClick(todo._id)}/></li>
+            <ol key={todo._id} className="p-1 border-2 max-w-96 lg:w-1/3 w-9/12 m-2 rounded-md flex flex-col items-center">
+                <PostHeader />
+                <li className="py-4">{todo.postText}</li>
+                <div className="flex justify-between w-full px-3">
+                    <Like todo = {todo}/>
+                    <li><img src={deleteIcon} className="hover:cursor-pointer" onClick={()=>handleDeleteClick(todo._id)}/></li>
+                </div>
             </ol>
         )
     })
     return(
-        <div>
+        <div className="w-screen flex flex-col items-center">
             {listedTodos}
         </div>
     )
