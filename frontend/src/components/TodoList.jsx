@@ -29,14 +29,13 @@ function TodoList(){
         } catch (error) {
             console.error(error.message)
         }
-        console.log(id)
     }
 
 
     const listedTodos = todos.map((todo)=>{
         return(
-            <ol key={todo._id}>
-                <li className="p-2 border-2 lg:w-1/3 md:w-1/2 w-10/12">{todo.postText}<button onClick={()=>handleDeleteClick(todo._id)}><img src={deleteIcon} /></button></li>
+            <ol key={todo._id} className="flex flex-col items-center">
+                <li className="p-2 border-2 lg:w-1/3 md:w-1/2 w-10/12 m-2 rounded-md flex flex-col items-center">{todo.postText}<img src={deleteIcon} className="hover:cursor-pointer" onClick={()=>handleDeleteClick(todo._id)}/></li>
             </ol>
         )
     })

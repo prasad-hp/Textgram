@@ -4,9 +4,11 @@ import TodoList from "../components/TodoList";
 
 function LandingPage(){
     return(
-        <div>
-            <CreateTodo />
-            <TodoList />
+        <div className="w-screen h-screen">
+            <div className="">
+                <CreateTodo />
+                <TodoList />
+            </div>
         </div>
     )
 }
