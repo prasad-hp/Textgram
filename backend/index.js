@@ -30,10 +30,12 @@ app.get("/posts", async(req, res) => {
 
 app.post("/post", async(req, res)=>{
     try {
-        const post = await Post.create(req.body)
-        const parsedPost = zodSchema.safeParse(post)
-        console.log(parsedPost)
-        res.status(200).json(parsedPost)
+        const parsedData = zodSchema.safeParse(req.body)
+        if(!parsedData.success){
+            return res.status(400).json({message:"Invalid Post"})
+        }
+        await Post.create(parsedData.data)
+        res.status(200).json(parsedData)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
