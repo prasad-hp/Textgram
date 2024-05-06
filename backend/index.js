@@ -60,7 +60,20 @@ app.patch("/post/:id/like", async(req, res)=>{
         }
         return res.status(200).json({message:"Post Liked Successfully"})
     } catch (error) {
-        res.status(200).json({message:error.message})
+        res.status(500).json({message:error.message})
+    }
+})
+
+app.patch("/post/:id/unlike", async(req, res)=>{
+    try {
+        const id = req.params.id;
+        const post = await Post.findByIdAndUpdate(id, {$inc:{likes:-1}})
+        if(!post){
+            return res.status(404).json({message:"wrong Post Id"})
+        }
+        res.status(200).json({message:"Post Unliked Successfully"})
+    } catch (error) {
+        res.status(500).json({message:error.message})
     }
 })
 
