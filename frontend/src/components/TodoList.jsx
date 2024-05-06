@@ -9,7 +9,7 @@ function TodoList(){
             async function getData(){
                 const response = await axios({
                     method:"get",
-                    url:"http://localhost:3001/posts"
+                    url:"http://localhost:3000/posts"
                 })
                 setTodos(response.data)
             }

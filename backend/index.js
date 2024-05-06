@@ -2,8 +2,9 @@ import express, { urlencoded } from "express"
 import mongoose from "mongoose";
 import Post from "./schema.js";
 import cors from "cors"
+import zodSchema from "./zodSchema.js";
 
-const port = 3001;
+const port = 3000;
 const app = express();
 
 app.use(express.json())
@@ -30,7 +31,8 @@ app.get("/posts", async(req, res) => {
 app.post("/post", async(req, res)=>{
     try {
         const post = await Post.create(req.body)
-        res.status(200).json(post)
+        const parsedPost = zodSchema.safeParse(post)
+        res.status(200).json(parsedPost)
     } catch (error) {
         res.status(500).json({message:error.message})
     }
