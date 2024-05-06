@@ -12,7 +12,7 @@ function CreateTodo(){
         try {
             await axios({
                 method:"post",
-                url:"http://localhost:3001/post",
+                url:"http://localhost:3000/post",
                 data:{
                     postText: inputText
                 }

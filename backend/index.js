@@ -38,5 +38,18 @@ app.post("/post", async(req, res)=>{
     }
 })
 
+app.delete("/post/:id", async(req, res)=>{
+    try {
+        const id = req.params.id;
+        const post = await Post.findByIdAndDelete(id)
+        if(!post){
+            return res.status(404).json({message:"Wrong Post ID"})
+        }
+        res.status(200).json({message:"Post deleted Successfully"})
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+})
+
 
 app.listen(port, ()=> console.log("port is running on the port" + port))
