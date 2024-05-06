@@ -1,13 +1,13 @@
 import React from "react";
-import CreateTodo from "../components/CreateTodo";
-import TodoList from "../components/TodoList";
+import CreatePost from "../components/CreatePost";
+import PostList from "../components/PostList";
 
 function LandingPage(){
     return(
         <div className="w-screen h-screen">
             <div className="">
-                <CreateTodo />
-                <TodoList />
+                <CreatePost />
+                <PostList />
             </div>
         </div>
     )

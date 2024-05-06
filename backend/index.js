@@ -77,5 +77,15 @@ app.patch("/post/:id/unlike", async(req, res)=>{
     }
 })
 
+app.get("/post/:id/likeCount", async(req, res)=>{
+    try {
+        const id = req.params.id;
+        const post = await Post.findById(id)
+        res.status(200).json(post.likes)
+    } catch (error) {
+        res.status(500).json({message:error.message})
+    }
+})
+
 
 app.listen(port, ()=> console.log("port is running on the port" + port))
