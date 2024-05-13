@@ -80,11 +80,37 @@ router.put("/update", async(req, res)=>{
             lastName: updateUser.lastName,
             password: hashedPassword
         })
+        const tokenInput = hashedPassword
+        const token = jwt.sign(tokenInput, JWT_SECRET)
         if(user){
-            res.status(200).json({message: "User details Updated, Please Login again if Password has been changed"})
+            res.status(200).json({
+                token:token,
+                message: "User details Updated"})
         }
     } catch (error) {
         res.status(500).json(error.message)
     }
+})
+
+router.delete("/delete", async(req, res)=>{
+    const deleteUser = req.body;
+    const parsedUser = loginSchema.safeParse(deleteUser);
+    if(!parsedUser.success){
+        return res.status(400).json({message:"Please enter valid inputs"})
+    }
+    const user = await User.findOne({
+        email:deleteUser.email
+    })
+    if(!user){
+        return res.status(400).json({message:"Please enter the valid email"})
+    }
+    const hashedPassword = await bcrypt.compare(deleteUser.password, user.password)
+    if(!hashedPassword){
+        return res.status(400).json({message:"Please enter the valid password"})
+    }
+    await User.findOneAndDelete({
+        email:deleteUser.email
+    })
+    res.status(200).json({message:"User Deleted Successfully"})
 })
 export default router;
