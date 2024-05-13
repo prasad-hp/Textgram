@@ -3,6 +3,7 @@ import userRouter from "./user.js"
 import postRouter from "./post.js"
 
 const router = express.Router()
+router.use(express.json())
 
 router.use("/user", userRouter)
 router.use("/post", postRouter)
