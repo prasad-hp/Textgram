@@ -4,6 +4,7 @@ import {signupSchema, loginSchema, updateSchema} from "../database/zodValidation
 import JWT_SECRET from "../config.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import authMiddleware from "../middileware.js"
 
 const router = express.Router()
 router.use(express.json())
@@ -31,7 +32,7 @@ router.post("/signup", async(req, res)=>{
 
         res.status(200).json({
             message:`${createUser.firstName} your account created Successfully`,
-            data:token
+            token:token
         })
         
     } catch (error) {
@@ -64,7 +65,7 @@ router.post("/login", async(req, res)=>{
     }
 })
 
-router.put("/update", async(req, res)=>{
+router.put("/update",authMiddleware ,async(req, res)=>{
     try {
         const updateUser = req.body;
         const parsedUser = updateSchema.safeParse(updateUser)
@@ -91,7 +92,7 @@ router.put("/update", async(req, res)=>{
     }
 })
 
-router.delete("/delete", async(req, res)=>{
+router.delete("/delete",authMiddleware, async(req, res)=>{
     const deleteUser = req.body;
     const parsedUser = loginSchema.safeParse(deleteUser);
     if(!parsedUser.success){
