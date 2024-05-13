@@ -1,6 +1,9 @@
 import express from "express"
 import User from "../database/user.js"
 import userSchema from "../database/zodValidation/user.js"
+import JWT_SECRET from "../config.js"
+import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt"
 
 const router = express.Router()
 router.use(express.json())
@@ -16,11 +19,19 @@ router.post("/create", async(req, res)=>{
         if(existingEmail){
             return res.status(400).json({message:"Email Already Used for Registering"})
         }
-        await User.create(createUser)
+        const hashedPassword = await bcrypt.hash(createUser.password, 1)
+        const createdUser = await User.create({
+            firstName: createUser.firstName,
+            lastName: createUser.lastName,
+            email: createUser.email,
+            password: hashedPassword
+        })
+        const tokenInput = hashedPassword;
+        const token = jwt.sign({tokenInput}, JWT_SECRET)
 
         res.status(200).json({
             message:"User Created Successfully",
-            data:""
+            data:token
         })
         
     } catch (error) {
