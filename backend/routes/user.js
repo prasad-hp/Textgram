@@ -5,9 +5,12 @@ import JWT_SECRET from "../config.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import authMiddleware from "../middileware.js"
+import multer from "multer"
+
 
 const router = express.Router()
 router.use(express.json())
+router.use(express.urlencoded({extended:false}))
 
 router.post("/signup", async(req, res)=>{
     try {
@@ -93,24 +96,45 @@ router.put("/update",authMiddleware ,async(req, res)=>{
 })
 
 router.delete("/delete",authMiddleware, async(req, res)=>{
-    const deleteUser = req.body;
-    const parsedUser = loginSchema.safeParse(deleteUser);
-    if(!parsedUser.success){
-        return res.status(400).json({message:"Please enter valid inputs"})
+    try {
+        
+        const deleteUser = req.body;
+        const parsedUser = loginSchema.safeParse(deleteUser);
+        if(!parsedUser.success){
+            return res.status(400).json({message:"Please enter valid inputs"})
+        }
+        const user = await User.findOne({
+            email:deleteUser.email
+        })
+        if(!user){
+            return res.status(400).json({message:"Please enter the valid email"})
+        }
+        const hashedPassword = await bcrypt.compare(deleteUser.password, user.password)
+        if(!hashedPassword){
+            return res.status(400).json({message:"Please enter the valid password"})
+        }
+        await User.findOneAndDelete({
+            email:deleteUser.email
+        })
+        res.status(200).json({message:"User Deleted Successfully"})
+    } catch (error) {
+        res.status(500).json(error.message)
     }
-    const user = await User.findOne({
-        email:deleteUser.email
-    })
-    if(!user){
-        return res.status(400).json({message:"Please enter the valid email"})
-    }
-    const hashedPassword = await bcrypt.compare(deleteUser.password, user.password)
-    if(!hashedPassword){
-        return res.status(400).json({message:"Please enter the valid password"})
-    }
-    await User.findOneAndDelete({
-        email:deleteUser.email
-    })
-    res.status(200).json({message:"User Deleted Successfully"})
 })
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + '-' + file.originalname);
+    },
+  });
+const upload = multer({ storage: storage });
+router.post("/profile",authMiddleware, upload.single("avatar"), (req, res)=>{
+    try {
+        res.status(200).send({message:"Profile Photo uploaded"})
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})  
 export default router;
