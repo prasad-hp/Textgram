@@ -21,4 +21,11 @@ router.post("/create", async(req, res)=>{
     res.status(200).json({message:"Your post has been successfully Posted"})
 })
 
+router.delete("/delete", async(req, res)=>{
+    const deletePost = await mainPost.findByIdAndDelete({
+        _id:req.body._id
+    })
+    res.status(200).json({message:"Your post has been successfully Deleted"})
+})
+
 export default router;
