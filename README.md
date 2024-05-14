@@ -32,7 +32,9 @@ Textgram is built using the following technologies:
   - Express.js: Web application framework for Node.js, simplifying API development.
   - MongoDB: NoSQL database for storing user data, posts, and comments.
   - Mongoose: MongoDB object modeling for Node.js, providing schema-based solutions.
-  - Zod: Runtime type checking for data consistency.
+  - Zod: Runtime type checking for data consistency
+  - JWT:
+  - Bcrypt:
 
 ## Project Purpose
 

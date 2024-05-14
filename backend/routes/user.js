@@ -132,32 +132,30 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
-const storage = multer.memoryStorage({
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '-' + file.originalname);
-    },
-  });
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.post("/profile",authMiddleware, upload.single("avatar"), async(req, res)=>{
+router.post("/profile",authMiddleware, upload.single("profile-picture"), async(req, res)=>{
     try {
         const photo = req.file;
+        const newFileName = Date.now() + '-'+ Math.floor(Math.random()*10000) + photo.originalname
         const params = {
             Bucket:"prasadhp-textgram",
-            Key:"profile-pictures/" + photo.originalname,
+            Key:"profile-pictures/" + newFileName,
             Body:photo.buffer
         }
         const command = new PutObjectCommand(params);
-        const result = await s3Client.send(command);
-        console.log('File uploaded successfully:', result.Location);
-        res.send('File uploaded successfully'); 
-
+        await s3Client.send(command);
+        res.status(200).json({Message:'File uploaded successfully', newFileName}); 
     } catch (error) {
         res.status(500).json(error.message)
     }
 })  
 router.get("/profile", authMiddleware, async(req, res)=>{
     try {
+        const photo = req.body;
+        const photoName = photo.name;
+        console.log(photoName)
         async function getObjectURL(folder, key){
             const command = new GetObjectCommand({
                 Bucket:"prasadhp-textgram",
@@ -168,8 +166,8 @@ router.get("/profile", authMiddleware, async(req, res)=>{
         }
         (async ()=> {
             try {
-                const url = await getObjectURL("profile-pictures","145915658.jpeg")
-                console.log("URL for image", url)
+                const url = await getObjectURL("profile-pictures",photoName)
+                res.status(200).json({Message:"Photo Successfully received", url})
             } catch (error) {
                 console.error({"Message":error.message})
             }
