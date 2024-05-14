@@ -6,7 +6,18 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import authMiddleware from "../middileware.js"
 import multer from "multer"
+import dotenv from "dotenv"
+import {GetObjectCommand,PutObjectCommand, S3Client} from "@aws-sdk/client-s3"
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
+dotenv.config()
 
+const s3Client = new S3Client({
+    region: "ap-south-1",
+    credentials: {
+        accessKeyId: process.env.ACCESS_KEY,
+        secretAccessKey: process.env.SECRET_KEY
+    }
+});
 
 const router = express.Router()
 router.use(express.json())
@@ -121,20 +132,50 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/');
-    },
+const storage = multer.memoryStorage({
     filename: (req, file, cb) => {
       cb(null, Date.now() + '-' + file.originalname);
     },
   });
 const upload = multer({ storage: storage });
-router.post("/profile",authMiddleware, upload.single("avatar"), (req, res)=>{
+
+router.post("/profile",authMiddleware, upload.single("avatar"), async(req, res)=>{
     try {
-        res.status(200).send({message:"Profile Photo uploaded"})
+        const photo = req.file;
+        const params = {
+            Bucket:"prasadhp-textgram",
+            Key:"profile-pictures/" + photo.originalname,
+            Body:photo.buffer
+        }
+        const command = new PutObjectCommand(params);
+        const result = await s3Client.send(command);
+        console.log('File uploaded successfully:', result.Location);
+        res.send('File uploaded successfully'); 
+
     } catch (error) {
         res.status(500).json(error.message)
     }
 })  
+router.get("/profile", authMiddleware, async(req, res)=>{
+    try {
+        async function getObjectURL(folder, key){
+            const command = new GetObjectCommand({
+                Bucket:"prasadhp-textgram",
+                Key:folder + "/" + key
+            });
+            const url = await getSignedUrl(s3Client, command)
+            return url;
+        }
+        (async ()=> {
+            try {
+                const url = await getObjectURL("profile-pictures","145915658.jpeg")
+                console.log("URL for image", url)
+            } catch (error) {
+                console.error({"Message":error.message})
+            }
+        }) ();  
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
 export default router;

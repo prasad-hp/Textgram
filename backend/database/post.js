@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import User from "./user.js";
+import dotenv from "dotenv"
+dotenv.config()
 
-mongoose.connect("mongodb://localhost:27017/Textgram")
+mongoose.connect(process.env.MONGODB)
 
 const commentSchema = mongoose.Schema({
     commentText:{
