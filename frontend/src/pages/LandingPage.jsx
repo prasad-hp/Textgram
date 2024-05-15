@@ -1,5 +1,6 @@
 import React from "react";
 import CreatePostLanding from "../components/CreatePostLanding";
+import NewPost from "../components/NewPost";
 
 function LandingPage(){
     return(
@@ -8,6 +9,9 @@ function LandingPage(){
                 <div className="">
                     <CreatePostLanding />
                 </div>
+            </div>
+            <div>
+                <NewPost />
             </div>
         </div>
     )
