@@ -156,6 +156,7 @@ router.get("/profile", authMiddleware, async(req, res)=>{
         const photo = req.body;
         const photoName = photo.name;
         console.log(photoName)
+
         async function getObjectURL(folder, key){
             const command = new GetObjectCommand({
                 Bucket:"prasadhp-textgram",
@@ -164,14 +165,14 @@ router.get("/profile", authMiddleware, async(req, res)=>{
             const url = await getSignedUrl(s3Client, command)
             return url;
         }
-        (async ()=> {
-            try {
-                const url = await getObjectURL("profile-pictures",photoName)
-                res.status(200).json({Message:"Photo Successfully received", url})
-            } catch (error) {
-                console.error({"Message":error.message})
-            }
-        }) ();  
+        async function getImage(){
+            const imageUrl = await getObjectURL("profile-pictures", photoName)
+            res.status(200).json({Message:"Photo Successfully received", imageUrl})
+        }
+        
+        getImage()
+
+
     } catch (error) {
         res.status(500).json(error.message)
     }
