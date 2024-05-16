@@ -3,11 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 function NewPost(){
     const textAreaRef = useRef(null)
     const[text, setText] = useState("")
-    const [height, setHeight] = useState()
+    const [height, setHeight] = useState("6")
 
     function handleInput(event){
         setText(event.target.value)
-        setHeight("h-auto")
+        setHeight("auto")
 
     }
     useEffect(()=>{
@@ -27,7 +27,7 @@ function NewPost(){
                     <h1 className="font-semibold m-2">Prasad Hp</h1>
                 </div>
                     <form className="h-auto">
-                        <textarea ref={textAreaRef} className={`w-450 resize-none ml-12 outline-0 h-auto overflow-y-hidden ${height}` } placeholder="Start Writing the post" onInput={handleInput} value={text} rows={1} />
+                        <textarea ref={textAreaRef} className={`w-450 resize-none ml-12 outline-0 overflow-y-hidden h-${height} min-h-6` } placeholder="Start Writing the post" onInput={handleInput} value={text} rows={1}/>
                         <div className="float-right">
                             <div type="submit" className="h-10 m-3 bg-blue-500 font-semibold w-16 rounded-3xl text-white flex flex-col items-center justify-center">Post</div>
                         </div>

@@ -5,9 +5,9 @@ import Post from "../components/Post";
 function LandingPage(){
 
     return(
-        <div className="w-screen">
-            <div className="w-full flex flex-col items-center">
-                <div className="">
+        <div className="md:w-screen">
+            <div className="w-screen ">
+                <div className="w-412 sm:w-full flex flex-col items-center">
                     <CreatePostLanding />
                     <Post />
                 </div>
