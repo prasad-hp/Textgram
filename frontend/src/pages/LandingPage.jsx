@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CreatePostLanding from "../components/CreatePostLanding";
-import NewPost from "../components/NewPost";
+import Post from "../components/Post";
 
 function LandingPage(){
 
@@ -9,11 +9,9 @@ function LandingPage(){
             <div className="w-full flex flex-col items-center">
                 <div className="">
                     <CreatePostLanding />
+                    <Post />
                 </div>
             </div>
-            {/* <div className={`${newPost}`}>
-                <NewPost />
-            </div> */}
         </div>
     )
 }
