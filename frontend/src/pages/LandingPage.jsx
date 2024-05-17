@@ -3,8 +3,10 @@ import CreatePostLanding from "../components/CreatePostLanding";
 import Post from "../components/Post";
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
+import PostList from "../components/PostList";
 
 function LandingPage(){
+
 
     return(
         <div className="w-screen">
@@ -13,7 +15,7 @@ function LandingPage(){
             </header>
                 <div className="flex flex-col items-center mt-16">
                     <CreatePostLanding />
-                    <Post />
+                    <PostList />
                 </div>
             <footer className="fixed bottom-0 left-0 ">
                 <NavbarBottom />

@@ -7,8 +7,12 @@ const router = express.Router()
 
 router.use(express.json())
 
-router.get("/", (req, res)=>{
-    res.send("hello")
+router.get("/list", async(req, res)=>{
+    const posts = await mainPost.find({})
+    if(!posts){
+        return res.status(400).json({message:"Unable to find Posts"})
+    }
+    res.status(200).json(posts)
 })
 
 router.post("/create",authMiddleware ,async(req, res)=>{
