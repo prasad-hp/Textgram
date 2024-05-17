@@ -3,6 +3,7 @@ import notLikedIcon from "../assets/notLikedIcon.svg"
 import likedIcon from "../assets/likedIcon.svg"
 import commentIcon from "../assets/commentIcon.svg"
 import CreateComment from "./CreateComment";
+import NavbarBottom from "./NavbarBottom";
 
 
 function Post(){
@@ -17,7 +18,7 @@ function Post(){
         }
     }, [liked])
     return(
-        <div className="w-full sm:w-11/12 md:w-475 rounded-md items-center">
+        <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
                 <div className="flex items-center">
                     <img src="./defaultprofilepic.png" className="h-14 p-2" />
                     <h1 className="font-semibold m-2">Prasad Hp</h1>

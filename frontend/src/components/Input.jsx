@@ -1,0 +1,10 @@
+import React from "react";
+
+function Input(props){
+    return(
+        <div className="">
+            <input type={props.type} placeholder={props.placeholder} className="w-11/12 max-w-sm h-12 m-2 border rounded-md"/>
+        </div>
+    )
+}
+export default Input;
