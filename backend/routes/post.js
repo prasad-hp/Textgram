@@ -32,4 +32,14 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
     res.status(200).json({message:"Your post has been successfully Deleted"})
 })
 
+router.get("/single", async(req, res)=>{
+    try {
+        const data = req.query;
+        const getPost = await mainPost.findOne({_id:data.id})
+        res.status(200).json(getPost)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
+
 export default router;

@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreatePostLanding from "../components/CreatePostLanding";
 import Post from "../components/Post";
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import PostList from "../components/PostList";
 
-function LandingPage(){
-
+function Home(){
 
     return(
         <div className="w-screen">
@@ -23,4 +22,4 @@ function LandingPage(){
         </div>
     )
 }
-export default LandingPage;
+export default Home;

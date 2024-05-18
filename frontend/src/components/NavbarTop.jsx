@@ -8,12 +8,14 @@ import atIcon from "../assets/atIcon.svg"
 function NavbarTop(){
     return(
         <div className="w-screen flex justify-center py-3">
-            <div className="flex justify-around w-3/4">
+            <div className="flex justify-around md:w-3/4 w-full">
                 <img src={atIcon} />
-                <div className="flex justify-between w-412">
-                    <img src={homeIcon} />
-                    <img src={postAdd} />
-                    <img src={profile} />
+                <div className="md:inline-block hidden">
+                    <div className="flex md:justify-between w-412 justify-end">
+                        <img src={homeIcon} />
+                        <img src={postAdd} />
+                        <img src={profile} />
+                    </div>
                 </div>
                 <img src={menuIcon} />
             </div>

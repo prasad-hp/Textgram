@@ -5,7 +5,6 @@ import axios from "axios";
 function PostList(){
     const [message, setMessage] = useState("")
     const [posts, setPosts] = useState([])
-    const [likeCount, setLikeCount] = useState(0)
 
     useEffect(()=>{
         async function getData () {
@@ -23,11 +22,12 @@ function PostList(){
         getData()
     }, [])
 
-    const postList = posts.map((post, index)=>{
-        return(<Post key={index} postText={post.post.postText} likeCount={post.post.like} firstName={post.firstName} lastName={post.lastName}/>)
+    const postList = posts.map((postData, index)=>{
+        return(<Post key={index} postText={postData.post.postText} likeCount={postData.post.like} firstName={postData.firstName} lastName={postData.lastName} id={postData._id}/>)
     })
     return(
         <div>
+            {message}
             {postList}
         </div>
     )

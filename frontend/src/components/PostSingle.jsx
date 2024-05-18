@@ -5,7 +5,7 @@ import commentIcon from "../assets/commentIcon.svg"
 import CreateComment from "./CreateComment";
 import { useNavigate } from "react-router-dom";
 
-function Post(props){
+function PostSingle(props){
     const [icon, setIcon] = useState(notLikedIcon)
     const [liked, setLiked] = useState(false)
     const [comment, setComment] = useState("hidden")
@@ -36,10 +36,10 @@ function Post(props){
                     </span>
                 </div>
                 <div className={`${comment} z-10 absolute top-0 left-0`} onDoubleClick={()=>setComment("hidden")}>
-                    <CreateComment postText={props.postText} firstName={props.firstName} lastName={props.lastName}/>
+                    <CreateComment postText={props.postText}/>
                 </div>
         </div>
     )
 }
 
-export default Post;
+export default PostSingle;
