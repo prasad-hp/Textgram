@@ -11,7 +11,10 @@ function PostList(){
             try {
                 const response = await axios({
                     method:"get",
-                    url:"http://localhost:3001/api/v1/post/list"
+                    url:"http://localhost:3001/api/v1/post/list",
+                    headers:{
+                        Authorization: localStorage.getItem("token")
+                    }
                 })
                 console.log(response)
                 setPosts(response.data)

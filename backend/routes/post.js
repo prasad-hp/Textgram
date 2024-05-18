@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.use(express.json())
 
-router.get("/list", async(req, res)=>{
+router.get("/list",authMiddleware, async(req, res)=>{
     const posts = await mainPost.find({})
     if(!posts){
         return res.status(400).json({message:"Unable to find Posts"})
@@ -32,7 +32,7 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
     res.status(200).json({message:"Your post has been successfully Deleted"})
 })
 
-router.get("/single", async(req, res)=>{
+router.get("/single",authMiddleware, async(req, res)=>{
     try {
         const data = req.query;
         const getPost = await mainPost.findOne({_id:data.id})

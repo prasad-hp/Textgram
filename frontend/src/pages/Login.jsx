@@ -24,7 +24,7 @@ function Login(){
                                 })
             const tokenData = "Bearer " + response.data.token 
             localStorage.setItem("token", tokenData)
-            navigate("/home")
+            navigate("/")
             setMessage(response.data.message)
         } catch (error) {
             setMessage(error.response.data.message)

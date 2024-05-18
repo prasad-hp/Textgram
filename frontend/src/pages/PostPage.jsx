@@ -4,6 +4,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import PostSingle from "../components/PostSingle";
+import Comment from "../components/Comment";
 
 function PostPage(){
     const [postText, setPostText] = useState("")
@@ -22,6 +23,9 @@ function PostPage(){
                 url:"http://localhost:3001/api/v1/post/single",
                 params:{
                     id:postId
+                },
+                headers:{
+                    Authorization: localStorage.getItem("token")
                 }
             })
             console.log(response)
@@ -41,6 +45,8 @@ function PostPage(){
             </header>
             <div className="flex flex-col items-center mt-16">
                 <PostSingle postText={postText} likeCount={like} firstName={firstName} lastName={lastName} id={postId}/>
+                {comments && <Comment comment={comments}/>}
+                
             </div>
             <footer className="z-0 left-0">
                 <NavbarBottom />

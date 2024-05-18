@@ -4,8 +4,18 @@ import Post from "../components/Post";
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import PostList from "../components/PostList";
+import axios from "axios";
 
 function Home(){
+    useEffect(()=>{
+        async function getUser(){
+            const response = await axios({
+                method:"get",
+                url:""
+            })
+        }
+        getUser()
+    })
 
     return(
         <div className="w-screen">

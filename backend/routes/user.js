@@ -177,4 +177,9 @@ router.get("/profile", authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
+
+router.get("/", async(req, res)=>{
+    const userToken = req.headers
+    console.log(userToken)
+})
 export default router;
