@@ -13,7 +13,7 @@ function authMiddleware(req, res, next){
         const token = authToken.split(" ")[1]
         try {
             const jwtEncoded = jwt.verify(token, JWT_SECRET)
-            req.password = jwtEncoded
+            req.email = jwtEncoded
         } catch (error) {
             res.status(500).json(error.message)
         }

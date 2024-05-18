@@ -41,7 +41,7 @@ router.post("/signup", async(req, res)=>{
             email: createUser.email,
             password: hashedPassword
         })
-        const tokenInput = hashedPassword;
+        const tokenInput = createUser.email;
         const token = jwt.sign({tokenInput}, JWT_SECRET)
 
         res.status(200).json({
@@ -67,7 +67,7 @@ router.post("/login", async(req, res)=>{
         if(!loginPassword){
             return res.status(400).json({message:"Please enter valid password"})
         }
-        const tokenInput = loginUser.password;
+        const tokenInput = loginUser.email;
         const token = jwt.sign(tokenInput, JWT_SECRET)
         res.status(200).json({
             message:"You Are successfully logged in.",
@@ -94,11 +94,8 @@ router.put("/update",authMiddleware ,async(req, res)=>{
             lastName: updateUser.lastName,
             password: hashedPassword
         })
-        const tokenInput = hashedPassword
-        const token = jwt.sign(tokenInput, JWT_SECRET)
         if(user){
             res.status(200).json({
-                token:token,
                 message: "User details Updated"})
         }
     } catch (error) {
