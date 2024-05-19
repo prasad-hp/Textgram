@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../store/atoms/user.jsx";
+import axios from "axios";
 
 function NewPost({ newPost, onClose }) {
     const textAreaRef = useRef(null);
     const [text, setText] = useState("");
     const user = useRecoilValue(userAtom);
+    const [statusMessage, setStatusMessage] = useState("")
+
+
+
 
     const handleInput = (event) => {
         setText(event.target.value);
@@ -19,11 +24,28 @@ function NewPost({ newPost, onClose }) {
         }
     }, [text]);
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
+        try {
+            const response = await axios({
+                method:"post",
+                url:"http://localhost:3001/api/v1/post/create",
+                data:{
+
+                        postText:text
+                },
+                headers:{
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            })
+            setStatusMessage(response.data.message)
+        } catch (error) {
+            setStatusMessage(error.response.data.message)
+        }
         console.log("Post submitted:", text);
         setText("");
-        onClose();
+        onClose()
+        location.reload();
     };
 
     if (!newPost) return null;

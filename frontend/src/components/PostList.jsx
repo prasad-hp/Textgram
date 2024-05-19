@@ -24,7 +24,7 @@ function PostList(){
         getData()
     }, [])
 
-    const postList = posts.map((postData, index)=>{
+    const postList = posts.slice().reverse().map((postData, index)=>{
         return(<Post key={index} postText={postData.post.postText} likeCount={postData.post.like} firstName={postData.firstName} lastName={postData.lastName} id={postData._id}/>)
     })
     return(

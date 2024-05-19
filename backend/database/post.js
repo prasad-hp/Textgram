@@ -6,9 +6,22 @@ dotenv.config()
 mongoose.connect(process.env.MONGODB)
 
 const commentSchema = mongoose.Schema({
+    firstName:{
+        type:String,
+        required:true
+    },
+    lastName:{
+        type:String,
+        required:true
+    },
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:User,
+        required:true
+    },
     commentText:{
         type:String,
-        required:false
+        required:true
     }
 })
 
@@ -21,8 +34,9 @@ const postSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    comment:{
-        type: [commentSchema]
+    comments:{
+        type: [commentSchema],
+        required:false
     }
 })
 
