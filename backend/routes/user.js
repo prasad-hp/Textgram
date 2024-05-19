@@ -175,8 +175,15 @@ router.get("/profile", authMiddleware, async(req, res)=>{
     }
 })
 
-router.get("/", async(req, res)=>{
-    const userToken = req.headers
-    console.log(userToken)
+router.get("/", authMiddleware, async(req, res)=>{
+    try { 
+        const userEmail = req.email;
+        const userData = await User.findOne({
+            email:userEmail
+        })
+        res.status(200).json(userData)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
 })
 export default router;

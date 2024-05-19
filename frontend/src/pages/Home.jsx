@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
 import CreatePostLanding from "../components/CreatePostLanding";
-import Post from "../components/Post";
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import PostList from "../components/PostList";
 import axios from "axios";
+import recoil, { useSetRecoilState } from "recoil"
+import {userAtom} from "../store/atoms/user.jsx"
 
 function Home(){
+    const setUser = useSetRecoilState(userAtom)
     useEffect(()=>{
-        async function getUser(){
-            const response = await axios({
-                method:"get",
-                url:""
-            })
-        }
         getUser()
-    })
+    }, [])
+
+    const getUser = async ()=>{
+        const response = await axios({
+            method:"get",
+            url:"http://localhost:3001/api/v1/user",
+            headers:{
+                Authorization:"Bearer " + localStorage.getItem("token")
+            }
+        })
+        setUser(response.data)
+    }
 
     return(
         <div className="w-screen">

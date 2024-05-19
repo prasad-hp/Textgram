@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../store/atoms/user.jsx";
 
 function NewPost(){
     const textAreaRef = useRef(null)
     const[text, setText] = useState("")
     const [height, setHeight] = useState("6")
+    const user = useRecoilValue(userAtom)
 
     function handleInput(event){
         setText(event.target.value)
@@ -24,7 +27,7 @@ function NewPost(){
             <div className="w-475 border-2 rounded-lg bg-white h-auto ">
                 <div className="flex items-center">
                     <img src="./defaultprofilepic.png" className="w-14 h-14 p-2" />
-                    <h1 className="font-semibold m-2">Prasad Hp</h1>
+                    <h1 className="font-semibold m-2">{user.firstName} {" "} {user.lastName}</h1>
                 </div>
                     <form className="h-auto">
                         <textarea ref={textAreaRef} className={`w-450 resize-none ml-12 outline-0 overflow-y-hidden h-${height} min-h-6` } placeholder="Start Writing the post" onInput={handleInput} value={text} rows={1}/>

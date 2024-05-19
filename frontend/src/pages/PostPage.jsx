@@ -6,53 +6,66 @@ import { useSearchParams } from "react-router-dom";
 import PostSingle from "../components/PostSingle";
 import Comment from "../components/Comment";
 
-function PostPage(){
-    const [postText, setPostText] = useState("")
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [like, setLike] = useState(0)
-    const [comments, setComments] = useState([])
-    const [postData] = useSearchParams()
-    const postId = postData.get("id");
+function PostPage() {
+    const [postData, setPostData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [postUrlData] = useSearchParams();
+    const postId = postUrlData.get("id");
     
-    console.log(postId)
-    useEffect(()=>{
-        async function getData(){
-            const response = await axios({
-                method:"get",
-                url:"http://localhost:3001/api/v1/post/single",
-                params:{
-                    id:postId
-                },
-                headers:{
-                    Authorization: localStorage.getItem("token")
-                }
-            })
-            console.log(response)
-            const apiData = response.data;
-            setPostText(apiData.post.postText)
-            setComments(apiData.post.comment)
-            setFirstName(apiData.firstName)
-            setLastName(apiData.lastName)
-            setLike(apiData.post.like)
+    useEffect(() => {
+        async function getData() {
+            try {
+                const response = await axios({
+                    method: "get",
+                    url: "http://localhost:3001/api/v1/post/single",
+                    params: { id: postId },
+                    headers: {
+                        Authorization: "Bearer " + localStorage.getItem("token")
+                    }
+                });
+                setPostData(response.data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
         }
-        getData()
-    }, [postId])
-    return(
+        getData();
+    }, [postId]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    return (
         <div>
             <header>
                 <NavbarTop />
             </header>
             <div className="flex flex-col items-center mt-16">
-                <PostSingle postText={postText} likeCount={like} firstName={firstName} lastName={lastName} id={postId}/>
-                {comments && <Comment comment={comments}/>}
-                
+                {postData && postData.post && (
+                    <>
+                        <PostSingle 
+                            postText={postData.post.postText} 
+                            likeCount={postData.post.like} 
+                            firstName={postData.firstName} 
+                            lastName={postData.lastName} 
+                            id={postData._id} 
+                        />
+                        {postData.post.comment && <Comment comment={postData.post.comment} />}
+                    </>
+                )}
             </div>
             <footer className="z-0 left-0">
                 <NavbarBottom />
             </footer>
         </div>
-    )
+    );
 }
 
 export default PostPage;

@@ -13,7 +13,7 @@ function PostList(){
                     method:"get",
                     url:"http://localhost:3001/api/v1/post/list",
                     headers:{
-                        Authorization: localStorage.getItem("token")
+                        Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 })
                 console.log(response)

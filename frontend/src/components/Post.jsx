@@ -36,7 +36,7 @@ function Post(props){
                     </span>
                 </div>
                 <div className={`${comment} z-10 absolute top-0 left-0`} onDoubleClick={()=>setComment("hidden")}>
-                    <CreateComment postText={props.postText} firstName={props.firstName} lastName={props.lastName}/>
+                    <CreateComment postText={props.postText} firstName={props.firstName} lastName={props.lastName} />
                 </div>
         </div>
     )

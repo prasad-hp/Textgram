@@ -37,7 +37,7 @@ function SignUp(){
                                     password:password
                                 }
                             })
-            const tokenData = "Bearer " + response.data.token 
+            const tokenData = response.data.token
             localStorage.setItem("token", tokenData)
             navigate("/")
             setMessage(response.data.message)
