@@ -9,7 +9,6 @@ router.use(express.json())
 router.patch("/add", authMiddleware, async(req, res)=>{
     try {
         const userEmail = req.email;
-        console.log(userEmail)
         const user = await User.findOne({
             email:userEmail
         })
@@ -17,11 +16,7 @@ router.patch("/add", authMiddleware, async(req, res)=>{
             return res.status(400).json({message:"User Not Found"})
         }
         const commentData = req.body;
-        console.log(commentData)
         const parsedComment = commentTextSchema.safeParse(commentData)
-        console.log(parsedComment)
-        console.log(commentData)
-
         const addComment = await mainPost.findByIdAndUpdate(
             commentData.id,
             {
@@ -39,7 +34,7 @@ router.patch("/add", authMiddleware, async(req, res)=>{
         if(!addComment){
             return res.status(400).json({message:"Post Not Found"})
         }
-        res.status(200).json({message:" Comment Added Successfully",post:addComment})
+        res.status(200).json({message:" Comment Added Successfully"})
     } catch (error) {
         res.status(500).json(error.message)
     }
