@@ -7,11 +7,12 @@ import PostSingle from "../components/PostSingle";
 import Comment from "../components/Comment";
 
 function PostPage() {
-    const [postData, setPostData] = useState(null);
+    const [postData, setPostData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [postUrlData] = useSearchParams();
     const postId = postUrlData.get("id");
+    const [commentsList, setCommentsList] = useState([])
     
     useEffect(() => {
         async function getData() {
@@ -25,14 +26,15 @@ function PostPage() {
                     }
                 });
                 setPostData(response.data);
+                setCommentsList(response.data.post.comments);
             } catch (err) {
-                setError(err.message);
+                console.log(err.message);
             } finally {
                 setLoading(false);
             }
         }
         getData();
-    }, [postId]);
+    }, []);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -41,7 +43,11 @@ function PostPage() {
     if (error) {
         return <div>Error: {error}</div>;
     }
-
+    const listedComments = commentsList.slice().reverse().map((comment, index)=>{
+        return(
+            <Comment key={index} comments={comment}/>
+        )
+    })
     return (
         <div>
             <header>
@@ -57,7 +63,7 @@ function PostPage() {
                             lastName={postData.lastName} 
                             id={postData._id} 
                         />
-                        {postData.post.comment && <Comment comment={postData.post.comment} />}
+                        {commentsList && listedComments }
                     </>
                 )}
             </div>

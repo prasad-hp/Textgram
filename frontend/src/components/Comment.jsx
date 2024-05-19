@@ -6,10 +6,10 @@ function Comment(props){
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
                 <div className="flex items-center">
                     <img src="./defaultprofilepic.png" className="h-14 p-2" />
-                    <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
+                    <h1 className="font-semibold m-2">{props.comments.firstName}{" "}{props.comments.lastName}</h1>
                 </div>
                 <div className="px-16 w-full">
-                    <p>{props.commentText}</p>
+                    <p>{props.comments.commentText}</p>
                 </div>
         </div>
     )

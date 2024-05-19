@@ -1,5 +1,5 @@
 import express from "express";
-import postSchema from "../database/zodValidation/post.js";
+import {commentTextSchema} from "../database/zodValidation/post.js";
 import mainPost from "../database/post.js";
 import authMiddleware from "../middileware.js";
 import User from "../database/user.js";
@@ -17,16 +17,20 @@ router.patch("/add", authMiddleware, async(req, res)=>{
             return res.status(400).json({message:"User Not Found"})
         }
         const commentData = req.body;
+        console.log(commentData)
+        const parsedComment = commentTextSchema.safeParse(commentData)
+        console.log(parsedComment)
+        console.log(commentData)
 
         const addComment = await mainPost.findByIdAndUpdate(
             commentData.id,
             {
                 $push: {
-                    comments:{
+                    "post.comments":{
                         firstName:user.firstName,
                         lastName:user.lastName,
                         userId:user._id,
-                        commnetText:commentData.text
+                        commentText:commentData.text
                     }
                 }
             },
