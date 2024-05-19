@@ -16,7 +16,6 @@ function PostList(){
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 })
-                console.log(response)
                 setPosts(response.data)
             } catch (error) {
                 setMessage(error.response.data.message)

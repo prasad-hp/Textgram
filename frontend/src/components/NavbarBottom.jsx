@@ -5,12 +5,11 @@ import profile from "../assets/profile.svg";
 import NewPost from "./NewPost";
 
 function NavbarBottom() {
-    const [newPostShow, setNewPostShow] = useState(false);
+    const [newPost, setNewPost] = useState(false);
 
-    const toggleNewPost = () => {
-        setNewPostShow(!newPostShow);
-    };
-
+    function handleClose(){
+        setNewPost(false)
+    }
     return (
         <div className="md:w-475 w-412">
             <div className="w-screen md:hidden flex justify-around py-4">
@@ -20,18 +19,15 @@ function NavbarBottom() {
                 <img
                     src={postAdd}
                     alt="Add Post"
-                    onClick={toggleNewPost}
+                    onClick={()=>setNewPost(true)}
                 />
                 <a href="/profile">
                     <img src={profile} alt="Profile" />
                 </a>
             </div>
-            {newPostShow && (
-                <div className="z-10 absolute top-0 left-0">
-                    <div className="w-96">
-                        <NewPost />
-                        <button onClick={toggleNewPost}>Close</button>
-                    </div>
+            {newPost && (
+                <div className="z-10 absolute top-0 left-0 w-screen h-screen">
+                    <NewPost newPost={newPost} onClose={handleClose} />
                 </div>
             )}
         </div>

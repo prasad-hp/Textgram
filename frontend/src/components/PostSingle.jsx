@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function PostSingle(props){
     const [icon, setIcon] = useState(notLikedIcon)
     const [liked, setLiked] = useState(false)
-    const [comment, setComment] = useState("hidden")
+    const [comment, setComment] = useState(false)
     const navigate = useNavigate()
     useEffect(()=>{
         if(liked){
@@ -17,6 +17,9 @@ function PostSingle(props){
             setIcon(notLikedIcon)
         }
     }, [liked])
+    function handleClose(){
+        setComment(false)
+    }
     return(
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
                 <div className="flex items-center">
@@ -32,11 +35,11 @@ function PostSingle(props){
                             <img src={icon} className="h-7" />
                             <p className="text-lg mx-1">{props.likeCount}</p>
                         </span>
-                        <img src={commentIcon} className="h-6.5 mx-3" onClick={()=>setComment("inline")}/>
+                        <img src={commentIcon} className="h-6.5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
                 </div>
-                <div className={`${comment} z-10 absolute top-0 left-0`} onDoubleClick={()=>setComment("hidden")}>
-                    <CreateComment postText={props.postText} firstName={props.firstName} lastName={props.lastName}/>
+                <div className={`${comment} z-10 absolute top-0 left-0`} >
+                    <CreateComment postText={props.postText} firstName={props.firstName} lastName={props.lastName} onClose={handleClose} newComment={comment}/>
                 </div>
         </div>
     )

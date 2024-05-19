@@ -26,6 +26,7 @@ Textgram is built using the following technologies:
   - Axios: Promise-based HTTP client for making requests.
   - ViteJs: A fast and efficient frontend build tool.
   - JavaScript and HTML: Primary programming languages for frontend development.
+  - Recoil:
 
 - **Backend**:
   - Node.js: JavaScript runtime for building scalable server-side applications.
