@@ -1,6 +1,6 @@
 import express from "express";
 import postSchema from "../database/zodValidation/post.js";
-import mainPost from "../database/post.js";
+import {mainPost} from "../database/post.js";
 import authMiddleware from "../middileware.js";
 import User from "../database/user.js";
 import commentRouter from "./comment.js"
@@ -65,5 +65,78 @@ router.get("/single",authMiddleware, async(req, res)=>{
     } catch (error) {
         res.status(500).json(error.message)
     }
+})
+
+router.post("/like", authMiddleware, async(req, res)=>{
+    const userEmail = req.email;
+    const postId = req.body.postId;
+    try {
+        const user = await User.findOne({
+            email:userEmail
+        })
+        const userId = user._id
+        console.log(userId)
+        if(!user){
+            return res.status(400).json({message:"Invalid User/User not loggedIn"})
+        }
+        const checkLiked = await mainPost.findOne({_id:postId,
+            "post.likes":userId
+        })
+        console.log(checkLiked)
+        if(checkLiked){
+            return res.status(200).json({message:"You have already liked the post"})
+        }
+        console.log("jja")
+        const postUpdate = await mainPost.findByIdAndUpdate(postId,
+            {
+                $addToSet:{"post.likes":userId}
+            
+        })
+        const userUpdate = await User.findByIdAndUpdate(userId, {
+            $addToSet:{likedPosts:postId}
+        })
+        if(!postUpdate || !userUpdate){
+            return res.status(500).json({message:"Please try after sometime"})
+        }
+        res.status(200).json({message:"Post successfully liked by the user"})
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+
+})
+
+router.post("/unlike", authMiddleware, async(req, res)=>{
+    const userEmail = req.email;
+    const postId = req.body.postId;
+    try {
+        const user = await User.findOne({
+            email:userEmail
+        })
+        const userId = user._id
+        if(!user){
+            return res.status(400).json({message:"Invalid User/User not loggedIn"})
+        }
+        const checkLiked = await mainPost.findOne({_id:postId, 
+            "post.likes":userId
+        })
+        if(!checkLiked){
+            return res.status(400).json({message:"You have not liked the post to undo the like"})
+        }
+        const postUpdate = await mainPost.findByIdAndUpdate(postId,
+            {
+                $pull:{"post.likes":userId}
+            
+        })
+        const userUpdate = await User.findByIdAndUpdate(userId, {
+            $pull:{likedPosts:postId}
+        })
+        if(!postUpdate || !userUpdate){
+            return res.status(500).json({message:"Please try after sometime"})
+        }
+        res.status(200).json({message:"Post successfully unliked by the user"})
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+
 })
 export default router;

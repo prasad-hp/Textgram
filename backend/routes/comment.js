@@ -1,6 +1,6 @@
 import express from "express";
 import {commentTextSchema} from "../database/zodValidation/post.js";
-import mainPost from "../database/post.js";
+import {mainPost} from "../database/post.js";
 import authMiddleware from "../middileware.js";
 import User from "../database/user.js";
 
