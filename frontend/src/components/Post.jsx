@@ -4,17 +4,58 @@ import likedIcon from "../assets/likedIcon.svg"
 import commentIcon from "../assets/commentIcon.svg"
 import CreateComment from "./CreateComment";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Post(props){
     const [icon, setIcon] = useState(notLikedIcon)
     const [liked, setLiked] = useState(false)
     const [comment, setComment] = useState(false)
+    const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
     useEffect(()=>{
         if(liked){
             setIcon(likedIcon)
+            async function postUnLike(){
+                try {  
+                    const response = await axios({
+                        method:"post",
+                        url:"http://localhost:3001/api/v1/post/unlike",
+                        headers:{
+                            Authorization:"Bearer " + localStorage.getItem("token")
+                        },
+                        data:{
+                            postId:props.id
+                        }
+                    })
+                    setStatusMessage(response.data.message)
+                    console.log(statusMessage)
+
+                } catch (error) {
+                    setStatusMessage(error.response.data.message)
+                }
+            }
+            postUnLike()
         }else{
             setIcon(notLikedIcon)
+            async function postlike(){
+                try {  
+                    const response = await axios({
+                        method:"post",
+                        url:"http://localhost:3001/api/v1/post/like",
+                        headers:{
+                            Authorization:"Bearer " + localStorage.getItem("token")
+                        },
+                        data:{
+                            postId:props.id
+                        }
+                    })
+                    setStatusMessage(response.data.message)
+                    console.log(statusMessage)
+                } catch (error) {
+                    setStatusMessage(error.response.data.message)
+                }
+            }
+            postlike()
         }
     }, [liked])
     function handleClose(){

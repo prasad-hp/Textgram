@@ -75,18 +75,15 @@ router.post("/like", authMiddleware, async(req, res)=>{
             email:userEmail
         })
         const userId = user._id
-        console.log(userId)
         if(!user){
             return res.status(400).json({message:"Invalid User/User not loggedIn"})
         }
         const checkLiked = await mainPost.findOne({_id:postId,
             "post.likes":userId
         })
-        console.log(checkLiked)
         if(checkLiked){
             return res.status(200).json({message:"You have already liked the post"})
         }
-        console.log("jja")
         const postUpdate = await mainPost.findByIdAndUpdate(postId,
             {
                 $addToSet:{"post.likes":userId}

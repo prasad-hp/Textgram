@@ -9,12 +9,52 @@ function PostSingle(props){
     const [icon, setIcon] = useState(notLikedIcon)
     const [liked, setLiked] = useState(false)
     const [comment, setComment] = useState(false)
+    const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
     useEffect(()=>{
         if(liked){
             setIcon(likedIcon)
+            async function postUnLike(){
+                try {  
+                    const response = await axios({
+                        method:"post",
+                        url:"http://localhost:3001/api/v1/post/unlike",
+                        headers:{
+                            Authorization:"Bearer " + localStorage.getItem("token")
+                        },
+                        data:{
+                            postId:props.id
+                        }
+                    })
+                    setStatusMessage(response.data.message)
+                    console.log(statusMessage)
+
+                } catch (error) {
+                    console.log(error.response)
+                }
+            }
+            postUnLike()
         }else{
             setIcon(notLikedIcon)
+            async function postlike(){
+                try {  
+                    const response = await axios({
+                        method:"post",
+                        url:"http://localhost:3001/api/v1/post/like",
+                        headers:{
+                            Authorization:"Bearer " + localStorage.getItem("token")
+                        },
+                        data:{
+                            postId:props.id
+                        }
+                    })
+                    setStatusMessage(response.data.message)
+                    console.log(statusMessage)
+                } catch (error) {
+                    console.log(error.response)
+                }
+            }
+            postlike()
         }
     }, [liked])
     function handleClose(){
