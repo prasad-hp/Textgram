@@ -50,7 +50,7 @@ function Post(props){
                         }
                     })
                     setStatusMessage(response.data.message)
-                    console.log(statusMessage)
+                    // console.log(statusMessage)
                 } catch (error) {
                     setStatusMessage(error.response.data.message)
                 }
@@ -58,6 +58,25 @@ function Post(props){
             postlike()
         }
     }, [liked])
+    useEffect(()=>{
+        async function getPostData(){
+            try {
+                const response = await axios({
+                    method:"get",
+                    url:"http://localhost:3001/api/v1/post/single",
+                    headers:{
+                        Authorization:"Bearer " + localStorage.getItem("token")
+                    },
+                    params:{
+                        id:props.id
+                    }
+                })
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        getPostData()
+    }, [])
     function handleClose(){
         setComment(false)
     }

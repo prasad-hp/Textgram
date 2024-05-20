@@ -14,16 +14,19 @@ function Home(){
     }, [])
 
     const getUser = async ()=>{
-        const response = await axios({
-            method:"get",
-            url:"http://localhost:3001/api/v1/user",
-            headers:{
-                Authorization:"Bearer " + localStorage.getItem("token")
-            }
-        })
-        setUser(response.data)
+        try {            
+            const response = await axios({
+                method:"get",
+                url:"http://localhost:3001/api/v1/user",
+                headers:{
+                    Authorization:"Bearer " + localStorage.getItem("token")
+                }
+            })
+            setUser(response.data)
+        } catch (error) {
+            console.log(error.response.data)
+        }
     }
-
     return(
         <div className="w-screen">
             <header className="fixed top-0 left-0 md:inline-block hidden">

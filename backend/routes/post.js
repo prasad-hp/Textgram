@@ -11,7 +11,7 @@ router.use(express.json())
 
 router.get("/list",authMiddleware, async(req, res)=>{
     try {
-                const posts = await mainPost.find({})
+        const posts = await mainPost.find({})
         if(!posts){
             return res.status(400).json({message:"Unable to find Posts"})
         }
@@ -58,9 +58,19 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
 })
 
 router.get("/single",authMiddleware, async(req, res)=>{
+    const data = req.query;
+    const user = await User.findOne({
+        email:req.email
+    })
+    if(!user){
+        return res.status(400).json({message:"Invalid User/User Not loggedin"})
+    }
     try {
-        const data = req.query;
         const getPost = await mainPost.findOne({_id:data.id})
+        const likeStatus = await mainPost.findOne({_id:data.id, 
+            "post.likes":user._id
+        })
+        console.log(likeStatus, "Like status")
         res.status(200).json(getPost)
     } catch (error) {
         res.status(500).json(error.message)
