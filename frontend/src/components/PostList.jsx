@@ -3,7 +3,7 @@ import Post from "./Post";
 import axios from "axios";
 
 function PostList(){
-    const [message, setMessage] = useState("")
+    const [statusMessage, setStatusMessage] = useState("")
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
@@ -16,10 +16,9 @@ function PostList(){
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 })
-                console.log(response)
                 setPosts(response.data)
             } catch (error) {
-                setMessage(error.response.data.message)
+                setStatusMessage(error.response.data.message)
             }
         }
         getData()
@@ -30,8 +29,8 @@ function PostList(){
     })
     return(
         <div>
-            {message}
             {postList}
+            {statusMessage && <p>{statusMessage}</p>}
         </div>
     )
 }

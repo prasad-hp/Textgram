@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Post(props){
-    const [icon, setIcon] = useState(notLikedIcon)
-    const [liked, setLiked] = useState(false)
+    const [icon, setIcon] = useState(null)
+    const [liked, setLiked] = useState(null)
+    const [likeCount, setLikeCount] = useState(props.likeCount)
     const [comment, setComment] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
     useEffect(()=>{
+        if(liked === null) return
         if(liked){
-            setIcon(likedIcon)
             async function postUnLike(){
                 try {  
                     const response = await axios({
@@ -27,8 +28,8 @@ function Post(props){
                             postId:props.id
                         }
                     })
-                    setStatusMessage(response.data.message)
-                    console.log(statusMessage)
+                    setLikeCount(prev =>prev - 1)
+                    setIcon(notLikedIcon)
 
                 } catch (error) {
                     setStatusMessage(error.response.data.message)
@@ -36,7 +37,6 @@ function Post(props){
             }
             postUnLike()
         }else{
-            setIcon(notLikedIcon)
             async function postlike(){
                 try {  
                     const response = await axios({
@@ -49,15 +49,15 @@ function Post(props){
                             postId:props.id
                         }
                     })
-                    setStatusMessage(response.data.message)
-                    // console.log(statusMessage)
+                    setLikeCount(prev =>prev + 1)
+                    setIcon(likedIcon)
                 } catch (error) {
                     setStatusMessage(error.response.data.message)
                 }
             }
             postlike()
         }
-    }, [liked])
+    }, [liked, props.id])
     useEffect(()=>{
         async function getPostData(){
             try {
@@ -71,12 +71,14 @@ function Post(props){
                         id:props.id
                     }
                 })
+                setLiked(response.data.likeByUser)
+                setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
             } catch (error) {
-                console.error(error)
+                setStatusMessage(error.response.data.message)
             }
         }
         getPostData()
-    }, [])
+    }, [props.id])
     function handleClose(){
         setComment(false)
     }
@@ -93,7 +95,7 @@ function Post(props){
                     <span className="flex justify-start">
                         <span className="flex justify-start hover:cursor-pointer" onClick={()=>setLiked(!liked)}>
                             <img src={icon} className="h-7" />
-                            <p className="text-lg mx-1">{props.likeCount}</p>
+                            <p className="text-lg mx-1">{likeCount}</p> 
                         </span>
                         <img src={commentIcon} className="h-6.5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
@@ -101,6 +103,7 @@ function Post(props){
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} newComment={comment} onClose={handleClose}/>
                 </div>
+                {statusMessage && <p>{statusMessage}</p>}
         </div>
     )
 }

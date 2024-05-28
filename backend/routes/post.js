@@ -66,11 +66,12 @@ router.get("/single",authMiddleware, async(req, res)=>{
         return res.status(400).json({message:"Invalid User/User Not loggedin"})
     }
     try {
-        const getPost = await mainPost.findOne({_id:data.id})
-        const likeStatus = await mainPost.findOne({_id:data.id, 
-            "post.likes":user._id
+        const getPost = await mainPost.findOne({_id:data.id}).populate("post.likes")
+        const hasLiked = getPost.post.likes.some(like=>like.equals(user._id))
+        res.status(200).json({
+            post:getPost,
+            likedByUser:hasLiked    
         })
-        res.status(200).json(getPost)
     } catch (error) {
         res.status(500).json(error.message)
     }

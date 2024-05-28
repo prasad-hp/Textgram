@@ -9,6 +9,7 @@ import Comment from "../components/Comment";
 function PostPage() {
     const [postData, setPostData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [liked, setLiked] = useState(null)
     const [error, setError] = useState(null);
     const [postUrlData] = useSearchParams();
     const postId = postUrlData.get("id");
@@ -25,8 +26,9 @@ function PostPage() {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 });
-                setPostData(response.data);
-                setCommentsList(response.data.post.comments);
+                setPostData(response.data.post);
+                setCommentsList(response.data.post.post.comments);
+                setLiked(response.data.likedByUser)
             } catch (err) {
                 console.log(err.message);
             } finally {
@@ -62,6 +64,7 @@ function PostPage() {
                             firstName={postData.firstName} 
                             lastName={postData.lastName} 
                             id={postData._id} 
+                            liked={liked}
                         />
                         {commentsList && listedComments }
                     </>

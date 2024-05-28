@@ -8,6 +8,7 @@ import recoil, { useSetRecoilState } from "recoil"
 import {userAtom} from "../store/atoms/user.jsx"
 
 function Home(){
+    const [statusMessage, setStatusMessage] = useState("")
     const setUser = useSetRecoilState(userAtom)
     useEffect(()=>{
         getUser()
@@ -24,7 +25,7 @@ function Home(){
             })
             setUser(response.data)
         } catch (error) {
-            console.log(error.response.data)
+            setStatusMessage(error.response.data)
         }
     }
     return(
@@ -38,6 +39,7 @@ function Home(){
                 </div>
             <footer className="fixed bottom-0 left-0 ">
                 <NavbarBottom />
+                {statusMessage && <p>{statusMessage}</p>}
             </footer>
         </div>
     )
