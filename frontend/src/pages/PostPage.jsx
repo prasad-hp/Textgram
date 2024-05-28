@@ -58,7 +58,7 @@ function PostPage() {
                     <>
                         <PostSingle 
                             postText={postData.post.postText} 
-                            likeCount={postData.post.like} 
+                            likeCount={postData.post.likes.length}
                             firstName={postData.firstName} 
                             lastName={postData.lastName} 
                             id={postData._id} 

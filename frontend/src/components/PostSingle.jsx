@@ -51,7 +51,7 @@ function PostSingle(props){
                     setStatusMessage(response.data.message)
                     console.log(statusMessage)
                 } catch (error) {
-                    console.log(error.response)
+                    console.log(error.response.data.message)
                 }
             }
             postlike()

@@ -50,7 +50,7 @@ router.post("/signup", async(req, res)=>{
         })
         
     } catch (error) {
-        res.status(500).json(error.message)
+        res.status(500).json({message:error.message})
     }
 })
 router.post("/login", async(req, res)=>{

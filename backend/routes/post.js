@@ -70,7 +70,6 @@ router.get("/single",authMiddleware, async(req, res)=>{
         const likeStatus = await mainPost.findOne({_id:data.id, 
             "post.likes":user._id
         })
-        console.log(likeStatus, "Like status")
         res.status(200).json(getPost)
     } catch (error) {
         res.status(500).json(error.message)

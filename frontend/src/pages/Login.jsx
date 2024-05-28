@@ -23,7 +23,6 @@ function Login(){
                                     }
                                 })
             const tokenData = response.data.token;
-            console.log(response.data)
             localStorage.setItem("token", tokenData)
             navigate("/")
             setMessage(response.data.message)

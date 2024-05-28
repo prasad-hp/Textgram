@@ -16,6 +16,7 @@ function PostList(){
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 })
+                console.log(response)
                 setPosts(response.data)
             } catch (error) {
                 setMessage(error.response.data.message)
@@ -25,7 +26,7 @@ function PostList(){
     }, [])
 
     const postList = posts.slice().reverse().map((postData, index)=>{
-        return(<Post key={index} postText={postData.post.postText} likeCount={postData.post.like} firstName={postData.firstName} lastName={postData.lastName} id={postData._id}/>)
+        return(<Post key={index} postText={postData.post.postText} likeCount={postData.post.likes.length} firstName={postData.firstName} lastName={postData.lastName} id={postData._id}/>)
     })
     return(
         <div>

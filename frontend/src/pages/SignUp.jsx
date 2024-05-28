@@ -39,7 +39,7 @@ function SignUp(){
                             })
             const tokenData = response.data.token
             localStorage.setItem("token", tokenData)
-            navigate("/")
+            navigate("/login")
             setMessage(response.data.message)
         } catch (error) {
             setMessage(error.response.data)
