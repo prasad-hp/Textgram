@@ -58,11 +58,14 @@ router.post("/login", async(req, res)=>{
         const loginUser = req.body;
         const parsedUser = loginSchema.safeParse(loginUser)
         if(!parsedUser.success){
-            return res.status(400).json(parsedUser.error.issues[0].message)
+            return res.status(400).json({message:parsedUser.error.errors[0].message})
         }
         const findUser = await User.findOne({
             email: loginUser.email
         })
+        if(!findUser){
+            return res.status(400).json({message:"User is not registed"})
+        }
         const loginPassword = await bcrypt.compare(loginUser.password, findUser.password)
         if(!loginPassword){
             return res.status(400).json({message:"Please enter valid password"})
