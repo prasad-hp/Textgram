@@ -30,7 +30,8 @@ function PostSingle(props){
                 setLiked(response.data.likeByUser)
                 setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
             } catch (error) {
-                setStatusMessage(error.response.data.message)
+                setStatusMessage(error.response?.data?.message || "An Error Occured")
+
             }
         }
         getPostData()
@@ -53,7 +54,8 @@ function PostSingle(props){
                     setLikeCount(prev => prev-1)
                     setIcon(notLikedIcon)
                 } catch (error) {
-                    setStatusMessage(error.response.data.message)
+                    setStatusMessage(error.response?.data?.message || "An Error Occured")
+
                 }
             }
             postUnLike()
@@ -73,7 +75,7 @@ function PostSingle(props){
                     setLikeCount(prev =>prev+1)
                     setIcon(likedIcon)
                 } catch (error) {
-                    setStatusMessage(error.response.data.message)
+                    setStatusMessage(error.response?.data?.message || "An Error Occured")
                 }
             }
             postlike()

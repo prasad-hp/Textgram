@@ -4,7 +4,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import PostList from "../components/PostList";
 import axios from "axios";
-import recoil, { useSetRecoilState } from "recoil"
+import { useSetRecoilState } from "recoil"
 import {userAtom} from "../store/atoms/user.jsx"
 
 function Home(){
@@ -25,7 +25,7 @@ function Home(){
             })
             setUser(response.data)
         } catch (error) {
-            setStatusMessage(error.response.data)
+            setStatusMessage(error.response ? error.response.data : "An error Occured")
         }
     }
     return(

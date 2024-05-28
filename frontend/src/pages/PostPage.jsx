@@ -10,7 +10,7 @@ function PostPage() {
     const [postData, setPostData] = useState({});
     const [loading, setLoading] = useState(true);
     const [liked, setLiked] = useState(null)
-    const [error, setError] = useState(null);
+    const [statusMessage, setStatusMessage] = useState("");
     const [postUrlData] = useSearchParams();
     const postId = postUrlData.get("id");
     const [commentsList, setCommentsList] = useState([])
@@ -29,8 +29,8 @@ function PostPage() {
                 setPostData(response.data.post);
                 setCommentsList(response.data.post.post.comments);
                 setLiked(response.data.likedByUser)
-            } catch (err) {
-                console.log(err.message);
+            } catch (error) {
+                setStatusMessage(error.response?.data?.message || "An Error Occured")
             } finally {
                 setLoading(false);
             }
@@ -70,6 +70,7 @@ function PostPage() {
                     </>
                 )}
             </div>
+            {statusMessage && <p>{statusMessage}</p>}
             <footer className="z-0 left-0">
                 <NavbarBottom />
             </footer>

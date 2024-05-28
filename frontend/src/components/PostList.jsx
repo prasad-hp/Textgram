@@ -18,14 +18,21 @@ function PostList(){
                 })
                 setPosts(response.data)
             } catch (error) {
-                setStatusMessage(error.response.data.message)
+                setStatusMessage(error.response?.data?.message || "An Error Occured")
             }
         }
         getData()
     }, [])
 
     const postList = posts.slice().reverse().map((postData, index)=>{
-        return(<Post key={index} postText={postData.post.postText} likeCount={postData.post.likes.length} firstName={postData.firstName} lastName={postData.lastName} id={postData._id}/>)
+        return(<Post 
+            key={index} 
+            postText={postData.post.postText} 
+            likeCount={postData.post.likes.length} 
+            firstName={postData.firstName} 
+            lastName={postData.lastName} 
+            id={postData._id}
+            />)
     })
     return(
         <div>

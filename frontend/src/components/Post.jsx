@@ -32,7 +32,7 @@ function Post(props){
                     setIcon(notLikedIcon)
 
                 } catch (error) {
-                    setStatusMessage(error.response.data.message)
+                    setStatusMessage(error.response?.data?.message || "An error Occured")
                 }
             }
             postUnLike()
@@ -52,7 +52,7 @@ function Post(props){
                     setLikeCount(prev =>prev + 1)
                     setIcon(likedIcon)
                 } catch (error) {
-                    setStatusMessage(error.response.data.message)
+                    setStatusMessage(error.response?.data?.message || "An error Occured")
                 }
             }
             postlike()
@@ -74,7 +74,7 @@ function Post(props){
                 setLiked(response.data.likeByUser)
                 setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
             } catch (error) {
-                setStatusMessage(error.response.data.message)
+                setStatusMessage(error.response?.data?.message || "An error Occured")
             }
         }
         getPostData()
