@@ -20,6 +20,26 @@ router.get("/list",authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
+router.get("/userlist",authMiddleware, async(req, res)=>{
+    try {
+
+        const user = await User.findOne({
+            email:req.email
+        })
+        if(!user){
+            return res.status(400).json({message:"User not found"})
+        }
+        const posts = await mainPost.find({
+            userId: user._id
+        })
+        if(!posts){
+            return res.status(400).json({message:"Unable to find Posts"})
+        }
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
 
 router.post("/create",authMiddleware ,async(req, res)=>{
     try {

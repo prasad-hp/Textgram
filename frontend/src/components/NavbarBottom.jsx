@@ -14,15 +14,16 @@ function NavbarBottom() {
         <div className="md:w-475 w-412">
             <div className="w-screen md:hidden flex justify-around py-4">
                 <a href="/home">
-                    <img src={homeIcon} alt="Home" />
+                    <img src={homeIcon} alt="Home" className="h-7"/>
                 </a>
                 <img
                     src={postAdd}
                     alt="Add Post"
                     onClick={()=>setNewPost(true)}
+                    className="h-7"
                 />
                 <a href="/profile">
-                    <img src={profile} alt="Profile" />
+                    <img src={profile} alt="Profile" className="h-7"/>
                 </a>
             </div>
             {newPost && (

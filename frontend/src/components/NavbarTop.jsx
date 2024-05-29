@@ -22,9 +22,9 @@ function NavbarTop() {
                     <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer" />
                     <div className="md:inline-block hidden">
                         <div className="flex md:justify-between w-412 justify-end">
-                            <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer" />
-                            <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer" />
-                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer"/>
+                            <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-7" />
+                            <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer w-7" />
+                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-7"/>
                         </div>
                     </div>
                     <img src={menuIcon} />
