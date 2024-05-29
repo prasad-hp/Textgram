@@ -9,9 +9,6 @@ function NewPost({ newPost, onClose }) {
     const user = useRecoilValue(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
 
-
-
-
     const handleInput = (event) => {
         setText(event.target.value);
     };
@@ -62,11 +59,12 @@ function NewPost({ newPost, onClose }) {
                     <form onSubmit={handleSubmit} className="h-auto">
                         <textarea
                             ref={textAreaRef}
-                            className="w-full resize-none outline-none overflow-y-hidden"
+                            className="w-full resize-none outline-none overflow-y-hidden text-xl"
                             placeholder="Start Writing the post"
                             onChange={handleInput}
                             value={text}
                             rows={1}
+
                         />
                         <div className="flex justify-end mt-2">
                             <button type="submit" className="h-10 bg-blue-500 font-semibold w-16 rounded-3xl text-white flex items-center justify-center">

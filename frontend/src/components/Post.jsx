@@ -63,7 +63,7 @@ function Post(props){
         setComment(false)
     }
     return(
-        <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
+        <div className="w-screen sm:w-11/12 md:w-475 rounded-sm items-center border-x border-t border-gray-200">
                 <div className="flex items-center">
                     <img src="./defaultprofilepic.png" className="h-14 p-2" />
                     <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
@@ -71,7 +71,7 @@ function Post(props){
                 <div className="px-16 w-full" onClick={()=>navigate(`/post?id=${props.id}`)}>
                     <p>{props.postText}</p>
                 </div>
-                <div  className="md:mx-16 my-3 flex justify-start mx-14">
+                <div  className="md:mx-16 py-1 flex justify-start mx-14">
                     <span className="flex justify-start">
                         <span className="flex justify-start hover:cursor-pointer" onClick={()=>setLiked(!liked)}>
                             <img src={icon} className="h-7" />

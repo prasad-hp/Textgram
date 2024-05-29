@@ -17,11 +17,11 @@ function NavbarTop() {
 
     return (
         <div>
-            <div className="w-screen flex justify-center py-3">
-                <div className="flex justify-around md:w-3/4 w-full">
+            <div className="w-screen flex justify-center h-18">
+                <div className="flex justify-around items-center md:w-3/4 w-full h-full">
                     <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer" />
                     <div className="md:inline-block hidden">
-                        <div className="flex md:justify-between w-412 justify-end">
+                        <div className="flex md:justify-around w-475 h-full justify-end border-x border-t border-gray-200">
                             <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-7" />
                             <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer w-7" />
                             <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-7"/>
