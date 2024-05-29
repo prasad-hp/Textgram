@@ -53,7 +53,7 @@ function PostPage() {
             <header>
                 <NavbarTop />
             </header>
-            <div className="flex flex-col items-center mt-16">
+            <div className="flex flex-col items-center">
                 {postData && postData.post && (
                     <>
                         <PostSingle 

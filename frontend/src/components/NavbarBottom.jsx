@@ -11,19 +11,19 @@ function NavbarBottom() {
         setNewPost(false)
     }
     return (
-        <div className="md:w-475 w-412">
-            <div className="w-screen md:hidden flex justify-around py-4">
+        <div className="md:w-475 w-412 h-16">
+            <div className="w-screen md:hidden flex justify-around py-4 items-center border border-gray-200 bg-white bg-opacity-75">
                 <a href="/home">
-                    <img src={homeIcon} alt="Home" className="h-7"/>
+                    <img src={homeIcon} alt="Home" className="w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                 </a>
                 <img
                     src={postAdd}
                     alt="Add Post"
                     onClick={()=>setNewPost(true)}
-                    className="h-7"
+                    className="w-10 h-10 p-2 rounded-md hover:bg-slate-300"
                 />
                 <a href="/profile">
-                    <img src={profile} alt="Profile" className="h-7"/>
+                    <img src={profile} alt="Profile" className="w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                 </a>
             </div>
             {newPost && (

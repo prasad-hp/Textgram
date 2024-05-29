@@ -68,7 +68,7 @@ function PostSingle(props){
         setLiked(!liked)
     }
     return(
-        <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
+        <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center border border-gray-200">
                 <div className="flex items-center">
                     <img src="./defaultprofilepic.png" className="h-14 p-2" />
                     <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
@@ -77,18 +77,18 @@ function PostSingle(props){
                     <p>{props.postText}</p>
                 </div>
                 <div  className="md:mx-16 my-3 flex justify-start mx-14">
-                    <span className="flex justify-start">
-                        <span className="flex justify-start hover:cursor-pointer" onClick={likeFunction}>
-                            <img src={icon} className="h-7" />
+                    <span className="flex justify-start items-center">
+                        <span className="flex justify-start items-center hover:cursor-pointer" onClick={likeFunction}>
+                            <img src={icon} className="h-6" />
                             <p className="text-lg mx-1">{likeCount}</p>
                         </span>
-                        <img src={commentIcon} className="h-6.5 mx-3" onClick={()=>setComment(true)}/>
+                        <img src={commentIcon} className="h-5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
                 </div>
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} onClose={handleClose} newComment={comment}/>
                 </div>
-                {statusMessage && <p>{statusMessage}</p>}
+                {/* {statusMessage && <p>{statusMessage}</p>} */}
         </div>
     )
 }

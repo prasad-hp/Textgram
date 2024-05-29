@@ -63,21 +63,21 @@ function Post(props){
         setComment(false)
     }
     return(
-        <div className="w-screen sm:w-11/12 md:w-475 rounded-sm items-center border-x border-t border-gray-200">
+        <div className="w-full sm:w-11/12 md:w-475 rounded-sm items-center border-x border-t border-gray-200 hover:bg-slate-100">
                 <div className="flex items-center">
-                    <img src="./defaultprofilepic.png" className="h-14 p-2" />
-                    <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
+                    <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />
+                    <h1 className="font-semibold mx-0">{props.firstName}{" "}{props.lastName}</h1>
                 </div>
                 <div className="px-16 w-full" onClick={()=>navigate(`/post?id=${props.id}`)}>
                     <p>{props.postText}</p>
                 </div>
-                <div  className="md:mx-16 py-1 flex justify-start mx-14">
-                    <span className="flex justify-start">
+                <div className="md:mx-16 py-3 flex justify-start mx-14">
+                    <span className="flex justify-start items-center">
                         <span className="flex justify-start hover:cursor-pointer" onClick={()=>setLiked(!liked)}>
-                            <img src={icon} className="h-7" />
-                            <p className="text-lg mx-1">{likeCount}</p> 
+                            <img src={icon} className="h-6" />
+                            <p className="text-md mx-1">{likeCount}</p> 
                         </span>
-                        <img src={commentIcon} className="h-6.5 mx-3" onClick={()=>setComment(true)}/>
+                        <img src={commentIcon} className="h-5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
                 </div>
                 <div className={`${comment} z-10 absolute top-0 left-0`} >

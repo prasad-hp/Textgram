@@ -19,15 +19,15 @@ function NavbarTop() {
         <div>
             <div className="w-screen flex justify-center h-18">
                 <div className="flex justify-around items-center md:w-3/4 w-full h-full">
-                    <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer" />
-                    <div className="md:inline-block hidden">
-                        <div className="flex md:justify-around w-475 h-full justify-end border-x border-t border-gray-200">
-                            <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-7" />
-                            <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer w-7" />
-                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-7"/>
+                    <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" />
+                    <div className="md:inline-block hidden h-16">
+                        <div className="flex md:justify-around w-475 h-full justify-end items-center border border-gray-200 bg-white bg-opacity-75">
+                            <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
+                            <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
+                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                         </div>
                     </div>
-                    <img src={menuIcon} />
+                    <img src={menuIcon} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300"/>
                 </div>
             </div>
             {newPost && (
