@@ -15,7 +15,7 @@ function Post(props){
     const navigate = useNavigate()
     useEffect(()=>{
         if(liked === null) return
-        if(liked){
+        if(liked === true){
             async function postUnLike(){
                 try {  
                     const response = await axios({
@@ -36,7 +36,7 @@ function Post(props){
                 }
             }
             postUnLike()
-        }else{
+        }else if(liked === false) {
             async function postlike(){
                 try {  
                     const response = await axios({

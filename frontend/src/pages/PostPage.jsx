@@ -9,12 +9,12 @@ import Comment from "../components/Comment";
 function PostPage() {
     const [postData, setPostData] = useState({});
     const [loading, setLoading] = useState(true);
-    const [liked, setLiked] = useState(null)
+    const [liked, setLiked] = useState()
     const [statusMessage, setStatusMessage] = useState("");
     const [postUrlData] = useSearchParams();
-    const postId = postUrlData.get("id");
     const [commentsList, setCommentsList] = useState([])
-    
+    const postId = postUrlData.get("id");
+
     useEffect(() => {
         async function getData() {
             try {
@@ -26,9 +26,10 @@ function PostPage() {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 });
+                setLiked(response.data.likeByUser)
+                console.log(response.data.likeByUser + "post page")
                 setPostData(response.data.post);
                 setCommentsList(response.data.post.post.comments);
-                setLiked(response.data.likedByUser)
             } catch (error) {
                 setStatusMessage(error.response?.data?.message || "An Error Occured")
             } finally {
@@ -42,9 +43,6 @@ function PostPage() {
         return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
     const listedComments = commentsList.slice().reverse().map((comment, index)=>{
         return(
             <Comment key={index} comments={comment}/>
@@ -66,7 +64,7 @@ function PostPage() {
                             id={postData._id} 
                             liked={liked}
                         />
-                        {commentsList && listedComments }
+                        { commentsList && listedComments }
                     </>
                 )}
             </div>

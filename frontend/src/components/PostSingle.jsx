@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function PostSingle(props){
-    const [icon, setIcon] = useState(null)
-    const [liked, setLiked] = useState(null)
+    const [icon, setIcon] = useState(notLikedIcon)
+    const [liked, setLiked] = useState(props.liked)
     const [likeCount, setLikeCount] = useState(props.likeCount)
     const [comment, setComment] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
@@ -27,7 +27,8 @@ function PostSingle(props){
                         id:props.id
                     }
                 })
-                setLiked(response.data.likeByUser)
+                // setLiked(response.data.likeByUser)
+                // setLikeCount(response.data.likedByUser)
                 setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
             } catch (error) {
                 setStatusMessage(error.response?.data?.message || "An Error Occured")
@@ -37,8 +38,8 @@ function PostSingle(props){
         getPostData()
     }, [props.id])
     useEffect(()=>{
-        if(liked === null) return
-        if(liked){
+        if(liked === undefined) return
+        if(liked == true){
             async function postUnLike(){
                 try {  
                     const response = await axios({
@@ -59,7 +60,7 @@ function PostSingle(props){
                 }
             }
             postUnLike()
-        }else{
+        }else if (liked == false){
             async function postlike(){
                 try {  
                     const response = await axios({
@@ -80,7 +81,8 @@ function PostSingle(props){
             }
             postlike()
         }
-    }, [liked, props.id])
+    }, [liked])
+    console.log(props.liked)
     function handleClose(){
         setComment(false)
     }

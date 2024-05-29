@@ -68,6 +68,7 @@ router.get("/single",authMiddleware, async(req, res)=>{
     try {
         const getPost = await mainPost.findOne({_id:data.id}).populate("post.likes")
         const hasLiked = getPost.post.likes.some(like=>like.equals(user._id))
+        console.log(hasLiked)
         res.status(200).json({
             post:getPost,
             likedByUser:hasLiked    
@@ -84,23 +85,23 @@ router.post("/like", authMiddleware, async(req, res)=>{
         const user = await User.findOne({
             email:userEmail
         })
-        const userId = user._id
         if(!user){
             return res.status(400).json({message:"Invalid User/User not loggedIn"})
         }
+        const userId = user._id
         const checkLiked = await mainPost.findOne({_id:postId,
             "post.likes":userId
         })
         if(checkLiked){
-            return res.status(200).json({message:"You have already liked the post"})
+            return res.status(400).json({message:"You have already liked the post"})
         }
         const postUpdate = await mainPost.findByIdAndUpdate(postId,
             {
-                $addToSet:{"post.likes":userId}
+                $push:{"post.likes":userId}
             
         })
         const userUpdate = await User.findByIdAndUpdate(userId, {
-            $addToSet:{likedPosts:postId}
+            $push:{likedPosts:postId}
         })
         if(!postUpdate || !userUpdate){
             return res.status(500).json({message:"Please try after sometime"})
