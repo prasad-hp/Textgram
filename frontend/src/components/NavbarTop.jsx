@@ -24,7 +24,7 @@ function NavbarTop() {
                         <div className="flex md:justify-between w-412 justify-end">
                             <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer" />
                             <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer" />
-                            <img src={profile} />
+                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer"/>
                         </div>
                     </div>
                     <img src={menuIcon} />

@@ -26,8 +26,8 @@ function PostPage() {
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
                 });
-                setLiked(response.data.likeByUser)
-                console.log(response.data.likeByUser + "post page")
+                setLiked(response.data.likedByUser)
+                console.log(response.data.post.post.likes.length)
                 setPostData(response.data.post);
                 setCommentsList(response.data.post.post.comments);
             } catch (error) {

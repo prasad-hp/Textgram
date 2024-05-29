@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Post(props){
-    const [icon, setIcon] = useState(null)
-    const [liked, setLiked] = useState(null)
+    const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon)
+    const [liked, setLiked] = useState(props.liked)
     const [likeCount, setLikeCount] = useState(props.likeCount)
     const [comment, setComment] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
@@ -57,28 +57,8 @@ function Post(props){
             }
             postlike()
         }
-    }, [liked, props.id])
-    useEffect(()=>{
-        async function getPostData(){
-            try {
-                const response = await axios({
-                    method:"get",
-                    url:"http://localhost:3001/api/v1/post/single",
-                    headers:{
-                        Authorization:"Bearer " + localStorage.getItem("token")
-                    },
-                    params:{
-                        id:props.id
-                    }
-                })
-                setLiked(response.data.likeByUser)
-                setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
-            } catch (error) {
-                setStatusMessage(error.response?.data?.message || "An error Occured")
-            }
-        }
-        getPostData()
-    }, [props.id])
+    }, [liked])
+
     function handleClose(){
         setComment(false)
     }

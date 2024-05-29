@@ -7,39 +7,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function PostSingle(props){
-    const [icon, setIcon] = useState(notLikedIcon)
+    const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon)
     const [liked, setLiked] = useState(props.liked)
     const [likeCount, setLikeCount] = useState(props.likeCount)
     const [comment, setComment] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
-
-    useEffect(()=>{
-        async function getPostData(){
-            try {
-                const response = await axios({
-                    method:"get",
-                    url:"http://localhost:3001/api/v1/post/single",
-                    headers:{
-                        Authorization:"Bearer " + localStorage.getItem("token")
-                    },
-                    params:{
-                        id:props.id
-                    }
-                })
-                // setLiked(response.data.likeByUser)
-                // setLikeCount(response.data.likedByUser)
-                setIcon(response.data.likeByUser ? likedIcon : notLikedIcon)
-            } catch (error) {
-                setStatusMessage(error.response?.data?.message || "An Error Occured")
-
-            }
-        }
-        getPostData()
-    }, [props.id])
+    console.log(liked)
     useEffect(()=>{
         if(liked === undefined) return
-        if(liked == true){
+        if(liked === true){
             async function postUnLike(){
                 try {  
                     const response = await axios({
@@ -60,8 +37,9 @@ function PostSingle(props){
                 }
             }
             postUnLike()
-        }else if (liked == false){
+        }else if (liked === false){
             async function postlike(){
+                
                 try {  
                     const response = await axios({
                         method:"post",
@@ -82,9 +60,12 @@ function PostSingle(props){
             postlike()
         }
     }, [liked])
-    console.log(props.liked)
     function handleClose(){
         setComment(false)
+    }
+    function likeFunction(e){
+        e.preventDefault();
+        setLiked(!liked)
     }
     return(
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center bg-green-500">
@@ -97,7 +78,7 @@ function PostSingle(props){
                 </div>
                 <div  className="md:mx-16 my-3 flex justify-start mx-14">
                     <span className="flex justify-start">
-                        <span className="flex justify-start hover:cursor-pointer" onClick={()=>setLiked(!liked)}>
+                        <span className="flex justify-start hover:cursor-pointer" onClick={likeFunction}>
                             <img src={icon} className="h-7" />
                             <p className="text-lg mx-1">{likeCount}</p>
                         </span>

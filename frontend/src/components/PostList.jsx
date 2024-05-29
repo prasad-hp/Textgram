@@ -27,7 +27,8 @@ function PostList(){
     const postList = posts.slice().reverse().map((postData, index)=>{
         return(<Post 
             key={index} 
-            postText={postData.post.postText} 
+            postText={postData.post.postText}
+            liked = {postData.likedByUser}
             likeCount={postData.post.likes.length} 
             firstName={postData.firstName} 
             lastName={postData.lastName} 
