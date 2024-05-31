@@ -6,13 +6,30 @@ import axios from "axios";
 function CreateComment(props) {
     const textAreaRef = useRef(null);
     const [text, setText] = useState("");
-    const user = useRecoilValue(userAtom);
+    const [user, setUser] = useState("")
+    // const user = useRecoilValue(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
 
     const handleInput = (event) => {
         setText(event.target.value);
     };
-
+    useEffect(()=> {
+        try {                
+        async function getUser(){
+                const response = await axios({
+                    method:"get",
+                    url:"http://localhost:3001/api/v1/user/",
+                    headers:{
+                        Authorization:"Bearer " + localStorage.getItem("token")
+                    }
+                })
+                setUser(response.data)
+            }
+            getUser()
+            } catch (error) {
+                setStatusMessage(error.response?.data?.message)
+            }
+    }, [])
     useEffect(() => {
         const textArea = textAreaRef.current;
         if (textArea) {
@@ -63,17 +80,21 @@ function CreateComment(props) {
                         <img src="./defaultprofilepic.png" alt="Profile" className="w-14 h-14 p-2" />
                         <h1 className="font-semibold ml-2">{user.firstName} {user.lastName}</h1>
                     </div>  
-                    <form onSubmit={handleSubmit} className="h-auto">
+                    <form onSubmit={text ? handleSubmit : undefined} className="h-auto">
                         <textarea
                             ref={textAreaRef}
-                            className="w-full resize-none outline-none overflow-y-hidden"
+                            className="w-full resize-none outline-none overflow-y-hidden pl-16 text-lg"
                             placeholder="Start Writing the post"
                             onChange={handleInput}
                             value={text}
                             rows={1}
+                            
                         />
                         <div className="flex justify-end mt-2">
-                            <button type="submit" className={`h-10 ${text ? "bg-blue-500" : "bg-gray-400"} font-semibold w-16 rounded-3xl text-white flex items-center justify-center`}>
+                            <button type="submit" 
+                            className={`h-10 ${text ? "bg-blue-500" : "bg-gray-400"} font-semibold w-16 rounded-3xl text-white flex items-center justify-center`}
+                            disabled={!text}
+                            >
                                 Post
                             </button>
                         </div>
