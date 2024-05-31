@@ -88,7 +88,6 @@ router.get("/single",authMiddleware, async(req, res)=>{
     try {
         const getPost = await mainPost.findOne({_id:data.id}).populate("post.likes")
         const hasLiked = getPost.post.likes.some(like=>like.equals(user._id))
-        console.log(hasLiked)
         res.status(200).json({
             post:getPost,
             likedByUser:hasLiked    

@@ -6,10 +6,12 @@ import menuIcon from "../assets/menuIcon.svg";
 import atIcon from "../assets/atIcon.svg";
 import { useNavigate } from "react-router-dom";
 import NewPost from "./NewPost.jsx";
+import Menu from "./Menu.jsx";
 
 function NavbarTop() {
     const [newPost, setNewPost] = useState(false);
     const navigate = useNavigate();
+    const [displayMenu, setDisplayMenu] = useState(false)
 
     const handleClose = () => {
         setNewPost(false);
@@ -18,8 +20,10 @@ function NavbarTop() {
     return (
         <div>
             <div className="w-screen flex justify-center h-18">
-                <div className="flex justify-around items-center md:w-3/4 w-full h-full">
-                    <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" />
+                <div className="flex justify-around items-top md:w-3/4 w-full h-full">
+                    <div className="w-28">
+                        <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" />
+                    </div>
                     <div className="md:inline-block hidden h-16">
                         <div className="flex md:justify-around w-475 h-full justify-end items-center border border-gray-200 bg-white bg-opacity-75">
                             <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
@@ -27,7 +31,10 @@ function NavbarTop() {
                             <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                         </div>
                     </div>
-                    <img src={menuIcon} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300"/>
+                    <div className="w-28">
+                        <img src={menuIcon} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" onClick={()=>setDisplayMenu(!displayMenu)}/>
+                        <Menu menu={displayMenu}/>
+                    </div>
                 </div>
             </div>
             {newPost && (
