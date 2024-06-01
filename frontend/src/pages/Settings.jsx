@@ -24,7 +24,7 @@ function Settings(){
                     <div className="w-full py-4 px-3 rounded-sm border border-gray-300 hover:bg-slate-100 hover:cursor-pointer" onClick={()=>navigate("/update")}>
                         Update Profile
                     </div>
-                    <div className="w-full py-4 px-3 rounded-sm border-x border-gray-300 hover:bg-slate-100 hover:cursor-pointer">
+                    <div className="w-full py-4 px-3 rounded-sm border-x border-gray-300 hover:bg-slate-100 hover:cursor-pointer" onClick={()=>navigate("/changepassword")}>
                         Change Password
                     </div>
                     <div className="w-full py-4 px-3 rounded-sm border hover:bg-red-500 hover:cursor-pointer" onClick={()=>setConfirmDelete(true)}>

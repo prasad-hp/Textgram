@@ -1,6 +1,6 @@
 import express from "express"
 import User from "../database/user.js"
-import {signupSchema, loginSchema, updateSchema} from "../database/zodValidation/user.js"
+import {signupSchema, loginSchema, updateSchema, passwordSchema} from "../database/zodValidation/user.js"
 import JWT_SECRET from "../config.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
@@ -103,24 +103,33 @@ router.put("/update",authMiddleware ,async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
-router.put("/update",authMiddleware ,async(req, res)=>{
+router.put("/changepassword",authMiddleware ,async(req, res)=>{
     try {
-        const updateUser = req.body;
-        const parsedUser = updateSchema.safeParse(updateUser)
-        if(!parsedUser.success){
-            return res.status(400).json({message: "Please Enter Valid User data"})
+        const changepassword = req.body;
+        const checkUser = await User.findOne({
+            email:req.email
+        })
+        if(!checkUser){
+            return res.status(400).json({message:"User not found/Please login"})
         }
-        const hashedPassword = await bcrypt.hash(updateUser.password, 2)
+        const loginPassword = await bcrypt.compare(changepassword.initialPassword, checkUser.password)
+        console.log(loginPassword)
+        if(!loginPassword){
+            return res.status(400).json({message:"Password Doesn't Match"})
+        }
+        const parsedUser = passwordSchema.safeParse(changepassword.newPassword)
+        if(!parsedUser.success){
+            return res.status(400).json({message: parsedUser.message || "Please Enter Valid Password"})
+        }
+        const hashedPassword = await bcrypt.hash(changepassword.newPassword, 1)
         const user = await User.findOneAndUpdate({
-            email:updateUser.email
+            email:req.email
         }, {
-            firstName: updateUser.firstName,
-            lastName: updateUser.lastName,
             password: hashedPassword
         })
         if(user){
             res.status(200).json({
-                message: "User details Updated"})
+                message: "User Password Changed Successfully"})
         }
     } catch (error) {
         res.status(500).json(error.message)
