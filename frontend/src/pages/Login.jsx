@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Input from "../components/Input";
 import InputButton from "../components/InputButton";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,16 @@ function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState("")
+    const [button, setButton] = useState(false)
     const navigate = useNavigate()
+
+    useEffect(()=>{ 
+        if(email === "" || password === ""){
+            setButton(false)
+        }else if (email && password){
+            setButton(true)
+        }
+    }, [email, password])
 
     async function handleSubmit(event){
         event.preventDefault()
@@ -41,7 +50,7 @@ function Login(){
                             <Input type={"email"} placeholder={"Email"} value={email} onChange={event=>{setEmail(event.target.value)}}/>
                             <Input type={"password"} placeholder={"Password"} value={password} onChange={event =>{setPassword(event.target.value)}}/>
                             <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
-                            <InputButton text={"Login"}/>
+                            <InputButton text={"Login"} buttonSubmit={button}/>
                         </form>
                             <p className="flex justify-center p-4 font-medium text-lg">Doesn't have Account ?  <a href="./signup" className="font-semibold"> Create Acoount</a></p>
                 </div>

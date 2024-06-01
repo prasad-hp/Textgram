@@ -11,6 +11,7 @@ function SignUp(){
     const [password, setPassword] = useState("")
     const [initialPassword, setInitialPassword] = useState("")    
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [button, setButton] = useState(false)
     const [message, setMessage] = useState("")
     const navigate = useNavigate()
 
@@ -22,6 +23,13 @@ function SignUp(){
             setMessage("Password Doesn't match")
         }
     }, [confirmPassword, initialPassword])
+    useEffect(()=>{ 
+        if(firstName === "" || email === "" || password === ""){
+            setButton(false)
+        }else if (email && password){
+            setButton(true)
+        }
+    }, [firstName, email, password])
 
     async function handleSubmit(event){
         event.preventDefault()
@@ -60,7 +68,7 @@ function SignUp(){
                             <Input type={"password"} placeholder={"Enter Password"} value={initialPassword} onChange={event=>{setInitialPassword(event.target.value)}}/>
                             <Input type={"password"} placeholder={"Confirm Password"} value={confirmPassword} onChange={event=>{setConfirmPassword(event.target.value)}}/>
                             <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
-                            <InputButton text={"Create Account"}/>
+                            <InputButton text={"Create Account"} buttonSubmit={button}/>
                         </form> 
                             <p className="flex justify-center p-4 font-medium text-lg">Already have Account ?  <a href="./login" className="font-semibold"> Login</a></p>
                 </div>
