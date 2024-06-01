@@ -108,8 +108,10 @@ router.put("/update",authMiddleware ,async(req, res)=>{
 
 router.delete("/delete",authMiddleware, async(req, res)=>{
     try {
-        
         const deleteUser = req.body;
+        if(req.email !== deleteUser.email ){
+            return res.status(400).json({message:"Invalid User Email"})
+        }
         const parsedUser = loginSchema.safeParse(deleteUser);
         if(!parsedUser.success){
             return res.status(400).json({message:"Please enter valid inputs"})

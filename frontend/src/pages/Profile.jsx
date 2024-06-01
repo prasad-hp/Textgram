@@ -31,25 +31,27 @@ function Profile(){
 
     return(
         <div className="w-screen">
-            <header className="fixed top-0 left-0 md:inline-block hidden">
-                <NavbarTop />
-            </header>
-                <div className="flex flex-col items-center mt-16">
-                    <div className="md:w-475 sm:w-11/12" >
-                        <div className="flex justify-between items-center">
-                            <h1 className="font-semibold text-xl m-4">{user.firstName} {user.lastName}</h1>
-                            <img src={profile} className="w-20 m-4" />
-                        </div>
-                            <h1 className="flex justify-center items-center font-semibold text-xl">Posts</h1>
-                        <div>
-                            <PostListProfile />
+            <div className="flex flex-col items-center">
+                <header className="fixed top-0 left-0 md:inline-block hidden">
+                    <NavbarTop />
+                </header>
+                    <div className=" w-full flex flex-col items-center mt-16">
+                        <div className="md:w-475 sm:w-11/12" >
+                            <div className="flex justify-between items-center">
+                                <h1 className="font-semibold text-xl m-4">{user.firstName} {user.lastName}</h1>
+                                <img src={profile} className="w-20 m-4" />
+                            </div>
+                                <h1 className="flex justify-center items-center font-semibold text-xl">Posts</h1>
+                            <div>
+                                <PostListProfile />
+                            </div>
                         </div>
                     </div>
-                </div>
-            <footer className="fixed bottom-0 left-0 ">
-                <NavbarBottom />
-                {statusMessage && <p>{statusMessage}</p>}
-            </footer>
+                <footer className="fixed bottom-0 left-0 ">
+                    <NavbarBottom />
+                    {statusMessage && <p>{statusMessage}</p>}
+                </footer>
+            </div>
         </div>
     )
 }

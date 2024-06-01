@@ -6,6 +6,7 @@ import LogIn from './pages/Login'
 import PostPage from './pages/PostPage'
 import Profile from './pages/Profile'
 import { RecoilRoot } from 'recoil'
+import Settings from './pages/Settings'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </RecoilRoot>
     </BrowserRouter>
