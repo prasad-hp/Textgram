@@ -94,7 +94,7 @@ function NewPost({ newPost, onClose }) {
                 >
                     Close
                 </button>
-                {statusMessage && <p className="text-center">{statusMessage}</p>}
+                {statusMessage && <p className="text-center">{statusMessage}</p>}   
             </div>
         </div>
     );

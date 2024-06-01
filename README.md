@@ -6,15 +6,21 @@ Textgram is a microblogging platform inspired by Twitter, designed for users to 
 
 ### Current Features
 - **Create a Text Post**: Users can compose and publish text-based posts.
-- **Delete the Post**: Posts can be deleted by the user who created them.
 - **Like the Post**: Users can like posts to show appreciation.
 - **Undo Like**: Option to undo a like if clicked by mistake.
-
-### Planned Features
+- **Comment on Post**: Ability to comment on posts, fostering engagement.
 - **SignUp**: User registration to create an account.
 - **LoggingIn**: Secure login functionality for registered users.
-- **Comment on Post**: Ability to comment on posts, fostering engagement.
+- **Delete Account**: Delete the User Account.
+- **Update Account**: Update user details.
+- **View User Profile**: View User profile with user Posts.
+
+
+### Planned Features
 - **Delete Comment**: Option to delete user comments.
+- **Delete the Post**: Posts can be deleted by the user who created them.
+- **View Other User**: View the profile of other users by Clicking on name.
+- **Choose Icon** : Ability of user to choose profile icon.
 
 ## Technologies Used
 
@@ -26,7 +32,7 @@ Textgram is built using the following technologies:
   - Axios: Promise-based HTTP client for making requests.
   - ViteJs: A fast and efficient frontend build tool.
   - JavaScript and HTML: Primary programming languages for frontend development.
-  - Recoil:
+  - Recoil: State management library for React.
 
 - **Backend**:
   - Node.js: JavaScript runtime for building scalable server-side applications.
@@ -34,8 +40,8 @@ Textgram is built using the following technologies:
   - MongoDB: NoSQL database for storing user data, posts, and comments.
   - Mongoose: MongoDB object modeling for Node.js, providing schema-based solutions.
   - Zod: Runtime type checking for data consistency
-  - JWT:
-  - Bcrypt:
+  - JWT: JSON Web Tokens for secure authentication
+  - Bcrypt: Password hashing for security.
 
 ## Project Purpose
 

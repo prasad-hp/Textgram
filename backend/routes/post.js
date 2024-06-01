@@ -69,8 +69,11 @@ router.post("/create",authMiddleware ,async(req, res)=>{
 router.delete("/delete",authMiddleware, async(req, res)=>{
     try {
         const deletePost = await mainPost.findByIdAndDelete({
-            _id:req.body._id
+            _id:req.body.id
         })
+        if(!deletePost){
+            return res.status(400).json({message:"Post not found/Already Deleted"})
+        }
         res.status(200).json({message:"Your post has been successfully Deleted"})
     } catch (error) {
         res.status(500).json(error.message)

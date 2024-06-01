@@ -11,8 +11,6 @@ function Update(){
     const [lastName, setLastName] = useState("")
     const [message, setMessage] = useState("")
     const navigate = useNavigate()
-    const [user, setUser] = useState({})
-
 
     async function handleSubmit(event){
         event.preventDefault()
@@ -45,7 +43,6 @@ function Update(){
                         Authorization:"Bearer " + localStorage.getItem("token")
                     }
                 })
-                setUser(response.data)
                 setFirstName(response.data.firstName)
                 setLastName(response.data.lastName)
 
