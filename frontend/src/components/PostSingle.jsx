@@ -13,7 +13,6 @@ function PostSingle(props){
     const [comment, setComment] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
-    console.log(liked)
     useEffect(()=>{
         if(liked === undefined) return
         if(liked === true){
@@ -95,7 +94,7 @@ function PostSingle(props){
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} onClose={handleClose} newComment={comment}/>
                 </div>
-                {/* {statusMessage && <p>{statusMessage}</p>} */}
+                {statusMessage && <p className="text-center">{statusMessage}</p>}
         </div>
     )
 }

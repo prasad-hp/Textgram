@@ -27,7 +27,6 @@ function PostPage() {
                     }
                 });
                 setLiked(response.data.likedByUser)
-                console.log(response.data.post.post.likes.length)
                 setPostData(response.data.post);
                 setCommentsList(response.data.post.post.comments);
             } catch (error) {

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Input from "./Input";
-import InputButton from "./InputButton";
 import { useNavigate } from "react-router-dom";
 
 function Confirm({ onClose }) {

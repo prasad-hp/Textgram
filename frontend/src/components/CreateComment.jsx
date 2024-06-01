@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user.jsx";
 import axios from "axios";
 
 function CreateComment(props) {
     const textAreaRef = useRef(null);
     const [text, setText] = useState("");
-    const [user, setUser] = useState("")
-    // const user = useRecoilValue(userAtom);
+    const [user, setUser] = useRecoilState(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
 
     const handleInput = (event) => {
@@ -106,6 +105,7 @@ function CreateComment(props) {
                 >
                     Close
                 </button>
+                {statusMessage && <p className="text-center"> {statusMessage} </p>}
             </div>
         </div>
     );

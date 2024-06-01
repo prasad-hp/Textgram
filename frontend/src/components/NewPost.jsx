@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userAtom } from "../store/atoms/user.jsx";
 import axios from "axios";
 
 function NewPost({ newPost, onClose }) {
     const textAreaRef = useRef(null);
     const [text, setText] = useState("");
-    const user = useRecoilValue(userAtom);
+    const [user, setUser] = useRecoilState(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
 
     const handleInput = (event) => {
@@ -20,6 +20,19 @@ function NewPost({ newPost, onClose }) {
             textArea.style.height = textArea.scrollHeight + "px";
         }
     }, [text]);
+    useEffect(()=>{
+        async function getUser(){
+            const response = await axios({
+                method:"get",
+                url:"http://localhost:3001/api/v1/user",
+                headers:{
+                    Authorization:"Bearer " + localStorage.getItem("token")
+                }
+            })
+            setUser(response.data)
+        }
+        getUser()
+    }, [])
 
     const handleSubmit = async(event) => {
         event.preventDefault();
@@ -81,6 +94,7 @@ function NewPost({ newPost, onClose }) {
                 >
                     Close
                 </button>
+                {statusMessage && <p className="text-center">{statusMessage}</p>}
             </div>
         </div>
     );

@@ -17,7 +17,9 @@ function PostListProfile(){
                     }
                 })
                 setPosts(response.data)
-                setStatusMessage(!response.data && "There are no post Available")
+                if(response.data.length === 0 ) {
+                    setStatusMessage("There are no posts Available, Create Post to see one")
+                }
             } catch (error) {
                 setStatusMessage(error.response?.data?.message || "An Error Occured")
             }
@@ -39,7 +41,7 @@ function PostListProfile(){
     return(
         <div>
             {postList}
-            {statusMessage && <p>{statusMessage}</p>}
+            {statusMessage && <p className="text-center">{statusMessage}</p>}
         </div>
     )
 }
