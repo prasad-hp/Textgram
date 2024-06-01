@@ -22,7 +22,6 @@ router.get("/list",authMiddleware, async(req, res)=>{
 })
 router.get("/userlist",authMiddleware, async(req, res)=>{
     try {
-
         const user = await User.findOne({
             email:req.email
         })

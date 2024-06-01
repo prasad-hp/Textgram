@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavbarTop from "../components/NavbarTop";
 import NavbarBottom from "../components/NavbarBottom";
-import Confirm from "../components/Confirm";
+import ConfirmDeleteAccount from "../components/ConfirmDeleteAccount";
 import { useNavigate } from "react-router-dom";
 
 
@@ -37,7 +37,7 @@ function Settings(){
                 {statusMessage && <p>{statusMessage}</p>}
             </footer>
             <div className={`${confirmDelete ? "inline-block" : "hidden"}`}>
-                <Confirm onClose={handleClose}/>
+                <ConfirmDeleteAccount onClose={handleClose}/>
             </div>
         </div>
     )
