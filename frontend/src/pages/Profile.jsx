@@ -4,7 +4,7 @@ import NavbarTop from "../components/NavbarTop";
 import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
 import profile from "../../public/defaultprofilepic.png"
-import PostListProfile from "../components/PostListPost";
+import PostListProfile from "../components/PostListProfile";
 
 function Profile(){
     const [statusMessage, setStatusMessage] = useState("")
@@ -20,7 +20,6 @@ function Profile(){
                         Authorization:"Bearer " + localStorage.getItem("token")
                     }
                 })
-                console.log(response)
                 setUser(response.data)
             }
             getUser()

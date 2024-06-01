@@ -12,8 +12,8 @@ const loginSchema = zod.object({
 })
 const updateSchema = zod.object({
     firstName: zod.string(),
-    lastName: zod.string(),
-    password: zod.string().min(6, {message:"Password must be minimun 6 characters"})
+    lastName: zod.string()
 })
+const passwordSchema = zod.string().min(6, {message:"Password must be minimun 6 characters"})
 
-export {signupSchema, loginSchema, updateSchema};
+export {signupSchema, loginSchema, updateSchema, passwordSchema};

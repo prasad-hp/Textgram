@@ -89,6 +89,27 @@ router.put("/update",authMiddleware ,async(req, res)=>{
         if(!parsedUser.success){
             return res.status(400).json({message: "Please Enter Valid User data"})
         }
+        const user = await User.findOneAndUpdate({
+            email:req.email
+        }, {
+            firstName: updateUser.firstName,
+            lastName: updateUser.lastName
+        })
+        if(user){
+            res.status(200).json({
+                message: "User details Updated"})
+        }
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
+router.put("/update",authMiddleware ,async(req, res)=>{
+    try {
+        const updateUser = req.body;
+        const parsedUser = updateSchema.safeParse(updateUser)
+        if(!parsedUser.success){
+            return res.status(400).json({message: "Please Enter Valid User data"})
+        }
         const hashedPassword = await bcrypt.hash(updateUser.password, 2)
         const user = await User.findOneAndUpdate({
             email:updateUser.email

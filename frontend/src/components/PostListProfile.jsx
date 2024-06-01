@@ -17,6 +17,7 @@ function PostListProfile(){
                     }
                 })
                 setPosts(response.data)
+                setStatusMessage(!response.data && "There are no post Available")
             } catch (error) {
                 setStatusMessage(error.response?.data?.message || "An Error Occured")
             }
