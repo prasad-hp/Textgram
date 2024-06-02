@@ -28,7 +28,7 @@ function NavbarTop() {
                         <div className="flex md:justify-around w-475 h-full justify-end items-center border border-gray-200 bg-white bg-opacity-75">
                             <img src={homeIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
                             <img src={postAdd} onClick={() => setNewPost(true)} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
-                            <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
+                            <img src={profile} onClick={() => navigate("/userprofile")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                         </div>
                     </div>
                     <div className="w-28 relative">

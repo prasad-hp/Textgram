@@ -167,7 +167,7 @@ router.delete("/delete",authMiddleware, async(req, res)=>{
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.post("/profile",authMiddleware, upload.single("profile-picture"), async(req, res)=>{
+router.post("/profilepic",authMiddleware, upload.single("profile-picture"), async(req, res)=>{
     try {
         const photo = req.file;
         const newFileName = Date.now() + '-'+ Math.floor(Math.random()*10000) + photo.originalname
@@ -183,7 +183,7 @@ router.post("/profile",authMiddleware, upload.single("profile-picture"), async(r
         res.status(500).json(error.message)
     }
 })  
-router.get("/profile", authMiddleware, async(req, res)=>{
+router.get("/profilepic", authMiddleware, async(req, res)=>{
     try {
         const photo = req.body;
         const photoName = photo.name;
@@ -219,6 +219,14 @@ router.get("/", authMiddleware, async(req, res)=>{
         res.status(200).json(userData)
     } catch (error) {
         res.status(500).json(error.message)
+    }
+})
+router.get("/profile", authMiddleware, async(req, res)=>{
+    try {
+        const user = req.query;
+        console.log(user)
+    } catch (error) {
+        res.status(500).json(error.json)
     }
 })
 export default router;

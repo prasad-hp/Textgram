@@ -72,7 +72,7 @@ function CreateComment(props) {
                         <img src="./defaultprofilepic.png" className="h-14 p-2" />
                         <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
                     </div>
-                    <div className="px-16 w-full" >
+                    <div className="px-16 w-full" style={{ whiteSpace: 'pre-wrap' }} >
                         <p>{props.postText}</p>
                     </div>
                     <div className="flex items-center mb-2">
