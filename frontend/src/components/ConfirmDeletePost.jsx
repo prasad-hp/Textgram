@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function ConfirmDeletePost({ onClose, id }) {
+function ConfirmDeletePost({ onClose, id, userId }) {
     const [message, setMessage] = useState("");
-    const navigate = useNavigate()
     async function deletePost(event) {
         event.preventDefault();
         try {
@@ -15,16 +13,16 @@ function ConfirmDeletePost({ onClose, id }) {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },
                 data: {
-                    id: id
+                    postId: id,
+                    userId:userId
                 },
             });
-            setMessage(response.data);
-            navigate("/")
+            setMessage(response.data.message);
+            location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message|| "An error occurred");
         }
     }
-
 
     return (
         <div className="bg-black/40 fixed inset-0 flex items-center justify-center">

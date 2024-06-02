@@ -29,7 +29,7 @@ function Post(props){
                             Authorization:"Bearer " + localStorage.getItem("token")
                         },
                         data:{
-                            postId:props.id
+                            postId:props.id,
                         }
                     })
                     setLikeCount(prev =>prev - 1)
@@ -98,7 +98,7 @@ function Post(props){
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} newComment={comment} onClose={handleClose}/>
                 </div>
-                {confirmDelete && <ConfirmDeletePost onClose={handleDeleteClose} id={props.id}/>}
+                {confirmDelete && <ConfirmDeletePost onClose={handleDeleteClose} id={props.id} userId={props.userId}/>}
                 {statusMessage && <p>{statusMessage}</p>}
         </div>
     )

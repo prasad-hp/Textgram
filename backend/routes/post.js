@@ -67,8 +67,18 @@ router.post("/create",authMiddleware ,async(req, res)=>{
 
 router.delete("/delete",authMiddleware, async(req, res)=>{
     try {
+        const user = await User.findOne({
+            email:req.email
+        })
+        if(!user){
+            return res.status(400).json({message:"Invalid User/User not loggedIn"})
+        }
+        const userId = user._id.toString()
+        if(userId !== req.body.userId ){
+            return res.status(400).json({message:"User not authorized to delete the post"})
+        }
         const deletePost = await mainPost.findByIdAndDelete({
-            _id:req.body.id
+            _id:req.body.postId
         })
         if(!deletePost){
             return res.status(400).json({message:"Post not found/Already Deleted"})

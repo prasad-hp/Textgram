@@ -36,6 +36,7 @@ function PostListProfile(){
             firstName={postData.firstName} 
             lastName={postData.lastName} 
             id={postData._id}
+            userId = {postData.userId}
             />)
     })
     return(
