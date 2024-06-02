@@ -51,7 +51,7 @@ function ConfirmDeleteAccount({ onClose }) {
                     <form onSubmit={deleteComment} className="flex flex-col justify-center text-center">
                         <Input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
                         <Input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
-                        <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
+                        <p className="flex justify-center p-4 font-medium text-lg text-center">{message}</p>
                         <div className="flex justify-around">
                             <button
                                 type="submit"

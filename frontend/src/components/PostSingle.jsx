@@ -1,78 +1,82 @@
 import React, { useEffect, useState } from "react";
-import notLikedIcon from "../assets/notLikedIcon.svg"
-import likedIcon from "../assets/likedIcon.svg"
-import commentIcon from "../assets/commentIcon.svg"
+import notLikedIcon from "../assets/notLikedIcon.svg";
+import likedIcon from "../assets/likedIcon.svg";
+import commentIcon from "../assets/commentIcon.svg";
 import CreateComment from "./CreateComment";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import threeDots from "../assets/threeDots.svg"
+import threeDots from "../assets/threeDots.svg";
 import ConfirmDeletePost from "./ConfirmDeletePost";
 
-function PostSingle(props){
-    const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon)
-    const [liked, setLiked] = useState(props.liked)
-    const [likeCount, setLikeCount] = useState(props.likeCount)
-    const [comment, setComment] = useState(false)
-    const [deleteButton, setDeleteButton] = useState(false)
-    const [confirmDelete, setConfirmDelete] = useState(false)
-    const [statusMessage, setStatusMessage] = useState("")
-    const navigate = useNavigate()
-    useEffect(()=>{
-        if(liked === undefined) return
-        if(liked === true){
-            async function postUnLike(){
-                try {  
-                    const response = await axios({
-                        method:"post",
-                        url:"http://localhost:3001/api/v1/post/unlike",
-                        headers:{
-                            Authorization:"Bearer " + localStorage.getItem("token")
-                        },
-                        data:{
-                            postId:props.id
-                        }
-                    })
-                    setLikeCount(prev => prev-1)
-                    setIcon(notLikedIcon)
-                } catch (error) {
-                    setStatusMessage(error.response?.data?.message || "An Error Occured")
+function PostSingle(props) {
+    const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon);
+    const [liked, setLiked] = useState(props.liked);
+    const [likeCount, setLikeCount] = useState(props.likeCount);
+    const [comment, setComment] = useState(false);
+    const [deleteButton, setDeleteButton] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [statusMessage, setStatusMessage] = useState("");
+    const navigate = useNavigate();
 
+        function toggleLikeApi(){
+            if (liked === null) return;
+            if (liked === false) {
+                async function postLike() {
+                    try {
+                        const response = await axios({
+                            method: "post",
+                            url: "http://localhost:3001/api/v1/post/like",
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("token")
+                            },
+                            data: {
+                                postId: props.id
+                            }
+                        });
+                        setLikeCount(prev => prev + 1);
+                        setIcon(likedIcon);
+                    } catch (error) {
+                        setStatusMessage(error.response?.data?.message || "An Error Occured");
+                    }
                 }
-            }
-            postUnLike()
-        }else if (liked === false){
-            async function postlike(){
-                
-                try {  
-                    const response = await axios({
-                        method:"post",
-                        url:"http://localhost:3001/api/v1/post/like",
-                        headers:{
-                            Authorization:"Bearer " + localStorage.getItem("token")
-                        },
-                        data:{
-                            postId:props.id
-                        }
-                    })
-                    setLikeCount(prev =>prev+1)
-                    setIcon(likedIcon)
-                } catch (error) {
-                    setStatusMessage(error.response?.data?.message || "An Error Occured")
+                postLike();
+            } else if (liked === true) {
+                async function postUnlike() {
+                    try {
+                        const response = await axios({
+                            method: "post",
+                            url: "http://localhost:3001/api/v1/post/unlike",
+                            headers: {
+                                Authorization: "Bearer " + localStorage.getItem("token")
+                            },
+                            data: {
+                                postId: props.id
+                            }
+                        });
+                        setLikeCount(prev => prev - 1);
+                        setIcon(notLikedIcon);
+                    } catch (error) {
+                        setStatusMessage(error.response?.data?.message || "An Error Occured");
+                    }
                 }
+                postUnlike();
             }
-            postlike()
         }
-    }, [liked])
-    function handleClose(){
-        setComment(false)
+
+    function handleClose() {
+        setComment(false);
     }
-    function handleDeleteClose(){
-        setConfirmDelete(false)
+
+    function handleDeleteClose() {
+        setConfirmDelete(false);
     }
-    function likeFunction(e){
+
+    function toggleLike(e) {
         e.preventDefault();
-        setLiked(!liked)
+        setLiked(!liked);
+        toggleLikeApi()
     }
+
     return(
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center border border-gray-200">
                 <div className="flex items-center justify-between">
@@ -92,7 +96,7 @@ function PostSingle(props){
                 </div>
                 <div  className="md:mx-16 my-3 flex justify-start mx-14">
                     <span className="flex justify-start items-center">
-                        <span className="flex justify-start items-center hover:cursor-pointer" onClick={likeFunction}>
+                        <span className="flex justify-start items-center hover:cursor-pointer" onClick={toggleLike}>
                             <img src={icon} className="h-6" />
                             <p className="text-lg mx-1">{likeCount}</p>
                         </span>

@@ -55,6 +55,7 @@ function PostPage() {
             <div className="flex flex-col items-center">
                 {postData && postData.post && (
                     <>
+                    
                         <PostSingle 
                             postText={postData.post.postText} 
                             likeCount={postData.post.likes.length}

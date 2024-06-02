@@ -17,57 +17,63 @@ function Post(props){
     const [deleteButton, setDeleteButton] = useState(false)
     const [confirmDelete, setConfirmDelete] = useState(false)
     const navigate = useNavigate()
-    useEffect(()=>{
-        if(liked === null) return
-        if(liked === true){
-            async function postUnLike(){
-                try {  
-                    const response = await axios({
-                        method:"post",
-                        url:"http://localhost:3001/api/v1/post/unlike",
-                        headers:{
-                            Authorization:"Bearer " + localStorage.getItem("token")
-                        },
-                        data:{
-                            postId:props.id,
-                        }
-                    })
-                    setLikeCount(prev =>prev - 1)
-                    setIcon(notLikedIcon)
 
-                } catch (error) {
-                    setStatusMessage(error.response?.data?.message || "An error Occured")
+        function toggleLikeApi(){
+            if(liked === null) return
+            if(liked === true){
+                async function postUnLike(){
+                    try {  
+                        const response = await axios({
+                            method:"post",
+                            url:"http://localhost:3001/api/v1/post/unlike",
+                            headers:{
+                                Authorization:"Bearer " + localStorage.getItem("token")
+                            },
+                            data:{
+                                postId:props.id,
+                            }
+                        })
+                        setLikeCount(prev =>prev - 1)
+                        setIcon(notLikedIcon)
+    
+                    } catch (error) {
+                        setStatusMessage(error.response?.data?.message || "An error Occured")
+                    }
                 }
-            }
-            postUnLike()
-        }else if(liked === false) {
-            async function postlike(){
-                try {  
-                    const response = await axios({
-                        method:"post",
-                        url:"http://localhost:3001/api/v1/post/like",
-                        headers:{
-                            Authorization:"Bearer " + localStorage.getItem("token")
-                        },
-                        data:{
-                            postId:props.id
-                        }
-                    })
-                    setLikeCount(prev =>prev + 1)
-                    setIcon(likedIcon)
-                } catch (error) {
-                    setStatusMessage(error.response?.data?.message || "An error Occured")
+                postUnLike()
+            }else if(liked === false) {
+                async function postlike(){
+                    try {  
+                        const response = await axios({
+                            method:"post",
+                            url:"http://localhost:3001/api/v1/post/like",
+                            headers:{
+                                Authorization:"Bearer " + localStorage.getItem("token")
+                            },
+                            data:{
+                                postId:props.id
+                            }
+                        })
+                        setLikeCount(prev =>prev + 1)
+                        setIcon(likedIcon)
+                    } catch (error) {
+                        setStatusMessage(error.response?.data?.message || "An error Occured")
+                    }
                 }
+                postlike()
             }
-            postlike()
         }
-    }, [liked])
 
     function handleClose(){
         setComment(false)
     }
     function handleDeleteClose(){
         setConfirmDelete(false)
+    }
+    function toggleLike(e){
+        e.preventDefault()
+        setLiked(!liked)
+        toggleLikeApi()
     }
     return(
         <div className="w-full sm:w-11/12 md:w-475 rounded-sm items-center border-x border-t border-gray-200 hover:bg-slate-100">
@@ -88,7 +94,7 @@ function Post(props){
                 </div>
                 <div className="md:mx-16 py-3 flex justify-start mx-14">
                     <span className="flex justify-start items-center">
-                        <span className="flex justify-start hover:cursor-pointer" onClick={()=>setLiked(!liked)}>
+                        <span className="flex justify-start hover:cursor-pointer" onClick={toggleLike}>
                             <img src={icon} className="h-6" />
                             <p className="text-md mx-1">{likeCount}</p> 
                         </span>

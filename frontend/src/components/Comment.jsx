@@ -10,7 +10,6 @@ function Comment(props){
     function handleDeleteClose(){
         setConfirmDelete(false)
     }
-    console.log(props.comments)
     return(
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center border border-gray-200">
                 <div className="flex items-center justify-between">
