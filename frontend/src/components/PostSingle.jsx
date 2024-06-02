@@ -82,7 +82,7 @@ function PostSingle(props) {
                 <div className="flex items-center justify-between">
                         <div className="flex items-center">
                         <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />
-                        <h1 className="font-semibold mx-0">{props.firstName}{" "}{props.lastName}</h1>
+                        <h1 className="font-semibold mx-0 hover:underline-offset-2 hover:underline hover:cursor-pointer" onClick={()=>navigate(`/profile?userId=${props.userId}`)}>{props.firstName}{" "}{props.lastName}</h1>
                     </div>
                     <div className="relative">
                         <img src={threeDots} className="w-11 h-11 px-2.5 hover:cursor-pointer hover:bg-slate-300 rounded-full" onClick={()=>setDeleteButton(!deleteButton)}/>

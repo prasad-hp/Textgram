@@ -1,12 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ConfirmDeletePost({ onClose, id, userId, toHome }) {
-    const [message, setMessage] = useState("");
+    const [statusMessage, setStatusMessage] = useState("");
     const navigate = useNavigate()
     async function deletePost(event) {
         event.preventDefault();
+        setStatusMessage("Deleting...")
         try {
             const response = await axios({
                 method: "delete",
@@ -19,11 +20,11 @@ function ConfirmDeletePost({ onClose, id, userId, toHome }) {
                     userId:userId
                 },
             });
-            setMessage(response.data.message);
+            setStatusMessage(response.data.message);
             if(toHome){navigate("/")}
             location.reload();
         } catch (error) {
-            setMessage(error.response?.data?.message|| "An error occurred");
+            setStatusMessage(error.response?.data?.message || "An error occurred");
         }
     }
 
@@ -34,7 +35,7 @@ function ConfirmDeletePost({ onClose, id, userId, toHome }) {
                 <div className="w-96 md:w-96 border-2 rounded-lg bg-white h-auto p-4">
                     <p className="text-center">Do you really want to delete this post ? You cannot undo this action.</p>
                     <form onSubmit={deletePost}>
-                        <p className="flex justify-center p-4 font-medium text-lg text-center">{message}</p>
+                        <p className="flex justify-center p-4 font-medium text-lg text-center">{statusMessage}</p>
                         <div className="flex flex-col items-center justify-around">
                             <button
                                 type="submit"

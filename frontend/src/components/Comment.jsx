@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import threeDots from "../assets/threeDots.svg"
 import ConfirmDeleteComment from "./ConfirmDeleteComment";
+import { useNavigate } from "react-router-dom";
 
 function Comment(props){
-    const [statusMessage, setStatusMessage] = useState("")
     const [deleteButton, setDeleteButton] = useState(false)
     const [confirmDelete, setConfirmDelete] = useState(false)
+    const navigate = useNavigate()
     
     function handleDeleteClose(){
         setConfirmDelete(false)
@@ -15,7 +16,7 @@ function Comment(props){
                 <div className="flex items-center justify-between">
                 <div className="flex items-center">
                         <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />
-                        <h1 className="font-semibold mx-0">{props.comments.firstName}{" "}{props.comments.lastName}</h1>
+                        <h1 className="font-semibold mx-0 hover:underline-offset-2 hover:underline hover:cursor-pointer" onClick={()=>navigate(`/profile?userId=${props.comments.userId}`)}>{props.comments.firstName}{" "}{props.comments.lastName}</h1>
                     </div>
                     <div className="relative">
                         <img src={threeDots} className="w-11 h-11 px-2.5 hover:cursor-pointer hover:bg-slate-300 rounded-full" onClick={()=>setDeleteButton(!deleteButton)}/>
@@ -28,7 +29,6 @@ function Comment(props){
                     <p>{props.comments.commentText}</p>
                 </div>
                 {confirmDelete && <ConfirmDeleteComment onClose={handleDeleteClose} postId={props.postId} commentedUserId={props.comments.userId} commentId={props.comments._id}/>}
-                {statusMessage && <p>{statusMessage}</p>}
         </div>
     )
 }

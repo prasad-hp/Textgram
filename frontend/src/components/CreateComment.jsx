@@ -13,18 +13,18 @@ function CreateComment(props) {
         setText(event.target.value);
     };
     useEffect(()=> {
-        try {                
-        async function getUser(){
-                const response = await axios({
-                    method:"get",
-                    url:"http://localhost:3001/api/v1/user/",
-                    headers:{
-                        Authorization:"Bearer " + localStorage.getItem("token")
-                    }
-                })
-                setUser(response.data)
-            }
-            getUser()
+            try {
+                async function getUser(){
+                    const response = await axios({
+                        method:"get",
+                        url:"http://localhost:3001/api/v1/user/",
+                        headers:{
+                            Authorization:"Bearer " + localStorage.getItem("token")
+                        }
+                    })
+                    setUser(response.data)
+                }
+                getUser()
             } catch (error) {
                 setStatusMessage(error.response?.data?.message)
             }
@@ -39,6 +39,7 @@ function CreateComment(props) {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
+        setStatusMessage("Loading...")
         try {
             const response = await axios({
                 method:"patch",
@@ -53,7 +54,7 @@ function CreateComment(props) {
             })
             setStatusMessage(response.data.message)
         } catch (error) {
-            console.error(error)
+            console.error(error.response?.data?.message || "An Error Occured")
         }
         console.log("Post submitted:", text);
         setText("");

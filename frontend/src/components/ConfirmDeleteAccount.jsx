@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 function ConfirmDeleteAccount({ onClose }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const [statusMessage, setStatusMessage] = useState("");
     const [buttonColor, setButtonColor] = useState("bg-red-300 text-gray-500");
     const navigate = useNavigate()
     
     async function deleteComment(event) {
         event.preventDefault();
+        setStatusMessage("Deleting...")
         try {
             const response = await axios({
                 method: "delete",
@@ -24,12 +25,11 @@ function ConfirmDeleteAccount({ onClose }) {
                     password: password,
                 },
             });
-            setMessage(response.data);
+            setStatusMessage(response.data);
             navigate("/login")
             localStorage.removeItem("token")
-
         } catch (error) {
-            setMessage(error.response?.data?.message|| "An error occurred");
+            setStatusMessage(error.response?.data?.message || "An error occurred");
         }
     }
 
@@ -39,7 +39,7 @@ function ConfirmDeleteAccount({ onClose }) {
         } else {
             setButtonColor("bg-red-300 text-gray-500");
         }
-        setMessage("")
+        setStatusMessage("")
     }, [email, password]);
 
     return (
@@ -51,19 +51,19 @@ function ConfirmDeleteAccount({ onClose }) {
                     <form onSubmit={deleteComment} className="flex flex-col justify-center text-center">
                         <Input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
                         <Input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
-                        <p className="flex justify-center p-4 font-medium text-lg text-center">{message}</p>
+                        <p className="flex justify-center p-4 font-medium text-lg text-center">{statusMessage}</p>
                         <div className="flex justify-around">
                             <button
                                 type="submit"
                                 disabled={!email || !password}
-                                className={`w-5/12 max-w-md h-12 m-2 border rounded-md ${buttonColor} hover:text-white font-semibold text-xl`}
+                                className={`w-5/12 max-w-md h-12 m-2 border rounded-full ${buttonColor} hover:text-white font-semibold text-xl`}
                             >
                                 Confirm Delete
                             </button>
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="w-5/12 max-w-md h-12 m-2 border rounded-md bg-gray-800 text-gray-500 hover:bg-green-700 hover:text-white font-semibold text-xl"
+                                className="w-5/12 max-w-md h-12 m-2 border rounded-full bg-gray-800 text-gray-500 hover:bg-green-700 hover:text-white font-semibold text-xl"
                             >
                                 Cancel
                             </button>
