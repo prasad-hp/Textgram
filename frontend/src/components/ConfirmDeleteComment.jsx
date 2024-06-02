@@ -1,64 +1,53 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Input from "./Input";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ConfirmDeleteAccount({ onClose }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+function ConfirmDeleteComment({ onClose, postId, commentedUserId, commentId }) {
     const [message, setMessage] = useState("");
-    const [buttonColor, setButtonColor] = useState("bg-red-300 text-gray-500");
-    const navigate = useNavigate()
-    
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
     async function deleteComment(event) {
         event.preventDefault();
+        setLoading(true);
+        console.log(postId, commentedUserId, commentId)
         try {
             const response = await axios({
-                method: "delete",
-                url: "http://localhost:3001/api/v1/user/delete",
+                method: "patch",
+                url: "http://localhost:3001/api/v1/post/comment/delete",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },
                 data: {
-                    email: email,
-                    password: password,
+                    postId: postId,
+                    commentedUserId: commentedUserId,
+                    commentId: commentId
                 },
             });
-            setMessage(response.data);
-            navigate("/login")
-            localStorage.removeItem("token")
-
+            setMessage(response.data.message);
+            setLoading(false);
+            navigate(0)
         } catch (error) {
-            setMessage(error.response?.data?.message|| "An error occurred");
+            setMessage(error.response?.data?.message || "An error occurred");
+            setLoading(false);
         }
     }
-
-    useEffect(() => {
-        if (email && password) {
-            setButtonColor("bg-red-700 text-white");
-        } else {
-            setButtonColor("bg-red-300 text-gray-500");
-        }
-        setMessage("")
-    }, [email, password]);
 
     return (
         <div className="bg-black/40 fixed inset-0 flex items-center justify-center">
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-white font-semibold text-xl pb-2">Confirm Delete</h1>
                 <div className="w-96 md:w-475 border-2 rounded-lg bg-white h-auto p-4">
-                    <p className="text-center">Do you really want to delete your account? All data in your account will be lost, and you can never undo this action.</p>
+                    <p className="text-center">Do you really want to delete this comment? You cannot undo this action.</p>
                     <form onSubmit={deleteComment}>
-                        <Input type="email" placeholder="Email" value={email} onChange={event => setEmail(event.target.value)} />
-                        <Input type="password" placeholder="Password" value={password} onChange={event => setPassword(event.target.value)} />
                         <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
                         <div className="flex justify-around">
                             <button
                                 type="submit"
-                                disabled={!email || !password}
-                                className={`w-5/12 max-w-md h-12 m-2 border rounded-md ${buttonColor} hover:text-white font-semibold text-xl`}
+                                disabled={loading}
+                                className={`w-5/12 max-w-md h-12 m-2 border rounded-md ${loading ? 'bg-gray-500' : 'bg-red-300'} text-gray-500 hover:bg-red-700 hover:text-white font-semibold text-xl`}
                             >
-                                Confirm Delete
+                                {loading ? 'Deleting...' : 'Confirm Delete'}
                             </button>
                             <button
                                 type="button"
@@ -81,4 +70,4 @@ function ConfirmDeleteAccount({ onClose }) {
     );
 }
 
-export default ConfirmDeleteAccount;
+export default ConfirmDeleteComment;

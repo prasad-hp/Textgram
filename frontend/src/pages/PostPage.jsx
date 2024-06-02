@@ -44,7 +44,7 @@ function PostPage() {
 
     const listedComments = commentsList.slice().reverse().map((comment, index)=>{
         return(
-            <Comment key={index} comments={comment}/>
+            <Comment key={index} comments={comment} postId={postId}/>
         )
     })
     return (
