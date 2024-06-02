@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import User from "./user.js";
+// import User from "./user.js";
 import dotenv from "dotenv"
 import commentSchema from "./comment.js";
 dotenv.config()
@@ -14,8 +14,7 @@ const postSchema = mongoose.Schema({
     likes: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: User,
-            default:null
+            ref: "User"
         }
     ],
     comments:{
@@ -35,7 +34,7 @@ const mainSchema = mongoose.Schema({
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:User,
+        ref:"User",
         required:true
     },
     post:postSchema

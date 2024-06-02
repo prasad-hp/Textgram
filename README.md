@@ -14,12 +14,11 @@ Textgram is a microblogging platform inspired by Twitter, designed for users to 
 - **Delete Account**: Delete the User Account.
 - **Update Account**: Update user details.
 - **View User Profile**: View User profile with user Posts.
-
-
-### Planned Features
 - **Delete Comment**: Option to delete user comments.
 - **Delete the Post**: Posts can be deleted by the user who created them.
 - **View Other User**: View the profile of other users by Clicking on name.
+
+### Planned Features
 - **Choose Icon** : Ability of user to choose profile icon.
 
 ## Technologies Used
