@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function ConfirmDeletePost({ onClose, id, userId }) {
+function ConfirmDeletePost({ onClose, id, userId, toHome }) {
     const [message, setMessage] = useState("");
+    const navigate = useNavigate()
     async function deletePost(event) {
         event.preventDefault();
         try {
@@ -18,6 +20,7 @@ function ConfirmDeletePost({ onClose, id, userId }) {
                 },
             });
             setMessage(response.data.message);
+            if(toHome){navigate("/")}
             location.reload();
         } catch (error) {
             setMessage(error.response?.data?.message|| "An error occurred");

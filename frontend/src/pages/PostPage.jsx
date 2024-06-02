@@ -61,6 +61,7 @@ function PostPage() {
                             firstName={postData.firstName} 
                             lastName={postData.lastName} 
                             id={postData._id} 
+                            userId={postData.userId}
                             liked={liked}
                         />
                         { commentsList && listedComments }

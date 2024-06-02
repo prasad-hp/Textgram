@@ -5,12 +5,16 @@ import commentIcon from "../assets/commentIcon.svg"
 import CreateComment from "./CreateComment";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import threeDots from "../assets/threeDots.svg"
+import ConfirmDeletePost from "./ConfirmDeletePost";
 
 function PostSingle(props){
     const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon)
     const [liked, setLiked] = useState(props.liked)
     const [likeCount, setLikeCount] = useState(props.likeCount)
     const [comment, setComment] = useState(false)
+    const [deleteButton, setDeleteButton] = useState(false)
+    const [confirmDelete, setConfirmDelete] = useState(false)
     const [statusMessage, setStatusMessage] = useState("")
     const navigate = useNavigate()
     useEffect(()=>{
@@ -62,15 +66,26 @@ function PostSingle(props){
     function handleClose(){
         setComment(false)
     }
+    function handleDeleteClose(){
+        setConfirmDelete(false)
+    }
     function likeFunction(e){
         e.preventDefault();
         setLiked(!liked)
     }
     return(
         <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center border border-gray-200">
-                <div className="flex items-center">
-                    <img src="./defaultprofilepic.png" className="h-14 p-2" />
-                    <h1 className="font-semibold m-2">{props.firstName}{" "}{props.lastName}</h1>
+                <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                        <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />
+                        <h1 className="font-semibold mx-0">{props.firstName}{" "}{props.lastName}</h1>
+                    </div>
+                    <div className="relative">
+                        <img src={threeDots} className="w-11 h-11 px-2.5 hover:cursor-pointer hover:bg-slate-300 rounded-full" onClick={()=>setDeleteButton(!deleteButton)}/>
+                        {deleteButton && 
+                            <div className={`${deleteButton ? "inline-block" : "hidden"} absolute z-10 right-10 top-7 w-20 justify-center flex items-center bg-white h-8 rounded-md hover:bg-slate-200 hover:cursor-pointer font-semibold text-center`} onClick={()=>setConfirmDelete(true)}>Delete</div>
+                        }
+                    </div>
                 </div>
                 <div className="px-16 w-full" onClick={()=>navigate(`/post?id=${props.id}`)}>
                     <p>{props.postText}</p>
@@ -94,6 +109,7 @@ function PostSingle(props){
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} onClose={handleClose} newComment={comment}/>
                 </div>
+                {confirmDelete && <ConfirmDeletePost onClose={handleDeleteClose} id={props.id} userId={props.userId} toHome={true}/>}
                 {statusMessage && <p className="text-center">{statusMessage}</p>}
         </div>
     )
