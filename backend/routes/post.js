@@ -20,10 +20,11 @@ router.get("/list",authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
-router.get("/userlist",authMiddleware, async(req, res)=>{
+router.get("/userlist", authMiddleware, async(req, res)=>{
     try {
+        const userId = req.query.userId
         const user = await User.findOne({
-            email:req.email
+            _id: userId 
         })
         if(!user){
             return res.status(400).json({message:"User not found"})

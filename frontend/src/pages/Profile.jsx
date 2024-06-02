@@ -5,19 +5,25 @@ import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
 import profile from "../../public/defaultprofilepic.png"
 import PostListProfile from "../components/PostListProfile";
+import { useSearchParams } from "react-router-dom";
 
 function Profile(){
     const [statusMessage, setStatusMessage] = useState("")
     const [user, setUser] = useState({})
+    const [userUrlData] = useSearchParams();
+    const userId = userUrlData.get("userId")
 
     useEffect(()=>{
         try {
             async function getUser(){
                 const response = await axios({
                     method:"get",
-                    url:"http://localhost:3001/api/v1/user",
+                    url:"http://localhost:3001/api/v1/user/profile",
                     headers:{
                         Authorization:"Bearer " + localStorage.getItem("token")
+                    },
+                    params:{
+                        userId:userId
                     }
                 })
                 setUser(response.data)
@@ -37,12 +43,15 @@ function Profile(){
                     <div className=" w-full flex flex-col items-center mt-16">
                         <div className="md:w-475 sm:w-11/12" >
                             <div className="flex justify-between items-center">
-                                <h1 className="font-semibold text-xl m-4">{user.firstName} {user.lastName}</h1>
+                                <div className="flex flex-col items-start m-4">
+                                    <h1 className="font-semibold text-xl">{user.firstName} {user.lastName}</h1>
+                                    <h2>{user.email}</h2>
+                                </div>
                                 <img src={profile} className="w-20 m-4" />
                             </div>
                                 <h1 className="flex justify-center items-center font-semibold text-xl">Posts</h1>
                             <div>
-                                <PostListProfile />
+                                <PostListProfile userId={userId}/>
                             </div>
                         </div>
                     </div>

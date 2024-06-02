@@ -113,7 +113,6 @@ router.put("/changepassword",authMiddleware ,async(req, res)=>{
             return res.status(400).json({message:"User not found/Please login"})
         }
         const loginPassword = await bcrypt.compare(changepassword.initialPassword, checkUser.password)
-        console.log(loginPassword)
         if(!loginPassword){
             return res.status(400).json({message:"Password Doesn't Match"})
         }
@@ -223,8 +222,16 @@ router.get("/", authMiddleware, async(req, res)=>{
 })
 router.get("/profile", authMiddleware, async(req, res)=>{
     try {
-        const user = req.query;
-        console.log(user)
+        const newUser = req.query;
+        const {userId} = req.query;
+        const user = await User.findOne({
+            _id:userId
+        })
+        if(!user){
+            return res.status(403).json({message:"User Not Found"})
+        }
+        const userData = {firstName:user.firstName, lastName:user.lastName, email:user.email, userId: user._id}
+        res.status(200).json(userData)
     } catch (error) {
         res.status(500).json(error.json)
     }
