@@ -31,7 +31,7 @@ function NavbarTop() {
                             <img src={profile} onClick={() => navigate("/profile")} className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"/>
                         </div>
                     </div>
-                    <div className="w-28">
+                    <div className="w-28 relative">
                         <img src={menuIcon} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" onClick={()=>setDisplayMenu(!displayMenu)}/>
                         <Menu menu={displayMenu}/>
                     </div>

@@ -5,7 +5,7 @@ function Menu(props){
     const navigate = useNavigate()
 
     return(
-        <div className={`w-28 h-20 border ${props.menu ? "inline-block" : "hidden"} relative z-10 rounded-md overflow-hidden right-16 flex flex-col justify-center items-center`}>
+        <div className={`w-28 h-20 border ${props.menu ? "inline-block" : "hidden"} absolute z-10 rounded-md overflow-hidden right-16 flex flex-col justify-center items-center`}>
             <ul className="font-semibold">
                 <li className="p-1 hover:cursor-pointer" onClick={()=>navigate("/settings")}>
                     Settings

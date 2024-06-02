@@ -40,5 +40,35 @@ router.patch("/add", authMiddleware, async(req, res)=>{
     }
 })
 
+router.patch("/delete", authMiddleware, async(req, res)=>{
+    try {
+        const {userId, postId, commentId} = req.body;
+        const user = await User.findOne({
+            email: req.email
+        })
+        if(!user){
+            return res.status(400).json({message:"Invalid User/User not logged in"})
+        }
+        const commentedUser = user._id.toString()
+        if(commentedUser !== userId){
+            return res.status(403).json({message:"You are not authorized to Delete this Comment"})
+        }
+        console.log(commentId, postId, userId, commentedUser)
+        const deleteComment = await mainPost.findByIdAndUpdate(
+            {_id:postId, "post.comments._id":commentId},
+                {
+                    $pull:{"post.comments":{_id:commentId}}
+                },
+                {new:true}
+            )
+        if(!deleteComment){
+            return res.status(400).json({message:"Post/Comment Not Found"})
+        }
+        res.status(200).json({message:"Comment Deleted Successfully"})
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
+
 
 export default router;
