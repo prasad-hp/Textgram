@@ -32,18 +32,19 @@ function PostListProfile({ userId }) {
         }
     }, [userId]);
 
-    const postList = posts.slice().reverse().map((postData, index) => (
+    const postList = posts.slice().reverse().map((postData, index) => {
+        return(
         <Post
-            key={index}
-            postText={postData.post.postText}
-            liked={postData.likedByUser}
-            likeCount={postData.post.likes.length}
-            firstName={postData.firstName}
-            lastName={postData.lastName}
-            id={postData._id}
-            userId={postData.userId}
+        key={index}
+        postText={postData.post.postText}
+        liked={postData.likedByUser}
+        likeCount={postData.post.likes.length}
+        firstName={postData.firstName}
+        lastName={postData.lastName}
+        id={postData._id}
+        userId={postData.userId}
         />
-    ));
+    )});
 
     return (
         <div>

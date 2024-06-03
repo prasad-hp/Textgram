@@ -98,7 +98,7 @@ function PostSingle(props) {
                     <span className="flex justify-start items-center">
                         <span className="flex justify-start items-center hover:cursor-pointer" onClick={toggleLike}>
                             <img src={icon} className="h-6" />
-                            <p className="text-lg mx-1">{likeCount}</p>
+                            <p className={`text-lg mx-1 ${liked ? "text-red-600" : "text-black"}`}>{likeCount}</p>
                         </span>
                         <img src={commentIcon} className="h-5 mx-3" onClick={()=>setComment(true)}/>
                     </span>

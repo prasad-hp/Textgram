@@ -8,6 +8,7 @@ function CreateComment(props) {
     const [text, setText] = useState("");
     const [user, setUser] = useRecoilState(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
+    const [textLengthLeft, setTextLengthLeft] = useState(0)
 
     const handleInput = (event) => {
         setText(event.target.value);
@@ -30,6 +31,7 @@ function CreateComment(props) {
             }
     }, [])
     useEffect(() => {
+        setTextLengthLeft(200-text.length)
         const textArea = textAreaRef.current;
         if (textArea) {
             textArea.style.height = "auto";
@@ -83,13 +85,15 @@ function CreateComment(props) {
                     <form onSubmit={text ? handleSubmit : undefined} className="h-auto">
                         <textarea
                             ref={textAreaRef}
-                            className="w-full resize-none outline-none overflow-y-hidden pl-16 text-lg"
+                            className="w-11/12 resize-none outline-none max-h-64 pl-16 text-lg"
                             placeholder="Start Writing the post"
                             onChange={handleInput}
                             value={text}
                             rows={1}
+                            maxLength={200}
                             
                         />
+                        <p className={`pl-16 font-semibold ${textLengthLeft<20 ? "text-red-600" : "text-blue-700"}`}>{textLengthLeft} Charaters Left</p>
                         <div className="flex justify-end mt-2">
                             <button type="submit" 
                             className={`h-10 ${text ? "bg-blue-500" : "bg-gray-400"} font-semibold w-16 rounded-3xl text-white flex items-center justify-center`}

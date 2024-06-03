@@ -24,7 +24,6 @@ router.get("/list",authMiddleware, async(req, res)=>{
                 ...post.toObject(),
                 likedByUser:hasLiked
             }
-
         })
         res.status(200).json(postsWithLiked)
     } catch (error) {
@@ -34,6 +33,9 @@ router.get("/list",authMiddleware, async(req, res)=>{
 router.get("/userlist", authMiddleware, async(req, res)=>{
     try {
         const userId = req.query.userId
+        const loggedUser = await User.findOne({
+            email: req.email 
+        })
         const user = await User.findOne({
             _id: userId 
         })
@@ -46,7 +48,14 @@ router.get("/userlist", authMiddleware, async(req, res)=>{
         if(!posts){
             return res.status(400).json({message:"Unable to find Posts"})
         }
-        res.status(200).json(posts)
+        const postsWithLiked = posts.map((post)=>{
+            const hasLiked = post.post.likes.some(like=>like.equals(loggedUser._id))
+            return{
+                ...post.toObject(),
+                likedByUser:hasLiked
+            }
+        })
+        res.status(200).json(postsWithLiked)
     } catch (error) {
         res.status(500).json(error.message)
     }

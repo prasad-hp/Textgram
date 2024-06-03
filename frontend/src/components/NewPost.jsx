@@ -8,12 +8,15 @@ function NewPost({ newPost, onClose }) {
     const [text, setText] = useState("");
     const [user, setUser] = useRecoilState(userAtom);
     const [statusMessage, setStatusMessage] = useState("")
+    const [textLengthLeft, setTextLengthLeft] = useState(0)
+
 
     const handleInput = (event) => {
         setText(event.target.value);
     };
 
     useEffect(() => {
+        setTextLengthLeft(200-text.length)
         const textArea = textAreaRef.current;
         if (textArea) {
             textArea.style.height = "auto";
@@ -72,12 +75,14 @@ function NewPost({ newPost, onClose }) {
                     <form onSubmit={text ? handleSubmit: undefined} className="h-auto">
                         <textarea
                             ref={textAreaRef}
-                            className="w-full resize-none outline-none overflow-y-hidden text-lg pl-16"
+                            className="w-11/12 resize-none outline-none text-lg pl-16 max-h-72"
                             placeholder="Start Writing the post"
                             onChange={handleInput}
                             value={text}
                             rows={1}
+                            maxLength={200}
                         />
+                        <p className={`pl-16 font-semibold ${textLengthLeft<20 ? "text-red-600" : "text-blue-700"}`}>{textLengthLeft} Charaters Left</p>
                         <div className="flex justify-end mt-2">
                             <button 
                             type="submit" 
