@@ -50,7 +50,7 @@ function SignUp(){
             navigate("/login")
             setMessage(response.data.message)
         } catch (error) {
-            setMessage(error.response.data)
+            setMessage(error.response.data?.message || "An error Occured")
         }
     }
 

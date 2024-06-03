@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Input from "../components/Input";
-import InputButton from "../components/InputButton";
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
+import InputButtonChange from "../components/InputButtonChange";
 
 function ChangePassword(){
     const [password, setPassword] = useState("")
@@ -66,7 +66,12 @@ function ChangePassword(){
                             <Input type={"password"} placeholder={"Enter New Password"} value={newPassword} onChange={event=>{setNewPassword(event.target.value)}}/>
                             <Input type={"password"} placeholder={"Confirm New Password"} value={confirmPassword} onChange={event=>{setConfirmPassword(event.target.value)}}/>
                             <p className="flex justify-center p-4 font-medium text-lg">{statusMessage}</p>
-                            <InputButton text={"Change Password"} buttonSubmit={button}/>
+                            <div className="flex justify-between items-center pr-4">
+                                <InputButtonChange text={"Change Password"} buttonSubmit={button}/>
+                                <div className="w-5/12 max-w-md h-12 border rounded-md bg-black text-white font-semibold text-xl flex justify-center items-center m-2 hover:cursor-pointer" onClick={()=>navigate("/settings")}>
+                                    Cancel
+                                </div>
+                            </div>
                         </form>
                 </div>
                 <footer className="fixed bottom-0 left-0 ">
