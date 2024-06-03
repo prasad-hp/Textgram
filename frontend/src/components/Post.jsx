@@ -76,7 +76,7 @@ function Post(props){
         toggleLikeApi()
     }
     return(
-        <div className="w-full sm:w-11/12 md:w-475 rounded-sm items-center border-x border-t border-gray-200 hover:bg-slate-100">
+        <div className="w-11/12 md:w-475 rounded-sm border-x border-t border-gray-200 hover:bg-slate-100">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />

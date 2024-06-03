@@ -43,7 +43,7 @@ function UserProfile() {
                             <img src={user.profilePic || profile} className="w-20 m-4" alt="Profile" />
                         </div>
                         <h1 className="flex justify-center items-center font-semibold text-xl">Posts</h1>
-                        <div>
+                        <div className="w-11/12">
                             {user._id && <PostListProfile userId={user._id} />}
                         </div>
                     </div>

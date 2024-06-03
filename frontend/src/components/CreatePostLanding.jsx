@@ -8,8 +8,8 @@ function CreatePostLanding(){
         setNewPost(false)
     }
     return(
-        <div className="md:w-475 w-412 border-x border-t border-gray-200">
-            <div className="md:flex md:w-full md:items-center md:min-w-md hidden">
+        <div className="md:w-475 border-x border-t border-gray-200 w-11/12">
+            <div className="flex md:w-full items-center md:min-w-md">
                 <img src="./defaultprofilepic.png" className="h-14 p-2"/>
                 <span className="text-gray-400 pl-5 md:w-450 w-96 text-xl" onClick={()=>setNewPost(true)}>Start the post...</span>
                 <div className="h-9 bg-gray-400 font-semibold w-16 rounded-3xl text-white flex flex-col items-center justify-center mx-2">Post</div>

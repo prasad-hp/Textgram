@@ -33,7 +33,7 @@ function Home(){
             <header className="fixed top-0 left-0 md:inline-block hidden">
                 <NavbarTop />
             </header>
-                <div className="flex flex-col items-center mt-16">
+                <div className="flex flex-col items-center md:mt-16 mt-3">
                     <CreatePostLanding />
                     <PostList />
                 </div>

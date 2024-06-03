@@ -37,7 +37,7 @@ function PostList(){
             />)
     })
     return(
-        <div>
+        <div className="w-full flex flex-col items-center">
             {postList}
             {statusMessage && <p>{statusMessage}</p>}
         </div>
