@@ -6,6 +6,7 @@ import {useNavigate} from "react-router-dom"
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import InputButtonChange from "../components/InputButtonChange";
+import InputButtonCancel from "../components/InputButtonCancel";
 
 function Update(){
     const [firstName, setFirstName] = useState("")
@@ -68,11 +69,9 @@ function Update(){
                             <Input type={"text"} placeholder={"First Name"} value={firstName} onChange={event=>{setFirstName(event.target.value)}}/>
                             <Input type={"text"} placeholder={"Last Name"} value={lastName} onChange={event=>{setLastName(event.target.value)}}/>
                             <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
-                            <div className="flex justify-between items-center pr-4">
-                                <InputButtonChange text={"Update Details"}/>
-                                <div className="w-5/12 max-w-md h-12 border rounded-md bg-black text-white font-semibold text-xl flex justify-center items-center m-2 hover:cursor-pointer" onClick={()=>navigate("/settings")}>
-                                    Cancel
-                                </div>
+                            <div className="flex justify-between items-center w-full">
+                                <InputButtonChange text = {"Update Details"}/>
+                                <InputButtonCancel text = {"Cancel"} />
                             </div>
                         </form>
                 </div>

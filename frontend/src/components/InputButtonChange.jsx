@@ -11,7 +11,7 @@ function InputButtonChange({buttonSubmit, text}){
     },[buttonSubmit])
     return(
         <div className="">
-            <button type="submit" disabled={!buttonSubmit} className={`w-12/12 max-w-md h-12 m-2 border rounded-md ${buttonDesign} font-semibold text-xl px-2`}>{text}</button>
+            <button type="submit" disabled={!buttonSubmit} className={`w-28 md:w-48 max-w-md md:h-12 h-16 m-2 border rounded-md ${buttonDesign} font-semibold text-xl md:px-2`}>{text}</button>
         </div>
     )
 }

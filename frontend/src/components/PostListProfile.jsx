@@ -47,7 +47,7 @@ function PostListProfile({ userId }) {
     )});
 
     return (
-        <div>
+        <div className="w-full flex flex-col items-center justify-center">
             {postList}
             {statusMessage && <p className="text-center">{statusMessage}</p>}
         </div>

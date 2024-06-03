@@ -33,8 +33,8 @@ function UserProfile() {
                 <header className="fixed top-0 left-0 md:inline-block hidden">
                     <NavbarTop />
                 </header>
-                <div className="w-full flex flex-col items-center mt-16">
-                    <div className="md:w-475 sm:w-11/12">
+                <div className="w-full flex flex-col items-center md:mt-16 mt-3">
+                    <div className="md:w-475 sm:w-11/12 w-full">
                         <div className="flex justify-between items-center">
                             <div className="flex flex-col items-start m-4">
                                 <h1 className="font-semibold text-xl">{user.firstName} {user.lastName}</h1>
@@ -43,7 +43,7 @@ function UserProfile() {
                             <img src={user.profilePic || profile} className="w-20 m-4" alt="Profile" />
                         </div>
                         <h1 className="flex justify-center items-center font-semibold text-xl">Posts</h1>
-                        <div className="w-11/12">
+                        <div className="w-full flex flex-col items-center">
                             {user._id && <PostListProfile userId={user._id} />}
                         </div>
                     </div>

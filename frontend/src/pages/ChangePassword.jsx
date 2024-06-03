@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom"
 import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import InputButtonChange from "../components/InputButtonChange";
+import InputButtonCancel from "../components/InputButtonCancel";
 
 function ChangePassword(){
     const [password, setPassword] = useState("")
@@ -68,9 +69,7 @@ function ChangePassword(){
                             <p className="flex justify-center p-4 font-medium text-lg">{statusMessage}</p>
                             <div className="flex justify-between items-center pr-4">
                                 <InputButtonChange text={"Change Password"} buttonSubmit={button}/>
-                                <div className="w-5/12 max-w-md h-12 border rounded-md bg-black text-white font-semibold text-xl flex justify-center items-center m-2 hover:cursor-pointer" onClick={()=>navigate("/settings")}>
-                                    Cancel
-                                </div>
+                                <InputButtonCancel text = {"Cancel"} />
                             </div>
                         </form>
                 </div>
