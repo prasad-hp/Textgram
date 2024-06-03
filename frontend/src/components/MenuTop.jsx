@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Menu(props){
+function MenuTop(props){
     const navigate = useNavigate()
 
     return(
@@ -18,4 +18,4 @@ function Menu(props){
     )
 }
 
-export default Menu;
+export default MenuTop;

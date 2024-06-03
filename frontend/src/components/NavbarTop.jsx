@@ -6,7 +6,7 @@ import menuIcon from "../assets/menuIcon.svg";
 import atIcon from "../assets/atIcon.svg";
 import { useNavigate } from "react-router-dom";
 import NewPost from "./NewPost.jsx";
-import Menu from "./Menu.jsx";
+import MenuBottom from "./MenuBottom.jsx";
 
 function NavbarTop() {
     const [newPost, setNewPost] = useState(false);
@@ -33,7 +33,7 @@ function NavbarTop() {
                     </div>
                     <div className="w-28 relative">
                         <img src={menuIcon} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" onClick={()=>setDisplayMenu(!displayMenu)}/>
-                        <Menu menu={displayMenu}/>
+                        <MenuBottom menu={displayMenu}/>
                     </div>
                 </div>
             </div>
