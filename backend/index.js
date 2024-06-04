@@ -5,7 +5,9 @@ import cors from "cors"
 const app = express()
 const port = 3001;
 app.use(cors({
-    origin:"http://localhost:5173"
+    origin:["http://localhost:5173",
+            "https://textgram.netlify.app"]
+
 }))
 app.use("/api/v1", mainRouter)
 app.use(express.json())
