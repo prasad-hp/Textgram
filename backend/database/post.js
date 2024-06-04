@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// import User from "./user.js";
 import dotenv from "dotenv"
 import commentSchema from "./comment.js";
 dotenv.config()

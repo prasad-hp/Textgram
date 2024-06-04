@@ -24,12 +24,12 @@ function SignUp(){
         }
     }, [confirmPassword, initialPassword])
     useEffect(()=>{ 
-        if(firstName === "" || email === "" || password === ""){
+        if(firstName === "" || lastName === "" || email === "" || password === ""){
             setButton(false)
         }else if (email && password){
             setButton(true)
         }
-    }, [firstName, email, password])
+    }, [firstName, email, password, lastName])
 
     async function handleSubmit(event){
         event.preventDefault()

@@ -73,7 +73,7 @@ function Update(){
                             <Input type={"text"} placeholder={"Last Name"} value={lastName} onChange={event=>{setLastName(event.target.value)}}/>
                             <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
                             <div className="flex justify-between items-center w-full">
-                                <InputButtonChange text = {"Update Details"}/>
+                                <InputButtonChange text = {"Update Details"} buttonSubmit={true}/>
                                 <InputButtonCancel text = {"Cancel"} />
                             </div>
                         </form>
