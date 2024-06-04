@@ -28,6 +28,11 @@ function ChangePassword(){
             setStatusMessage("Password Doesn't match")
         }
     }, [confirmPassword, newPassword])
+    useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
+    }, [])
     async function handleSubmit(event){
         event.preventDefault()
         setStatusMessage("Loading Please Wait")

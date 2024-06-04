@@ -4,12 +4,17 @@ import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
 import profile from "../../public/defaultprofilepic.png";
 import PostListProfile from "../components/PostListProfile";
+import { useNavigate } from "react-router-dom";
 
 function UserProfile() {
     const [statusMessage, setStatusMessage] = useState("");
     const [user, setUser] = useState({});
+    const navigate = useNavigate()
 
     useEffect(() => {
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
         async function getUser() {
             try {
                 const response = await axios({
@@ -34,7 +39,7 @@ function UserProfile() {
                     <NavbarTop />
                 </header>
                 <div className="w-full flex flex-col items-center md:mt-16 mt-3">
-                    <div className="md:w-475 sm:w-11/12 w-full">
+                    <div className="md:w-475 sm:w-11/12 w-full border">
                         <div className="flex justify-between items-center">
                             <div className="flex flex-col items-start m-4">
                                 <h1 className="font-semibold text-xl">{user.firstName} {user.lastName}</h1>

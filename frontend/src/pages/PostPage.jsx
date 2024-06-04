@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavbarTop from "../components/NavbarTop";
 import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import PostSingle from "../components/PostSingle";
 import Comment from "../components/Comment";
 
@@ -14,8 +14,12 @@ function PostPage() {
     const [postUrlData] = useSearchParams();
     const [commentsList, setCommentsList] = useState([])
     const postId = postUrlData.get("id");
+    const navigate = useNavigate()
 
     useEffect(() => {
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
         async function getData() {
             try {
                 const response = await axios({

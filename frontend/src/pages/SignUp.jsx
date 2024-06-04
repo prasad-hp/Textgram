@@ -56,7 +56,7 @@ function SignUp(){
 
     return(
         <div className="w-screen h-screen flex justify-center">
-            <div className="w-11/12 bg-signup-bg bg-contain bg-no-repeat flex justify-center items-center">
+            <div className="w-11/12 flex justify-center items-center">
                 <div className="p-6 bg-white shadow-custom rounded-lg w-11/12 sm:max-w-lg">
                         <h1 className="text-xl font-semibold flex justify-center">
                             Sign up to see your friends opinion on world.

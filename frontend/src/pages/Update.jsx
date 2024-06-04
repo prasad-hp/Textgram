@@ -36,6 +36,9 @@ function Update(){
         }
     }
     useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
         try {
             async function getUser(){
                 const response = await axios({

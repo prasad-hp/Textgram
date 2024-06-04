@@ -5,15 +5,19 @@ import NavbarBottom from "../components/NavbarBottom";
 import axios from "axios";
 import profile from "../../public/defaultprofilepic.png"
 import PostListProfile from "../components/PostListProfile";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Profile(){
     const [statusMessage, setStatusMessage] = useState("")
     const [user, setUser] = useState({})
     const [userUrlData] = useSearchParams();
     const userId = userUrlData.get("userId")
+    const navigate = useNavigate()
 
     useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
         try {
             async function getUser(){
                 const response = await axios({

@@ -19,8 +19,8 @@ function NavbarTop() {
 
     return (
         <div>
-            <div className="w-screen flex justify-center h-18">
-                <div className="flex justify-around items-top md:w-3/4 w-full h-full">
+            <div className="w-screen flex justify-center h-18 md:inline-block">
+                <div className="flex justify-around items-top w-full h-full">
                     <div className="w-28">
                         <img src={atIcon} onClick={() => navigate("/")} className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300" />
                     </div>

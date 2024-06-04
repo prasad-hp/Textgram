@@ -6,11 +6,16 @@ import PostList from "../components/PostList";
 import axios from "axios";
 import { useSetRecoilState } from "recoil"
 import {userAtom} from "../store/atoms/user.jsx"
+import { useNavigate } from "react-router-dom";
 
 function Home(){
     const [statusMessage, setStatusMessage] = useState("")
     const setUser = useSetRecoilState(userAtom)
+    const navigate = useNavigate()
     useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
         getUser()
     }, [])
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarTop from "../components/NavbarTop";
 import NavbarBottom from "../components/NavbarBottom";
 import ConfirmDeleteAccount from "../components/ConfirmDeleteAccount";
@@ -13,6 +13,11 @@ function Settings(){
     function handleClose(){
         setConfirmDelete(false)
     }
+    useEffect(()=>{
+        if(!localStorage.getItem("token")){
+            navigate("/login")
+        }
+    }, [])
 
     return(
         <div className="w-screen">
