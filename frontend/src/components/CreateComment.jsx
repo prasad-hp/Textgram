@@ -18,7 +18,7 @@ function CreateComment(props) {
                 async function getUser(){
                     const response = await axios({
                         method:"get",
-                        url:"http://localhost:3001/api/v1/user/",
+                        url:"https://textgram.onrender.com/api/v1/user/",
                         headers:{
                             Authorization:"Bearer " + localStorage.getItem("token")
                         }

@@ -39,7 +39,7 @@ function ChangePassword(){
         try {
             const response = await axios({
                                 method:"put",
-                                url:"http://localhost:3001/api/v1/user/changepassword",
+                                url:"https://textgram.onrender.com/api/v1/user/changepassword",
                                 headers:{
                                     Authorization:"Bearer " + localStorage.getItem("token")
                                 },

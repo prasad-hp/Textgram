@@ -37,7 +37,7 @@ function SignUp(){
         try {
             const response = await axios({
                                 method:"post",
-                                url:"http://localhost:3001/api/v1/user/signup",
+                                url:"https://textgram.onrender.com/api/v1/user/signup",
                                 data:{
                                     firstName:firstName,
                                     lastName:lastName,

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 
 function Settings(){
-    const [statusMessage, setStatusMessage] = useState("")
     const [confirmDelete, setConfirmDelete] = useState(false)
     const navigate = useNavigate()
 
@@ -39,7 +38,6 @@ function Settings(){
             </div>
             <footer className="fixed bottom-0 left-0 ">
                 <NavbarBottom />
-                {statusMessage && <p>{statusMessage}</p>}
             </footer>
             <div className={`${confirmDelete ? "inline-block" : "hidden"}`}>
                 <ConfirmDeleteAccount onClose={handleClose}/>

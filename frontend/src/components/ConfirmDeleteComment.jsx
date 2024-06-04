@@ -13,7 +13,7 @@ function ConfirmDeleteComment({ onClose, postId, commentedUserId, commentId }) {
         try {
             const response = await axios({
                 method: "patch",
-                url: "http://localhost:3001/api/v1/post/comment/delete",
+                url: "https://textgram.onrender.com/api/v1/post/comment/delete",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },

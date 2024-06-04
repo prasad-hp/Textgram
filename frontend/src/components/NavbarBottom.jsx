@@ -3,7 +3,7 @@ import homeIcon from "../assets/homeIcon.svg";
 import postAdd from "../assets/postAdd.svg";
 import profile from "../assets/profile.svg";
 import NewPost from "./NewPost";
-import MenuBottom from "./MenuBottom.jsx"; // Corrected import
+import MenuBottom from "./MenuBottom.jsx"; 
 import menuGray from "../assets/menuGray.svg";
 
 function NavbarBottom() {

@@ -16,7 +16,7 @@ function ConfirmDeleteAccount({ onClose }) {
         try {
             const response = await axios({
                 method: "delete",
-                url: "http://localhost:3001/api/v1/user/delete",
+                url: "https://textgram.onrender.com/api/v1/user/delete",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },

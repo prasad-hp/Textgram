@@ -11,7 +11,7 @@ function PostList(){
             try {
                 const response = await axios({
                     method:"get",
-                    url:"http://localhost:3001/api/v1/post/list",
+                    url:"https://textgram.onrender.com/api/v1/post/list",
                     headers:{
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }
