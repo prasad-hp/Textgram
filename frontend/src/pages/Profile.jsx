@@ -44,7 +44,7 @@ function Profile(){
                 <header className="fixed top-0 left-0 md:inline-block hidden">
                     <NavbarTop />
                 </header>
-                    <div className=" w-full flex flex-col items-center mt-16">
+                    <div className=" w-full flex flex-col items-center md:mt-16 mt-3">
                         <div className="md:w-475 sm:w-11/12" >
                             <div className="flex justify-between items-center">
                                 <div className="flex flex-col items-start m-4">

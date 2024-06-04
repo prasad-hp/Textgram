@@ -12,7 +12,7 @@ function Comment(props){
         setConfirmDelete(false)
     }
     return(
-        <div className="w-screen sm:w-11/12 md:w-475 rounded-md items-center border border-gray-200">
+        <div className="w-11/12 md:w-475 rounded-md items-center border border-gray-200">
                 <div className="flex items-center justify-between">
                 <div className="flex items-center">
                         <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />

@@ -78,7 +78,8 @@ function PostSingle(props) {
     }
 
     return(
-        <div className="w-11/12 md:w-475 rounded-md items-center border border-gray-200">
+        <div className="w-11/12 md:w-475 items-center border-gray-200 mt-3">
+            <div className="border rounded-md">
                 <div className="flex items-center justify-between">
                         <div className="flex items-center">
                         <img src="./defaultprofilepic.png" className="h-12 pt-2 px-2" />
@@ -103,11 +104,14 @@ function PostSingle(props) {
                         <img src={commentIcon} className="h-5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
                 </div>
-                <div className="md:w-475 w-412 border-x border-t border-gray-200">
-                    <div className="md:flex md:w-full md:items-center md:min-w-md hidden">
-                        <img src="./defaultprofilepic.png" className="h-14 p-2"/>
-                        <span className="text-gray-400 pl-5 md:w-450 w-96 text-lg" onClick={()=>setComment(true)}>Post Your Reply</span>
-                        <div className="h-9 bg-gray-400 font-semibold w-16 rounded-3xl text-white flex flex-col items-center justify-center mx-2">Post</div>
+            </div>
+                <div className="md:w-475 w-full border rounded-md border-gray-200">
+                    <div className="flex w-11/12 md:w-full justify-between items-center min-w-md">
+                        <div className="flex items-center">
+                            <img src="./defaultprofilepic.png" className="h-14 p-2"/>
+                            <span className="text-gray-400 pl-5 md:w-425 w-60 text-lg" onClick={()=>setComment(true)}>Post Your Reply</span>
+                        </div>
+                    <div className="h-9 bg-gray-400 font-semibold w-16 rounded-3xl text-white flex flex-col items-center justify-center md:mx-2">Post</div>
                     </div>
                 </div>
                 <div className={`${comment} z-10 absolute top-0 left-0`} >
