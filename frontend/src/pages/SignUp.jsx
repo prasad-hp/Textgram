@@ -50,10 +50,10 @@ function SignUp(){
             navigate("/login")
             setMessage(response.data.message)
         } catch (error) {
-            setMessage(error.response.data?.message || "An error Occured")
+            console.log(error)
+            setMessage(error.response.data || "An error Occured")
         }
     }
-
     return(
         <div className="w-screen h-screen flex justify-center">
             <div className="w-11/12 flex justify-center items-center">
