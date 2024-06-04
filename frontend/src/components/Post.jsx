@@ -83,9 +83,9 @@ function Post(props){
                         <h1 className="font-semibold mx-0 hover:underline-offset-2 hover:underline hover:cursor-pointer" onClick={()=>navigate(`/profile?userId=${props.userId}`)}>{props.firstName}{" "}{props.lastName}</h1>
                     </div>
                     <div className="relative">
-                        <img src={threeDots} className="w-11 h-11 px-2.5 hover:cursor-pointer hover:bg-slate-300 rounded-full" onClick={()=>setDeleteButton(!deleteButton)}/>
+                        <img src={threeDots} className="w-11 h-11 px-2.5 z-0 hover:cursor-pointer hover:bg-slate-300 rounded-full" onClick={()=>setDeleteButton(!deleteButton)}/>
                         {deleteButton && 
-                            <div className={`${deleteButton ? "inline-block" : "hidden"} absolute z-10 right-10 top-7 w-20 justify-center flex items-center bg-white h-8 rounded-md hover:bg-slate-200 hover:cursor-pointer font-semibold text-center`} onClick={()=>{setConfirmDelete(true), setDeleteButton(false)}}>Delete</div>
+                            <div className={`${deleteButton ? "inline-block" : "hidden"} absolute z-0 right-10 top-7 w-20 justify-center flex items-center bg-white h-8 rounded-md hover:bg-slate-200 hover:cursor-pointer font-semibold text-center`} onClick={()=>{setConfirmDelete(true), setDeleteButton(false)}}>Delete</div>
                         }
                     </div>
                 </div>
@@ -101,7 +101,7 @@ function Post(props){
                         <img src={commentIcon} className="h-5 mx-3" onClick={()=>setComment(true)}/>
                     </span>
                 </div>
-                <div className={`${comment} z-10 absolute top-0 left-0`} >
+                <div className={`${comment} z-50 absolute top-0 left-0`} >
                     <CreateComment id={props.id} postText={props.postText} firstName={props.firstName} lastName={props.lastName} newComment={comment} onClose={handleClose}/>
                 </div>
                 {confirmDelete && <ConfirmDeletePost onClose={handleDeleteClose} id={props.id} userId={props.userId}/>}

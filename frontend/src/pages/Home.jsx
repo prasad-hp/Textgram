@@ -35,14 +35,14 @@ function Home(){
     }
     return(
         <div className="w-screen">
-            <header className="fixed top-0 left-0 md:inline-block hidden">
+            <header className="fixed top-0 left-0 md:inline-block hidden z-0">
                 <NavbarTop />
             </header>
                 <div className="flex flex-col items-center md:mt-16 mt-3">
                     <CreatePostLanding />
                     <PostList />
                 </div>
-            <footer className="fixed bottom-0 left-0 ">
+            <footer className="fixed bottom-0 left-0">
                 <NavbarBottom />
                 {statusMessage && <p>{statusMessage}</p>}
             </footer>

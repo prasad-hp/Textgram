@@ -12,7 +12,11 @@ function NewPost({ newPost, onClose }) {
 
 
     const handleInput = (event) => {
-        setText(event.target.value);
+        const inputText = event.target.value
+        const cleanedText = inputText
+        .replace(/\s{3,}/g, '  ')
+        .replace(/\n{3,}/g, '\n\n');
+        setText(cleanedText);
     };
 
     useEffect(() => {
@@ -64,7 +68,7 @@ function NewPost({ newPost, onClose }) {
     if (!newPost) return null;
 
     return (
-        <div className="bg-black/40 fixed inset-0 flex items-center justify-center">
+        <div className="bg-black/40 fixed inset-0 flex items-center justify-center z-50">
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-white font-semibold text-xl pb-2">New Post</h1>
                 <div className="w-96 md:w-475 border-2 rounded-lg bg-white h-auto p-4">
