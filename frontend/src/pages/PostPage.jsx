@@ -52,14 +52,13 @@ function PostPage() {
         )
     })
     return (
-        <div>
+        <div className="h-screen">
             <header>
                 <NavbarTop />
             </header>
             <div className="flex flex-col items-center">
                 {postData && postData.post && (
                     <>
-                    
                         <PostSingle 
                             postText={postData.post.postText} 
                             likeCount={postData.post.likes.length}
@@ -74,7 +73,7 @@ function PostPage() {
                 )}
             </div>
             {statusMessage && <p>{statusMessage}</p>}
-            <footer className="z-0 left-0">
+            <footer className="z-0 left-0 w-screen">
                 <NavbarBottom />
             </footer>
         </div>
