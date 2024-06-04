@@ -89,8 +89,8 @@ function Post(props){
                         }
                     </div>
                 </div>
-                <div className="px-16 w-full" style={{ whiteSpace: 'pre-wrap' }} onClick={()=>navigate(`/post?id=${props.id}`)}>
-                    <p>{props.postText}</p>
+                <div className="px-16 w-full" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word' }} onClick={()=>navigate(`/post?id=${props.id}`)}>
+                    <p className="w-full">{props.postText}</p>
                 </div>
                 <div className="md:mx-16 py-3 flex justify-start mx-14">
                     <span className="flex justify-start items-center">

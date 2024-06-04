@@ -25,7 +25,7 @@ function Comment(props){
                         }
                     </div>
                 </div>
-                <div className="px-16 w-full pb-5" style={{ whiteSpace: 'pre-wrap' }}>
+                <div className="px-16 w-full pb-5" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                     <p>{props.comments.commentText}</p>
                 </div>
                 {confirmDelete && <ConfirmDeleteComment onClose={handleDeleteClose} postId={props.postId} commentedUserId={props.comments.userId} commentId={props.comments._id}/>}
