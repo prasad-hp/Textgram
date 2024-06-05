@@ -12,19 +12,15 @@ function CreateComment(props) {
 
     const handleInput = (event) => {
         const inputText = event.target.value;
-        const cleanedText = inputText
-            .replace(/\s{3,}/g, '  ')     
-            .replace(/\n{3,}/g, '\n\n');  
-        setText(cleanedText);
+        setText(inputText);
     };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         setStatusMessage("Loading...");
         try {
             const response = await axios.patch("https://textgram.onrender.com/api/v1/post/comment/add", {
                 id: props.id,
-                text: text,
+                text: text.trim(),
             }, {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),

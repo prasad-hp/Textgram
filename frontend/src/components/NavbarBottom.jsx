@@ -32,7 +32,7 @@ function NavbarBottom() {
                         className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"
                         onClick={() => setDisplayMenu(!displayMenu)}
                     />
-                    <MenuBottom menu={displayMenu} />
+                    <MenuBottom menu={displayMenu} />   
                 </div>
                 <a href="/userprofile">
                     <img src={profile} alt="Profile" className="w-10 h-10 p-2 rounded-md hover:bg-slate-300" />

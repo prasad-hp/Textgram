@@ -51,7 +51,7 @@ function ConfirmDeleteComment({ onClose, postId, commentedUserId, commentId }) {
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="w-8/12 max-w-md h-12 m-2 border rounded-full bg-white text-gray-500 hover:bg-green-400 hover:text-white font-semibold text-xl"
+                                className="w-8/12 max-w-md h-12 m-2 border rounded-full bg-white text-gray-500 hover:text-white font-semibold text-xl"
                             >
                                 Cancel
                             </button>

@@ -7,6 +7,7 @@ function ConfirmDeletePost({ onClose, id, userId, toHome }) {
     const navigate = useNavigate()
     async function deletePost(event) {
         event.preventDefault();
+        event.stopPropagation()
         setStatusMessage("Deleting...")
         try {
             const response = await axios({
@@ -63,5 +64,4 @@ function ConfirmDeletePost({ onClose, id, userId, toHome }) {
         </div>
     );
 }
-
 export default ConfirmDeletePost;

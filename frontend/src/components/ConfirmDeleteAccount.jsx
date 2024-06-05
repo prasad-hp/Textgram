@@ -63,7 +63,7 @@ function ConfirmDeleteAccount({ onClose }) {
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="w-5/12 max-w-md h-12 m-2 border rounded-full bg-gray-800 text-gray-500 hover:bg-green-700 hover:text-white font-semibold text-xl"
+                                className="w-5/12 max-w-md h-12 m-2 border rounded-full bg-gray-800 text-gray-500 hover:text-white font-semibold text-xl"
                             >
                                 Cancel
                             </button>
