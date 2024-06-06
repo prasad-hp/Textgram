@@ -9,7 +9,7 @@ function Landing(){
         }
     }, [])
     return(
-        <div className="flex items-center justify-center w-screen h-screen bg-signup-bg bg-no-repeat bg-contain">
+        <div className="flex items-center justify-center w-screen h-screen bg-signup-bg bg-no-repeat md:bg-contain bg-200%">
             <div className="flex items-center justify-center md:flex-row flex-col">
                     <div className="w-1/2">
                         <h2 className="md:text-6xl text-2xl md:text-left text-center my-6 font-semibold text-gray-800">Welcome to </h2>

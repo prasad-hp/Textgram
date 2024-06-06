@@ -18,6 +18,12 @@ export default {
       backgroundImage: {
         'signup-bg': "url('/src/assets/signpBg1.webp')",
       },
+      backgroundSize:{
+        "200%":"200%"
+      },
+      backgroundPosition: {
+        "top-center": "center top" 
+      },
     },
   },
   plugins: [],
