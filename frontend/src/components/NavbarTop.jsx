@@ -23,7 +23,7 @@ function NavbarTop() {
                     <div className="w-28">
                         <img
                             src={atIcon}
-                            onClick={() => navigate("/")}
+                            onClick={() => navigate("/home")}
                             className="hover:cursor-pointer w-12 h-12 p-2 rounded-full hover:bg-slate-300"
                         />
                     </div>
@@ -31,7 +31,7 @@ function NavbarTop() {
                         <div className="flex md:justify-around w-475 h-full justify-end items-center border border-gray-200 bg-white bg-opacity-75">
                             <img
                                 src={homeIcon}
-                                onClick={() => navigate("/")}
+                                onClick={() => navigate("/home")}
                                 className="hover:cursor-pointer w-10 h-10 p-2 rounded-md hover:bg-slate-300"
                             />
                             <img

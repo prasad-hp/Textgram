@@ -17,7 +17,7 @@ function NavbarBottom() {
     return (
         <div className="relative md:w-475 w-412 h-16">
             <div className="w-screen md:hidden flex justify-around py-4 items-center border border-gray-200 bg-white bg-opacity-75 fixed bottom-0 z-100">
-                <a href="/">
+                <a href="/home">
                     <img src={homeIcon} alt="Home" className="w-10 h-10 p-2 rounded-md hover:bg-slate-300" />
                 </a>
                 <img

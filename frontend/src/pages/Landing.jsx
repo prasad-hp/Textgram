@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Landing(){
     const navigate = useNavigate()
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            navigate("/home")
+        }
+    }, [])
     return(
         <div className="flex items-center justify-center w-screen h-screen bg-signup-bg bg-no-repeat bg-contain">
             <div className="flex items-center justify-center md:flex-row flex-col">
