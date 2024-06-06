@@ -52,7 +52,7 @@ function Login(){
                             <p className="flex justify-center p-4 font-medium text-lg">{message}</p>
                             <InputButton text={"Login"} buttonSubmit={button}/>
                         </form>
-                            <p className="flex justify-center p-4 font-medium text-lg">Doesn't have Account ?  <a href="./signup" className="font-semibold"> Create Acoount</a></p>
+                            <p className="flex justify-center p-4 font-medium text-lg">Doesn't have Account ?  <a href="./signup" className="font-semibold"> {"  "} Create Account</a></p>
                 </div>
             </div>
         </div>
