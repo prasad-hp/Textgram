@@ -4,7 +4,6 @@ Textgram is a microblogging platform inspired by Twitter, designed for users to 
 
 ## Features
 
-### Current Features
 - **Create a Text Post**: Users can compose and publish text-based posts.
 - **Like the Post**: Users can like posts to show appreciation.
 - **Undo Like**: Option to undo a like if clicked by mistake.
@@ -17,9 +16,6 @@ Textgram is a microblogging platform inspired by Twitter, designed for users to 
 - **Delete Comment**: Option to delete user comments.
 - **Delete the Post**: Posts can be deleted by the user who created them.
 - **View Other User**: View the profile of other users by Clicking on name.
-
-### Planned Features
-- **Choose Icon** : Ability of user to choose profile icon.
 
 ## Technologies Used
 
