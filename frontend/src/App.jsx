@@ -10,13 +10,15 @@ import Update from './pages/Update'
 import ChangePassword from './pages/ChangePassword'
 import UserProfile from './pages/UserProfile'
 import Profile from './pages/Profile'
+import Landing from './pages/Landing'
 
 function App() {
   return (
     <BrowserRouter>
     <RecoilRoot>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/post" element={<PostPage />} />
