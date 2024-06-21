@@ -30,6 +30,13 @@ router.get("/list",authMiddleware, async(req, res)=>{
         res.status(500).json(error.message)
     }
 })
+router.get("/hello", async(req, res)=>{
+    try {
+        res.status(200).json({message:"Hello"})
+    } catch (error) {
+        res.status(500).json(error.message)
+    }
+})
 router.get("/userlist", authMiddleware, async(req, res)=>{
     try {
         const userId = req.query.userId

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Landing(){
     const navigate = useNavigate()
@@ -7,6 +8,14 @@ function Landing(){
         if(localStorage.getItem("token")){
             navigate("/home")
         }
+        async function getData(){
+            const response = await axios({
+                method:"get",
+                url:"https://textgram.onrender.com/api/v1/post/hello"
+            })
+            console.log(response.data.message)
+        }
+        getData()
     }, [])
     return(
         <div className="flex items-center justify-center w-screen h-screen bg-signup-bg bg-no-repeat md:bg-contain bg-200%">
