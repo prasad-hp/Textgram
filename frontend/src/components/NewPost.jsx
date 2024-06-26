@@ -28,7 +28,7 @@ function NewPost({ newPost, onClose }) {
         async function getUser() {
             const response = await axios({
                 method: "get",
-                url: "https://textgram.onrender.com/api/v1/user",
+                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user",
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },
@@ -43,7 +43,7 @@ function NewPost({ newPost, onClose }) {
         try {
             const response = await axios({
                 method: "post",
-                url: "https://textgram.onrender.com/api/v1/post/create",
+                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/create",
                 data: {
                     postText: text.trim(),
                 },

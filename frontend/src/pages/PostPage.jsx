@@ -24,7 +24,7 @@ function PostPage() {
             try {
                 const response = await axios({
                     method: "get",
-                    url: "https://textgram.onrender.com/api/v1/post/single",
+                    url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/single",
                     params: { id: postId },
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token")

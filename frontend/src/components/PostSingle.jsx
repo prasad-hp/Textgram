@@ -25,7 +25,7 @@ function PostSingle(props) {
                     try {
                         const response = await axios({
                             method: "post",
-                            url: "https://textgram.onrender.com/api/v1/post/like",
+                            url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/like",
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             },
@@ -45,7 +45,7 @@ function PostSingle(props) {
                     try {
                         const response = await axios({
                             method: "post",
-                            url: "https://textgram.onrender.com/api/v1/post/unlike",
+                            url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/unlike",
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             },

@@ -11,7 +11,7 @@ function Landing(){
         async function getData(){
             const response = await axios({
                 method:"get",
-                url:"https://textgram.onrender.com/api/v1/post/hello"
+                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/hello"
             })
             console.log(response.data.message)
         }

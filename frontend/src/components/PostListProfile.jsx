@@ -11,7 +11,7 @@ function PostListProfile({ userId }) {
             try {
                 const response = await axios({
                     method: "get",
-                    url: "https://textgram.onrender.com/api/v1/post/userlist",
+                    url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/userlist",
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token"),
                     },

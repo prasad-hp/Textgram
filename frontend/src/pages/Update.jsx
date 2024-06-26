@@ -20,7 +20,7 @@ function Update(){
         try {
             const response = await axios({
                                 method:"put",
-                                url:"https://textgram.onrender.com/api/v1/user/update",
+                                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/update",
                                 headers:{
                                     Authorization:"Bearer " + localStorage.getItem("token")
                                 },
@@ -43,7 +43,7 @@ function Update(){
             async function getUser(){
                 const response = await axios({
                     method:"get",
-                    url:"https://textgram.onrender.com/api/v1/user",
+                    url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user",
                     headers:{
                         Authorization:"Bearer " + localStorage.getItem("token")
                     }

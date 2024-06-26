@@ -18,7 +18,7 @@ function CreateComment(props) {
         event.preventDefault();
         setStatusMessage("Loading...");
         try {
-            const response = await axios.patch("https://textgram.onrender.com/api/v1/post/comment/add", {
+            const response = await axios.patch("http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/comment/add", {
                 id: props.id,
                 text: text.trim(),
             }, {
@@ -38,7 +38,7 @@ function CreateComment(props) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get("https://textgram.onrender.com/api/v1/user/", {
+                const response = await axios.get("http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/", {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token"),
                     },
