@@ -1,9 +1,11 @@
 import express, { urlencoded } from "express"
 import mainRouter from "./routes/index.js"
 import cors from "cors"
+import dotenv from "dotenv"
 
+dotenv.config()
 const app = express()
-const port = 3001;
+const port = process.env.PORT;
 app.use(cors({
     origin:["http://localhost:5173",
             "https://textgram.netlify.app"]
