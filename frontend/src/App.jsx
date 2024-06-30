@@ -27,7 +27,6 @@ function App() {
         <Route path="/settings" element={<Settings />} />
         <Route path="/update" element={<Update />} />
         <Route path="/changepassword" element={<ChangePassword />} />
-
       </Routes>
     </RecoilRoot>
     </BrowserRouter>

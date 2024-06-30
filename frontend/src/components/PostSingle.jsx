@@ -17,7 +17,7 @@ function PostSingle(props) {
     const [confirmDelete, setConfirmDelete] = useState(false);
     const [statusMessage, setStatusMessage] = useState("");
     const navigate = useNavigate();
-
+    
         function toggleLikeApi(){
             if (liked === null) return;
             if (liked === false) {
