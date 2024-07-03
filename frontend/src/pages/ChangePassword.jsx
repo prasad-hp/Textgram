@@ -6,6 +6,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import InputButtonChange from "../components/InputButtonChange";
 import InputButtonCancel from "../components/InputButtonCancel";
+import url from "../config";
 
 function ChangePassword(){
     const [password, setPassword] = useState("")
@@ -39,7 +40,7 @@ function ChangePassword(){
         try {
             const response = await axios({
                                 method:"put",
-                                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/changepassword",
+                                url:`${url}/api/v1/user/changepassword`,
                                 headers:{
                                     Authorization:"Bearer " + localStorage.getItem("token")
                                 },

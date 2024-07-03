@@ -6,6 +6,7 @@ import axios from "axios";
 import profile from "../../public/defaultprofilepic.png"
 import PostListProfile from "../components/PostListProfile";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import url from "../config";
 
 function Profile(){
     const [statusMessage, setStatusMessage] = useState("")
@@ -22,7 +23,7 @@ function Profile(){
             async function getUser(){
                 const response = await axios({
                     method:"get",
-                    url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/profile",
+                    url:`${url}/api/v1/user/profile`,
                     headers:{
                         Authorization:"Bearer " + localStorage.getItem("token")
                     },

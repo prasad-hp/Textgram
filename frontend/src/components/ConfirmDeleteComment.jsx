@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import url from "../config";
 
 function ConfirmDeleteComment({ onClose, postId, commentedUserId, commentId }) {
     const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ function ConfirmDeleteComment({ onClose, postId, commentedUserId, commentId }) {
         try {
             const response = await axios({
                 method: "patch",
-                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/comment/delete",
+                url: `${url}/api/v1/post/comment/delete`,
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },

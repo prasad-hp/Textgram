@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
+import url from "../config";
 
 function ConfirmDeleteAccount({ onClose }) {
     const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ function ConfirmDeleteAccount({ onClose }) {
         try {
             const response = await axios({
                 method: "delete",
-                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/delete",
+                url: `${url}/api/v1/user/delete`,
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },

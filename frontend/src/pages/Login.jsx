@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import InputButton from "../components/InputButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import url from "../config";
 
 function Login(){
     const [email, setEmail] = useState("")
@@ -25,7 +26,7 @@ function Login(){
         try {            
             const response = await axios({
                                     method:"post",
-                                    url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/login",
+                                    url:`${url}/api/v1/user/login`,
                                     data:{
                                         email:email,
                                         password:password

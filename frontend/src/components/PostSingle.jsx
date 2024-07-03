@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import threeDots from "../assets/threeDots.svg";
 import ConfirmDeletePost from "./ConfirmDeletePost";
+import url from "../config";
 
 function PostSingle(props) {
     const [icon, setIcon] = useState(props.liked ? likedIcon : notLikedIcon);
@@ -25,7 +26,7 @@ function PostSingle(props) {
                     try {
                         const response = await axios({
                             method: "post",
-                            url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/like",
+                            url: `${url}/api/v1/post/like`,
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             },
@@ -45,7 +46,7 @@ function PostSingle(props) {
                     try {
                         const response = await axios({
                             method: "post",
-                            url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/unlike",
+                            url: `${url}/api/v1/post/unlike`,
                             headers: {
                                 Authorization: "Bearer " + localStorage.getItem("token")
                             },

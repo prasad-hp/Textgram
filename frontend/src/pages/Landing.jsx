@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import url from "../config";
 
 function Landing(){
     const navigate = useNavigate()
@@ -11,7 +12,7 @@ function Landing(){
         async function getData(){
             const response = await axios({
                 method:"get",
-                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/hello"
+                url:`${url}/api/v1/post/hello`
             })
             console.log(response.data.message)
         }

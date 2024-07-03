@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user.jsx";
 import axios from "axios";
+import url from "../config.js";
 
 function NewPost({ newPost, onClose }) {
     const textAreaRef = useRef(null);
@@ -28,7 +29,7 @@ function NewPost({ newPost, onClose }) {
         async function getUser() {
             const response = await axios({
                 method: "get",
-                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user",
+                url: `${url}/api/v1/user`,
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },
@@ -43,7 +44,7 @@ function NewPost({ newPost, onClose }) {
         try {
             const response = await axios({
                 method: "post",
-                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/create",
+                url: `${url}/api/v1/post/create`,
                 data: {
                     postText: text.trim(),
                 },

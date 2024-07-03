@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import url from "../config";
 
 function ConfirmDeletePost({ onClose, id, userId, toHome }) {
     const [statusMessage, setStatusMessage] = useState("");
@@ -12,7 +13,7 @@ function ConfirmDeletePost({ onClose, id, userId, toHome }) {
         try {
             const response = await axios({
                 method: "delete",
-                url: "http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/delete",
+                url: `${url}/api/v1/post/delete`,
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token"),
                 },

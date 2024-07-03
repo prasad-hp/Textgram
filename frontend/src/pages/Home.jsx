@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSetRecoilState } from "recoil"
 import {userAtom} from "../store/atoms/user.jsx"
 import { useNavigate } from "react-router-dom";
+import url from "../config.js";
 
 function Home(){
     const [statusMessage, setStatusMessage] = useState("")
@@ -23,7 +24,7 @@ function Home(){
         try {            
             const response = await axios({
                 method:"get",
-                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user",
+                url:`${url}/api/v1/user`,
                 headers:{
                     Authorization:"Bearer " + localStorage.getItem("token")
                 }

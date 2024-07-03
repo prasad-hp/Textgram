@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user.jsx";
 import axios from "axios";
+import url from "../config.js";
 
 function CreateComment(props) {
     const textAreaRef = useRef(null);
@@ -18,7 +19,7 @@ function CreateComment(props) {
         event.preventDefault();
         setStatusMessage("Loading...");
         try {
-            const response = await axios.patch("http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/comment/add", {
+            const response = await axios.patch(`${url}/api/v1/post/comment/add`, {
                 id: props.id,
                 text: text.trim(),
             }, {
@@ -38,7 +39,7 @@ function CreateComment(props) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get("http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/", {
+                const response = await axios.get(`${url}/api/v1/user/`, {
                     headers: {
                         Authorization: "Bearer " + localStorage.getItem("token"),
                     },

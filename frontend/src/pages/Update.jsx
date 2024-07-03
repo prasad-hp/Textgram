@@ -7,6 +7,7 @@ import NavbarBottom from "../components/NavbarBottom";
 import NavbarTop from "../components/NavbarTop";
 import InputButtonChange from "../components/InputButtonChange";
 import InputButtonCancel from "../components/InputButtonCancel";
+import url from "../config";
 
 function Update(){
     const [firstName, setFirstName] = useState("")
@@ -20,7 +21,7 @@ function Update(){
         try {
             const response = await axios({
                                 method:"put",
-                                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/update",
+                                url:`${url}/api/v1/user/update`,
                                 headers:{
                                     Authorization:"Bearer " + localStorage.getItem("token")
                                 },
@@ -43,7 +44,7 @@ function Update(){
             async function getUser(){
                 const response = await axios({
                     method:"get",
-                    url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user",
+                    url:`${url}/api/v1/user`,
                     headers:{
                         Authorization:"Bearer " + localStorage.getItem("token")
                     }

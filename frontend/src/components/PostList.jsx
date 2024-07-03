@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import axios from "axios";
+import url from "../config";
 
 function PostList(){
     const [statusMessage, setStatusMessage] = useState("")
@@ -11,7 +12,7 @@ function PostList(){
             try {
                 const response = await axios({
                     method:"get",
-                    url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/post/list",
+                    url:`${url}/api/v1/post/list`,
                     headers:{
                         Authorization: "Bearer " + localStorage.getItem("token")
                     }

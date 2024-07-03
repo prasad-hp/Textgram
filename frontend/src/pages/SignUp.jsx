@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import InputButton from "../components/InputButton";
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import url from "../config";
 
 function SignUp(){
     const [firstName, setFirstName] = useState("")
@@ -37,7 +38,7 @@ function SignUp(){
         try {
             const response = await axios({
                                 method:"post",
-                                url:"http://textgram.ap-south-1.elasticbeanstalk.com/api/v1/user/signup",
+                                url:`${url}/api/v1/user/signup`,
                                 data:{
                                     firstName:firstName,
                                     lastName:lastName,
